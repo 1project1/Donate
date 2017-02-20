@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Login" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">#E43F3F</item>
+        <item name="colorPrimaryDark">#CC1D1D</item>
+        <item name="colorAccent">#FFFFFF</item>
+        <item name="android:statusBarColor">#E43F3F</item>
+    </style>
+</resources>

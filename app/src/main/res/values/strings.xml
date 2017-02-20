@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Donate</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="log_in">Log In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="create_account">No Account Yet ? Create One</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="select_language">Select Language</string>
+    <string name="select">Select</string>
+    <string name="cancel">Cancel</string>
+    <string name="log_out">Log Out</string>
+
+    <string-array name="languages">
+        <item>English</item>
+        <item>Hindi</item>
+    </string-array>
+</resources>
