@@ -43,13 +43,8 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener, Go
     private static final String TAG = "SignInActivity";
     private static final int RC_SIGN_IN = 9001;
 
-    //Shared Prefferences file and Editor
+    //Shared Preferences file and Editor
     SharedPreferences logInPref;
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(LocaleHelper.onAttach(newBase, "en"));
-    }
 
     SharedPreferences.Editor logInEditor;
     // a permanent variable storing the file name for ease of change
@@ -105,7 +100,8 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener, Go
         createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), SignUp.class));
+                finish();
+                startActivity(new Intent(getApplicationContext(), SignUp.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             }
         });
         Button g_plus = (Button) findViewById(R.id.g_plus);
@@ -241,5 +237,11 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener, Go
 
     }
 // [END auth_with_google]
+
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleHelper.onAttach(newBase, "en"));
+    }
 }
 

@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -51,9 +52,11 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (s.equals(null) || s.length() == 0 || s.equals(""))
+                if (s.toString().length()<=0)
                     userName.setError("Required");
                 else {
+                    Log.e("value",s.toString());
+                    Log.e("value", String.valueOf(s.length()));
                     userName.setError(null);
                 }
             }
