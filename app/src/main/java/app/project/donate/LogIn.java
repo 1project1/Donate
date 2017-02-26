@@ -61,7 +61,9 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener, Go
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.log_in);
-
+        Intent i = new Intent(this, Cart.class);
+        //finish();
+        startActivity(i);
         init();
 
         //Firebase Listener

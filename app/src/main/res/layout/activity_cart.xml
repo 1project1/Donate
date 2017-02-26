@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_cart"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="app.project.donate.Cart"
+    android:background="@drawable/empty_cart">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/sv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/all_buttons">
+
+
+    </android.support.v7.widget.RecyclerView>
+
+    <LinearLayout
+
+        android:id="@+id/all_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+
+            android:id="@+id/remove_all"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:background="@color/cancelBack"
+            android:drawableEnd="@mipmap/crying"
+            android:drawableRight="@mipmap/crying"
+            android:gravity="center"
+            android:onClick="removeAll"
+            android:text="Clear Cart"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/donate_all"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
+            android:background="@color/donateBack"
+            android:drawableEnd="@mipmap/happy"
+            android:drawableRight="@mipmap/happy"
+            android:gravity="center"
+            android:onClick="donateAll"
+            android:text="Donate Items"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+
+</RelativeLayout>

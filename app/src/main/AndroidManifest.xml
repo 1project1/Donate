@@ -21,7 +21,8 @@
             android:name=".SignUp"
             android:theme="@style/Login" />
         <activity android:name=".Temp" />
-        <activity android:name=".Cart"></activity>
+        <activity android:name=".Cart"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
