@@ -105,6 +105,7 @@ public class Cart extends AppCompatActivity {
 
 
     }
+
     public void donateAll(View view) {
         new AlertDialog.Builder(this)
                 .setIcon(null)
@@ -139,7 +140,5 @@ public class Cart extends AppCompatActivity {
                     }).show();
         }
     }
-
-
 
 }

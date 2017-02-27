@@ -45,6 +45,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
             public void onClick(View view) {
                 //TODO
                 itemList.remove(position);
+                notifyItemRemoved(position);
                 Toast.makeText(mContext, "Removed This Item from the Cart", Toast.LENGTH_SHORT).show();
 
             }
