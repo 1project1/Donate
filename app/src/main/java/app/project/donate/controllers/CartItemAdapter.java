@@ -1,7 +1,11 @@
 package app.project.donate.controllers;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +14,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.bumptech.glide.Glide;
+
 import java.util.List;
+
+import app.project.donate.Cart;
 import app.project.donate.R;
 import app.project.donate.model.CartItem;
 
@@ -40,12 +48,29 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
         holder.address.setText(item.getAddress());
         holder.message.setText(item.getMessage());
         Glide.with(mContext).load(item.getThumbnail()).into(holder.thumb);
+        holder.cancelItem.setEnabled(true);
         holder.cancelItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //TODO
-                itemList.remove(position);
-                notifyItemRemoved(position);
+                holder.cancelItem.setEnabled(false);
+                itemList.remove(holder.getAdapterPosition());
+                notifyItemRemoved(holder.getAdapterPosition());
+                Log.i("Size",itemList.size()+"");
+                if(itemList.isEmpty()){
+                    Log.i("Empty Cart","Cart Empty!!!");
+                    new AlertDialog.Builder(mContext)
+                            .setIcon(null)
+                            .setTitle("Empty Cart!")
+                            .setMessage("Your cart is empty. Click 'Go Back' to go to home Page.")
+                            .setCancelable(false)
+                            .setPositiveButton("Go Back", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialogInterface, int i) {
+                                    mContext.startActivity(new Intent(mContext,Cart.class));
+                                }
+                            });
+                }
                 Toast.makeText(mContext, "Removed This Item from the Cart", Toast.LENGTH_SHORT).show();
 
             }

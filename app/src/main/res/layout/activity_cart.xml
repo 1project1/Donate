@@ -10,6 +10,7 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/sv"
+        android:background="@android:color/transparent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/all_buttons">
@@ -49,7 +50,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:layout_marginRight="2dp"
             android:layout_weight="1"
             android:background="@color/donateBack"
             android:drawableEnd="@mipmap/happy"

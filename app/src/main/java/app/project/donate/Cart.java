@@ -1,9 +1,13 @@
 package app.project.donate;
 
 import android.app.AlertDialog;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -15,13 +19,14 @@ import java.util.List;
 
 import app.project.donate.controllers.CartItemAdapter;
 import app.project.donate.model.CartItem;
+import app.project.donate.model.DonateItem;
 
 public class Cart extends AppCompatActivity {
 
     RecyclerView sv;
     CartItemAdapter adapter;
     List<CartItem> itemList;
-
+    List<DonateItem> donationList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +112,8 @@ public class Cart extends AppCompatActivity {
     }
 
     public void donateAll(View view) {
+
+
         new AlertDialog.Builder(this)
                 .setIcon(null)
                 .setTitle("Confirmation")
@@ -115,10 +122,29 @@ public class Cart extends AppCompatActivity {
                 .setPositiveButton("Yes! Do it.", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(getApplicationContext(), "Thank you for donating!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "Thank you for donating!"
+                                , Toast.LENGTH_SHORT).show();
+                        List<DonateItem> temp = getAllCartItems();
+                        for (DonateItem x : temp) {
+                            Log.i("Item", "Title:" + x.getTitle() + "\tMessage:" +
+                                    x.getMessage() + "\tQuantity:" + x.getQuantity());
+                        }
+
+                        NotificationCompat.Builder b =
+                                (NotificationCompat.Builder)
+                                        new NotificationCompat.Builder(getApplicationContext()).
+                                setSmallIcon(R.mipmap.happy)
+                                .setContentTitle("Donation")
+                                .setContentText("Your donation list is successfully confirmed").
+                                        setColor(Color.parseColor("#43A047"));
+                        NotificationManager mNotificationManager = (NotificationManager)
+                                getSystemService(Context.NOTIFICATION_SERVICE);
+                        mNotificationManager.notify(0, b.build());
+                        //TODO send the list to Harsh
                         itemList.clear();
                         adapter.notifyDataSetChanged();
                         checkEmpty();
+
                     }
                 }).setNegativeButton("Nopes", null)
                 .show();
@@ -139,6 +165,17 @@ public class Cart extends AppCompatActivity {
                         }
                     }).show();
         }
+    }
+
+
+    public List<DonateItem> getAllCartItems() {
+        donationList = new ArrayList<>();
+        for (CartItem x : itemList) {
+            DonateItem l = new DonateItem(x.getTitle(), x.getMessage(), x.getQuantity());
+            donationList.add(l);
+        }
+
+        return donationList;
     }
 
 }
