@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/home"
+            android:title="HOME"
+            />
+        <item
+            android:id="@+id/notifications"
+            android:title="NOTIFICATIONS"
+            />
+        <item
+            android:id="@+id/cart"
+            android:title="CART"
+            />
+        <item
+            android:id="@+id/history"
+            android:title="HISTORY"
+            />
+        <item
+            android:id="@+id/ngoList"
+            android:title="LIST OF NGOs"
+            />
+        <item
+            android:id="@+id/aboutUs"
+            android:title="AboutUs"/>
+    </group>
+</menu>

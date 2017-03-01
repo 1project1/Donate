@@ -10,6 +10,8 @@
     <string name="select">Select</string>
     <string name="cancel">Cancel</string>
     <string name="log_out">Log Out</string>
+    <string name="drawer_open">Drawer Open</string>
+    <string name="drawer_close">Drawer Closed</string>
 
     <string-array name="languages">
         <item>English</item>

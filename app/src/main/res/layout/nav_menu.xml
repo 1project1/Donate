@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_add_shopping_cart_black_24dp"
+            android:id="@+id/cartImage"
+            app:civ_border_width="4dp"
+            app:civ_border_color="@color/colorPrimaryDark" />
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="CART"
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:textColor="#FFF"
+            android:background="@color/colorPrimaryDark"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:layout_toRightOf="@+id/cartImage"
+            android:layout_toEndOf="@+id/cartImage" />
+    </RelativeLayout>
+</LinearLayout>

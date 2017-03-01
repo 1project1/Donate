@@ -8,6 +8,8 @@
     <string name="confirm_password">पासवर्ड की पुष्टि कीजिये</string>
     <string name="select_language">भाषा चुनिए</string>
     <string name="log_out">साइन आउट</string>
+    <string name="drawer_open">Drawer Open</string>
+    <string name="drawer_close">Drawer Closed</string>
 
     <string-array name="languages">
         <item>अंग्रेज़ी</item>
