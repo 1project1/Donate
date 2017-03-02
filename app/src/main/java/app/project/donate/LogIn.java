@@ -76,7 +76,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener, Go
                     logInEditor.putString("password",user.getDisplayName());
                     logInEditor.putBoolean("isLoggedIn", true);
                     logInEditor.apply();
-                    Intent i = new Intent(getApplicationContext(), Temp.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    Intent i = new Intent(getApplicationContext(), Cart.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     finish();
                     startActivity(i);
 

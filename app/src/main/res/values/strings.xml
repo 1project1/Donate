@@ -10,6 +10,7 @@
     <string name="select">Select</string>
     <string name="cancel">Cancel</string>
     <string name="log_out">Log Out</string>
+    <string name="item_message">Any message you want to give to NGO or what you expect from us</string>
 
     <string-array name="languages">
         <item>English</item>
