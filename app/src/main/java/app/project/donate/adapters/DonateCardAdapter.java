@@ -1,4 +1,4 @@
-package app.project.donate;
+package app.project.donate.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +9,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
+
+import app.project.donate.utils.DonationCard;
+import app.project.donate.R;
 
 /**
  * Created by AmanPC on 26-02-2017.

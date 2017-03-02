@@ -1,4 +1,4 @@
-package app.project.donate;
+package app.project.donate.utils;
 
 /**
  * Created by AmanPC on 26-02-2017.
@@ -10,7 +10,7 @@ public class DonationCard {
 
     public DonationCard() { }
 
-    DonationCard(String title, int cardImages){
+    public DonationCard(String title, int cardImages){
         this.title = title;
         this.cardImages = cardImages;
     }

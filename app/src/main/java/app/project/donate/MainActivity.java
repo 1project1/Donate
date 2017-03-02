@@ -1,22 +1,25 @@
 package app.project.donate;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+import app.project.donate.adapters.DonateCardAdapter;
+import app.project.donate.utils.DonationCard;
+
+public class MainActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
     DrawerLayout drawerLayout;
     Toolbar toolbar;
@@ -25,20 +28,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DonateCardAdapter donateCardAdapter;
     private List<DonationCard> donationCardList;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(false);
+
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.drawer_open,R.string.drawer_close);
-
+        actionBarDrawerToggle = new ActionBarDrawerToggle(
+                this, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
         recyclerView = (RecyclerView) findViewById(R.id.card_recycler_view);
         donationCardList = new ArrayList<>();
@@ -48,15 +54,62 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(donateCardAdapter);
 
-
-
         getDonations();
     }
 
     @Override
-    public void onPostCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onPostCreate(savedInstanceState, persistentState);
-        actionBarDrawerToggle.syncState();
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.home) {
+            // Handle the camera action
+        } else if (id == R.id.notifications) {
+
+        } else if (id == R.id.cart) {
+
+        } else if (id == R.id.history) {
+
+        } else if (id == R.id.aboutUs) {
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 
     private void getDonations(){
@@ -78,38 +131,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         donationCardList.add(card);
 
         donateCardAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout layout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (layout.isDrawerOpen(GravityCompat.START))
-            layout.closeDrawer(GravityCompat.START);
-        else
-            super.onBackPressed();
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem menu){
-        int id = menu.getItemId();
-
-        if (id == R.id.history){
-
-        } else if (id == R.id.notifications){
-
-        } else if (id == R.id.aboutUs){
-
-        } else if (id == R.id.ngoList){
-
-        } else if (id == R.id.cart){
-
-        } else if (id == R.id.home){
-
-        }
-
-        DrawerLayout layout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        layout.closeDrawer(GravityCompat.START);
-        return true;
     }
 }

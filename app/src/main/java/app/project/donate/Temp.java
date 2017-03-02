@@ -20,6 +20,8 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
 
+import app.project.donate.utils.LogIn;
+
 /**
  * Created by Aakash on 20-Feb-17.
  */
