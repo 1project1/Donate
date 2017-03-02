@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#E43F3F"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -42,14 +43,15 @@
         android:id="@+id/password_layout_signin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp">
+        android:layout_marginTop="25dp"
+        app:passwordToggleEnabled="true">
 
         <EditText
             android:id="@+id/Password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password"
-            android:inputType="textWebPassword"
+            android:inputType="textPassword"
             android:maxLines="1"
             android:singleLine="true" />
     </android.support.design.widget.TextInputLayout>
