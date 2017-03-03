@@ -1,4 +1,4 @@
-package app.project.donate.utils;
+package app.project.donate;
 
 import android.content.Context;
 import android.content.Intent;
@@ -29,11 +29,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-
-import app.project.donate.LocaleHelper;
-import app.project.donate.MainActivity;
-import app.project.donate.R;
-import app.project.donate.Temp;
 
 /**
  * Created by Aakash on 20-Feb-17.
@@ -81,7 +76,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener, Go
                     logInEditor.putString("password",user.getDisplayName());
                     logInEditor.putBoolean("isLoggedIn", true);
                     logInEditor.apply();
-                    Intent i = new Intent(getApplicationContext(), MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    Intent i = new Intent(getApplicationContext(), MainUI.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     finish();
                     startActivity(i);
 

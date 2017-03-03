@@ -1,4 +1,4 @@
-package app.project.donate.utils;
+package app.project.donate.model;
 
 /**
  * Created by AmanPC on 26-02-2017.

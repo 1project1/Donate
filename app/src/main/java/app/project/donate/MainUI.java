@@ -1,5 +1,6 @@
 package app.project.donate;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,37 +16,36 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.project.donate.adapters.DonateCardAdapter;
-import app.project.donate.utils.DonationCard;
+import app.project.donate.controllers.DonateCardAdapter;
+import app.project.donate.model.DonationCard;
 
-public class MainActivity extends AppCompatActivity
+public class MainUI extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    DrawerLayout drawerLayout;
-    Toolbar toolbar;
-    ActionBarDrawerToggle actionBarDrawerToggle;
     private RecyclerView recyclerView;
     private DonateCardAdapter donateCardAdapter;
     private List<DonationCard> donationCardList;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setContentView(R.layout.activity_main_ui);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        actionBarDrawerToggle = new ActionBarDrawerToggle(
-                this, drawerLayout, toolbar, R.string.drawer_open, R.string.drawer_close);
-        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-        actionBarDrawerToggle.syncState();
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+//TODO fix lag due to init() asynctask not working
 
+        //new backTask().execute();
+    }
+//TODO for fixing lags
+    public void init(){
         recyclerView = (RecyclerView) findViewById(R.id.card_recycler_view);
         donationCardList = new ArrayList<>();
         donateCardAdapter = new DonateCardAdapter(this, donationCardList);
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.main_ui, menu);
         return true;
     }
 
@@ -111,7 +111,6 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
     private void getDonations(){
         int cardBackground[] = new int[]{R.drawable.clothes, R.drawable.books, R.drawable.food, R.drawable.utensils, R.drawable.toys};
 
@@ -131,5 +130,14 @@ public class MainActivity extends AppCompatActivity
         donationCardList.add(card);
 
         donateCardAdapter.notifyDataSetChanged();
+    }
+
+    public class backTask extends AsyncTask<Void,Void,Void>{
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            init();
+            return  null;
+        }
     }
 }

@@ -1,4 +1,4 @@
-package app.project.donate.adapters;
+package app.project.donate.controllers;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import app.project.donate.utils.DonationCard;
+import app.project.donate.model.DonationCard;
 import app.project.donate.R;
 
 /**
