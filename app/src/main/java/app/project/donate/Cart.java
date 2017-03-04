@@ -14,15 +14,20 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import app.project.donate.controllers.CartItemAdapter;
+import app.project.donate.controllers.Person;
 import app.project.donate.model.CartItem;
 import app.project.donate.model.DonateItem;
 
 public class Cart extends AppCompatActivity {
-
+    DatabaseReference myRef;
     RecyclerView sv;
     CartItemAdapter adapter;
     List<CartItem> itemList;
@@ -119,6 +124,7 @@ public class Cart extends AppCompatActivity {
                 .setPositiveButton("Yes! Do it.", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        firebasesavedonationitem();
                         Toast.makeText(getApplicationContext(), "Thank you for donating!"
                                 , Toast.LENGTH_SHORT).show();
                         List<DonateItem> temp = getAllCartItems();
@@ -172,4 +178,17 @@ public class Cart extends AppCompatActivity {
         return donationList;
     }
 
+    private void firebasesavedonationitem(){
+        FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
+        String Uid=firebaseAuth.getCurrentUser().getUid();
+        myRef=FirebaseDatabase.getInstance().getReference();
+        myRef.child("endUsers").child(Uid).child("Donations_item_Details").setValue(getAllCartItems());
+
+        Person person=new Person();
+        person.setName("harsh");
+        person.setAddress("delhi");
+        person.setPhone("9716490060");
+
+        myRef.child("endUsers").child(Uid).child("User_details").setValue(person);
+    }
 }
