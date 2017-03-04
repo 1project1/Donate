@@ -28,4 +28,12 @@
         android:layout_alignBottom="@+id/b1"
         android:layout_gravity="center"
         android:text="@string/log_out" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Open Cart"
+        android:id="@+id/button2"
+        android:onClick="openCart"
+        android:layout_gravity="center"/>
 </LinearLayout>
