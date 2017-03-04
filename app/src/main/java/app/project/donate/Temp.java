@@ -116,5 +116,9 @@ public class Temp extends AppCompatActivity {
             Context context = LocaleHelper.setLocale(this, "en");
         }
     }
+
+    public void openCart(View view) {
+        startActivity(new Intent(this,Cart.class));
+    }
 }
 
