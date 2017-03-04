@@ -2,9 +2,11 @@
 <resources>
 
     <style name="Login" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorPrimary">#E43F3F</item>
-        <item name="colorPrimaryDark">#CC1D1D</item>
-        <item name="colorAccent">#FFFFFF</item>
-        <item name="android:statusBarColor">#E43F3F</item>
+        <item name="colorPrimary">@color/color_primary_accent_login</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark_login</item>
+        <item name="colorAccent">@color/color_primary_accent_login</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:fitsSystemWindows">true</item>
     </style>
 </resources>

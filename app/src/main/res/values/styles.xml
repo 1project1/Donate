@@ -9,9 +9,9 @@
     </style>
 
     <style name="Login" parent="Theme.AppCompat.NoActionBar">
-        <item name="colorPrimary">#E43F3F</item>
-        <item name="colorPrimaryDark">#CC1D1D</item>
-        <item name="colorAccent">#FFFFFF</item>
+        <item name="colorPrimary">@color/color_primary_login</item>
+        <item name="colorPrimaryDark">@color/color_primary_dark_login</item>
+        <item name="colorAccent">@color/color_primary_accent_login</item>
     </style>
 
 </resources>

@@ -7,16 +7,15 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 import android.preference.PreferenceManager;
+
 import java.util.Locale;
 
 /**
  * Created by Aakash on 20-Feb-17.
  */
 
-public class LocaleHelper  {
-/**/
+public class LocaleHelper {
 
-    //hello world
     private static final String SELECTED_LANGUAGE = "Locale.Helper.Selected.Language";
 
     public static Context onAttach(Context context) {

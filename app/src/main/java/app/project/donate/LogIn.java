@@ -1,9 +1,13 @@
 package app.project.donate;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -23,10 +27,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
@@ -34,7 +41,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
  * Created by Aakash on 20-Feb-17.
  */
 
-public class LogIn extends AppCompatActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
+public class LogIn extends DialogActivity implements View.OnClickListener, GoogleApiClient.OnConnectionFailedListener {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -51,11 +58,14 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener, Go
     public static final String LOGIN_FILE = "LogInFile";
     EditText userName, password;
     Button login;
+    TextView createAccount;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.log_in);
+
+        // Drawable d = getBackground().setAlpha(120);
 
         init();
 
@@ -67,8 +77,9 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener, Go
                 if (user != null) {
                     //User Signed In
                     Log.d("Firebase", "onAuthStateChanged:signed_in:" + user.getUid());
+                    logInEditor.putString("Uid", user.getUid());
                     logInEditor.putString("user", user.getEmail());
-                    logInEditor.putString("password",user.getDisplayName());
+                    logInEditor.putString("name", user.getDisplayName());
                     logInEditor.putBoolean("isLoggedIn", true);
                     logInEditor.apply();
                     Intent i = new Intent(getApplicationContext(), Temp.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -96,12 +107,10 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener, Go
                 .build();
 
 
-        TextView createAccount = (TextView) findViewById(R.id.create_account);
         createAccount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
-                startActivity(new Intent(getApplicationContext(), SignUp.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                startActivity(new Intent(getApplicationContext(), SignUp.class));
             }
         });
         Button g_plus = (Button) findViewById(R.id.g_plus);
@@ -126,10 +135,12 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener, Go
 
 
     private void init() {
+
         userName = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.Password);
 
-        TextView font = (TextView) findViewById(R.id.textreq);
+        TextView font = (TextView) findViewById(R.id.login_title);
+        createAccount = (TextView) findViewById(R.id.create_account);
         login = (Button) findViewById(R.id.login);
 
         logInPref = getSharedPreferences(LOGIN_FILE, 0);
@@ -156,6 +167,12 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener, Go
                     Snackbar.make(v, "Fill All details", Snackbar.LENGTH_LONG).show();
                     return;
                 }
+                if (!isNetworkAvailable()) {
+                    Snackbar.make(v, getString(R.string.no_internet), Snackbar.LENGTH_LONG).show();
+                    return;
+                }
+
+                showProgressDialog();
                 mAuth.signInWithEmailAndPassword(u, p)
                         .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -169,15 +186,35 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener, Go
                                     Log.w("Firebase", "signInWithEmail", task.getException());
                                     Toast.makeText(getApplicationContext(), "Authentication failed.",
                                             Toast.LENGTH_SHORT).show();
+
+                                }
+                                hideProgressDialog();
+                            }
+                        })
+                        .addOnFailureListener(this, new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.d("FireBase", "signInWithEmail:onComplete: Failed");
+                                if (e instanceof FirebaseAuthException) {
+                                    String error = ((FirebaseAuthException) e).getErrorCode();
+                                    Log.e("Error", error);
+
+                                    //[Temp]
+                                    TextView tv = (TextView) findViewById(R.id.login_error);
+                                    tv.setText(error);
+                                    tv.setVisibility(View.VISIBLE);
                                 }
                             }
                         });
                 break;
             case R.id.g_plus:
+                if (!isNetworkAvailable()) {
+                    Snackbar.make(v, getString(R.string.no_internet), Snackbar.LENGTH_LONG).show();
+                    return;
+                }
                 Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
                 startActivityForResult(signInIntent, RC_SIGN_IN);
                 break;
-
 
         }
     }
@@ -207,7 +244,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener, Go
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d("Firebase with Google", "firebaseAuthWithGoogle:" + acct.getId());
         // [START_EXCLUDE silent]
-        //aakash showProgressDialog();
+        showProgressDialog();
         // [END_EXCLUDE]
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
@@ -226,7 +263,7 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener, Go
                                     Toast.LENGTH_SHORT).show();
                         }
                         // [START_EXCLUDE]
-                        //aakash hideProgressDialog();
+                        hideProgressDialog();
                         // [END_EXCLUDE]
                     }
                 });
@@ -238,10 +275,18 @@ public class LogIn extends AppCompatActivity implements View.OnClickListener, Go
     }
 // [END auth_with_google]
 
-
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(LocaleHelper.onAttach(newBase, "en"));
     }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
 }
+
+
 

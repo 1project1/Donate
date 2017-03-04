@@ -48,10 +48,12 @@ public class Temp extends AppCompatActivity {
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
-        Log.i("password", logInPref.getString("user", "a user Name Here"));
+        Log.i("name", logInPref.getString("name", "a user Name Here"));
 
-        String temp = logInPref.getString("user", "a user Name Here");
-        temp += "\n" + logInPref.getString("password", "a password here is displayed");
+        String temp = logInPref.getString("Uid", "long random Uid");
+        temp += "\n" + logInPref.getString("user", "User LogInId");
+        temp += "\n" + logInPref.getString("name", "The user Name");
+
 
         tempDisplay.setText(temp);
 
@@ -59,11 +61,14 @@ public class Temp extends AppCompatActivity {
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
                 SharedPreferences logInPref = getSharedPreferences(LOGIN_FILE, 0);
                 SharedPreferences.Editor logInEditor = logInPref.edit();
                 logInEditor.clear().putBoolean("isLoggedIn", false).apply();
 
+                //firebase signOut
+                FirebaseAuth.getInstance().signOut();
+
+                //Google signOut
                 Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
                         new ResultCallback<Status>() {
                             @Override
@@ -104,7 +109,7 @@ public class Temp extends AppCompatActivity {
     }
 
     private void changeLanguage(String lang) {
-        Log.i("Lang",lang);
+        Log.i("Lang", lang);
         if (lang.equals("Hindi")) {
             LocaleHelper.setLocale(this, "hi");
         } else {

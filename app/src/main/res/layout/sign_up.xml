@@ -25,7 +25,23 @@
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp">
+        android:layout_marginTop="60dp"
+        android:hint="@string/name">
+
+        <EditText
+            android:id="@+id/name_signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp">
 
         <EditText
             android:id="@+id/email_signup"
@@ -61,16 +77,25 @@
             android:id="@+id/confirm_password_signup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/confirm_password" />
+            android:hint="@string/confirm_password"
+            android:maxLines="1"
+            android:singleLine="true" />
 
     </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/signUp"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:background="#CC1D1D"
         android:text="@string/sign_up"
         android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/signup_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/holo_red_dark"
+        android:visibility="gone" />
 </LinearLayout>
