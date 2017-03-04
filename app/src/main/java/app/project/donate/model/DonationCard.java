@@ -6,7 +6,7 @@ package app.project.donate.model;
 
 public class DonationCard {
     private String title;
-    private int cardImages;
+   private int cardImages;
 
     public DonationCard() { }
 
@@ -24,6 +24,5 @@ public class DonationCard {
     public int getCardImages(){
         return cardImages;
     }
-
     public void setCardImages(int cardImages){ this.cardImages = cardImages; }
 }

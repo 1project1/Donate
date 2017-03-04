@@ -43,6 +43,7 @@ public class MainUI extends AppCompatActivity
 //TODO fix lag due to init() asynctask not working
 
         //new backTask().execute();
+        init();
     }
 //TODO for fixing lags
     public void init(){
@@ -112,7 +113,7 @@ public class MainUI extends AppCompatActivity
         return true;
     }
     private void getDonations(){
-        int cardBackground[] = new int[]{R.drawable.clothes, R.drawable.books, R.drawable.food, R.drawable.utensils, R.drawable.toys};
+        int cardBackground[] = new int[]{R.mipmap.clothes, R.mipmap.books, R.mipmap.food, R.mipmap.food, R.mipmap.clothes};
 
         DonationCard card = new DonationCard("CLOTHES DONATION", cardBackground[0]);
         donationCardList.add(card);
