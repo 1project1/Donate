@@ -228,9 +228,7 @@ public class LogIn extends DialogActivity implements View.OnClickListener, Googl
                 firebaseAuthWithGoogle(account);
             } else {
                 Log.i(TAG, "Failed SignIn");
-                Toast.makeText(getApplicationContext(), "Authentication failed.",
-                        Toast.LENGTH_SHORT).show();
-
+                Log.d(TAG, String.valueOf(result.getStatus()));
                 // Google Sign In failed, update UI appropriately
                 // [START_EXCLUDE]
                 /// aakash updateUI(null);
