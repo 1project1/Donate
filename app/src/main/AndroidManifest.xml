@@ -3,6 +3,7 @@
     package="app.project.donate">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -26,7 +27,11 @@
         <activity
             android:name=".Cart"
             android:theme="@style/AppTheme" />
-        <activity android:name=".History"></activity>
+        <activity android:name=".History" />
+        <activity
+            android:name=".MainUi"
+            android:label="@string/title_activity_main_ui"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
