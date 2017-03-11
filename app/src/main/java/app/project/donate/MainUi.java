@@ -1,6 +1,7 @@
 package app.project.donate;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,10 +12,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
+import com.google.firebase.auth.FirebaseAuth;
+
 import app.project.donate.model.NgoList;
 
 public class MainUi extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private GoogleApiClient mGoogleApiClient;
+    public static final String LOGIN_FILE = "LogInFile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +42,20 @@ public class MainUi extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        init();
+    }
+
+    private void init() {
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this /* FragmentActivity */, null /* OnConnectionFailedListener */)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+
     }
 
     @Override
@@ -62,6 +86,31 @@ public class MainUi extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         }
+        else if(id == R.id.action_logout){
+
+            SharedPreferences logInPref = getSharedPreferences(LOGIN_FILE, 0);
+            SharedPreferences.Editor logInEditor = logInPref.edit();
+            logInEditor.clear().putBoolean("isLoggedIn", false).apply();
+
+            //firebase signOut
+            FirebaseAuth.getInstance().signOut();
+
+            //Google signOut
+            Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+                    new ResultCallback<Status>() {
+                        @Override
+                        public void onResult(Status status) {
+                            // [START_EXCLUDE]
+                            // aakash updateUI(false);
+                            // [END_EXCLUDE]
+                        }
+                    });
+
+            startActivity(new Intent(getApplicationContext(), LogIn.class)
+                    .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            finish();
+
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -90,4 +139,6 @@ public class MainUi extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }
