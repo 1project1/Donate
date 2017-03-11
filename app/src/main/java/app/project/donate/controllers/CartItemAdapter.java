@@ -82,9 +82,9 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
     }
     public class CartItemVH extends RecyclerView.ViewHolder {
         public ImageView thumb;
-        public TextView title, address;
+        public TextView title, address,message;
         public Button cancelItem;
-        public EditText quant,message;
+        public EditText quant;
 
         public CartItemVH(View itemView) {
             super(itemView);
@@ -92,7 +92,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
             quant = (EditText) itemView.findViewById(R.id.item_quantity);
             address = (TextView)itemView.findViewById(R.id.user_address);
             thumb = (ImageView)itemView.findViewById(R.id.item_type_icon);
-            message = (EditText)itemView.findViewById(R.id.feedback_message);
+            message = (TextView) itemView.findViewById(R.id.feedback_message);
             cancelItem = (Button)itemView.findViewById(R.id.remove_item);
         }
     }
