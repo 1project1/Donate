@@ -62,5 +62,22 @@
         <item>http://www.google.com</item>
         <item>http://www.google.com</item>
     </string-array>
+
+    <string name="credits_app_name">DevelopmentCredits</string>
+    <string name="aakash">
+        Login\nNotifications\nLanguage
+    </string>
+    <string name="aman">
+        Layout Design\n Search
+    </string>
+    <string name="archit">
+        DevelopmentCredits\nFeedback\nAcknowledgement
+    </string>
+    <string name="arup">
+        Cart\nAccount Setting
+    </string>
+    <string name="harsh">
+        Database\nInformation
+    </string>
     <!---->
 </resources>
