@@ -17,66 +17,74 @@
         card_view:cardCornerRadius="4dp">
 
         <!--Aakash-->
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_gravity="center"
             android:background="@mipmap/aakash"
-            android:gravity="center">
-
-            <TextView
-                android:text="Aakash Sharma"
-                android:textSize="20sp"
-                android:layout_marginTop="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:id="@+id/aakashTextView1" />
-
-            <TextView
-                android:text="@string/aakash"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/aakashTextView2" />
+            android:scaleType="fitXY"
+            android:alpha="0.5"> </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:weightSum="2">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center">
 
-                <Button
+                <TextView
+                    android:text="Aakash Sharma"
+                    android:textStyle="bold"
                     android:textSize="20sp"
-                    android:textColor="#FFFFFF"
-                    android:text="Facebook"
-                    android:background="#3b5998"
-                    android:id="@+id/aakashButtonFacebook"
+                    android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"/>
+                    android:gravity="center"
+                    android:id="@+id/aakashTextView1" />
 
-                <Button
-                    android:textSize="20sp"
-                    android:textColor="#FFFFFF"
-                    android:text="Google +"
-                    android:background="#d34836"
-                    android:id="@+id/aakashButtonGoogle"
+                <TextView
+                    android:text="@string/aakash"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"/>
+                    android:id="@+id/aakashTextView2" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:weightSum="2">
+
+                    <Button
+                        android:textSize="20sp"
+                        android:textColor="#FFFFFF"
+                        android:text="Facebook"
+                        android:background="#3b5998"
+                        android:id="@+id/aakashButtonFacebook"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"/>
+
+                    <Button
+                        android:textSize="20sp"
+                        android:textColor="#FFFFFF"
+                        android:text="Google +"
+                        android:background="#d34836"
+                        android:id="@+id/aakashButtonGoogle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"/>
+
+                </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
 
     </android.support.v7.widget.CardView>
 
