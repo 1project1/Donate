@@ -65,7 +65,7 @@ public class LogIn extends DialogActivity implements View.OnClickListener, Googl
 
         init();
 
-        //Firebase Listener
+        //Firebase Listener//
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
