@@ -18,21 +18,20 @@
         card_view:cardCornerRadius="4dp">
 
         <!--Aman-->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@mipmap/aman"
+            android:scaleType="fitXY"
+            android:alpha="0.5"> </RelativeLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:layout_gravity="center"
-            android:gravity="center"
-            android:background="@android:color/white">
-
-            <ImageView
-                android:layout_gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                app:srcCompat="@mipmap/ic_launcher"
-                android:id="@+id/amanImg"
-                android:contentDescription="Aman" />
+            android:gravity="center">
 
             <TextView
                 android:text="Aman Singh Chauhan"
