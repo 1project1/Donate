@@ -13,7 +13,7 @@ import app.project.donate.LogIn;
 import app.project.donate.R;
 
 public class Splash extends Activity {
-
+//
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

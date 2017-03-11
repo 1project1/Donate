@@ -16,7 +16,7 @@ import app.project.donate.model.NgoList;
 /**
  * Created by grant on 11-03-2017.
  */
-
+//
 public class CustomAdapter extends BaseAdapter {
     String [] result;
     Context context;

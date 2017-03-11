@@ -14,25 +14,26 @@ public class NgoList extends AppCompatActivity {
     Context context;
 
 
-    public static int [] prgmImages={R.drawable.images, R.drawable.images, R.drawable.images, R.drawable.images, R.drawable.images, R.drawable.images, R.drawable.images, R.drawable.images, R.drawable.images};
-    public static String [] prgmNameList;
+    public static int[] prgmImages = {R.drawable.images, R.drawable.images, R.drawable.images, R.drawable.images, R.drawable.images, R.drawable.images, R.drawable.images, R.drawable.images, R.drawable.images};
+    public static String[] prgmNameList;
     public static String[] intro;
 
     public static String[] links;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ngo_list);
         prgmNameList = getResources().getStringArray(R.array.title);
-        intro=getResources().getStringArray(R.array.intro);
-        links=getResources().getStringArray(R.array.link);
+        intro = getResources().getStringArray(R.array.intro);
+        links = getResources().getStringArray(R.array.link);
 
 
-        context=this;
+        context = this;
 
-        lv=(ListView) findViewById(R.id.listview);
+        lv = (ListView) findViewById(R.id.listview);
 
 
-        lv.setAdapter(new CustomAdapter(this, prgmNameList,prgmImages,intro,links));
+        lv.setAdapter(new CustomAdapter(this, prgmNameList, prgmImages, intro, links));
     }
 }
