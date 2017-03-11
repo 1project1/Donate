@@ -86,7 +86,7 @@ public class Cart extends AppCompatActivity {
         };
         CartItem[] x = new CartItem[14];
         for (int i = 0; i < 14; i++) {
-            x[i] = new CartItem(thumbs[i], titles[i], "Being Human", "995 1st Floor, Sectot-37 ," +
+            x[i] = new CartItem(thumbs[i], titles[i], "Pending", "995 1st Floor, Sectot-37 ," +
                     " Faridabad, Haryana-121003 near Devi Sahai Market", i + 1);
             itemList.add(x[i]);
             Log.i("Added", itemList.get(i).getTitle());

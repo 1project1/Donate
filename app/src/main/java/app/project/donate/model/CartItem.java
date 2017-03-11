@@ -10,10 +10,10 @@ public class CartItem {
     String title,message,address;
     int quantity;
 
-    public CartItem(int thumbnail, String title, String message, String address, int quantity) {
+    public CartItem(int thumbnail, String title, String staus, String address, int quantity) {
         this.thumbnail = thumbnail;
         this.title = title;
-        this.message = message;
+        this.message = staus;
         this.address = address;
         this.quantity = quantity;
     }

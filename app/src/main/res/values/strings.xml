@@ -15,7 +15,7 @@
     <string name="name">Name</string>
     <string name="or">OR</string>
 
-    <string name="item_message">Any message you want to give to NGO or what you expect from us</string>
+    <string name="item_message">Request Status</string>
     <string name="sign_in_with_google">Sign in with Google</string>
 
     <string-array name="languages">
