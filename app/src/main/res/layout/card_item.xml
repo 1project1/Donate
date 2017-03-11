@@ -10,7 +10,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp" android:onClick="reveal">
+        android:layout_height="250dp" >
 
         <RelativeLayout
             android:id="@+id/cardContents"
@@ -74,7 +74,7 @@
                 android:maxLines="1"
                 android:singleLine="true"
                 android:textSize="18sp" />
-            <EditText
+            <TextView
                 android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
