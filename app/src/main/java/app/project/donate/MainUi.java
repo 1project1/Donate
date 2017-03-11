@@ -11,6 +11,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import app.project.donate.model.NgoList;
+
 public class MainUi extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -73,11 +75,11 @@ public class MainUi extends AppCompatActivity
         if (id == R.id.nav_about) {
             // Handle the camera action
         } else if (id == R.id.nav_cart) {
-            startActivity(new Intent(this,Cart.class));
+            startActivity(new Intent(this, Cart.class));
         } else if (id == R.id.nav_history) {
-            startActivity(new Intent(this,History.class));
+            startActivity(new Intent(this, History.class));
         } else if (id == R.id.nav_ngo_list) {
-
+            startActivity(new Intent(this, NgoList.class));
         } else if (id == R.id.nav_rate_us) {
 
         } else if (id == R.id.nav_credits) {
