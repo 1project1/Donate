@@ -182,7 +182,7 @@ public class Cart extends AppCompatActivity {
         FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
         String Uid=firebaseAuth.getCurrentUser().getUid();
         myRef=FirebaseDatabase.getInstance().getReference();
-        myRef.child("endUsers").child(Uid).child("Donations_item_Details").setValue(getAllCartItems());
+        myRef.child("endUsers").child(Uid).child("Donations_item_Details").push().setValue(getAllCartItems());
 
         Person person=new Person();
         person.setName("harsh");
