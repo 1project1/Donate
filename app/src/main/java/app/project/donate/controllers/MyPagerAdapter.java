@@ -10,10 +10,6 @@ import app.project.donate.model.Archit;
 import app.project.donate.model.Arup;
 import app.project.donate.model.Harsh;
 
-/**
- * Created by ARCHIT SAMNOL on 3/3/2017.
- */
-
 public class MyPagerAdapter extends FragmentPagerAdapter {
     private static int NUM_ITEMS = 5;
 
