@@ -1,10 +1,8 @@
 package app.project.donate;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,8 +12,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
+import com.google.firebase.auth.FirebaseAuth;
+
+import app.project.donate.model.NgoList;
+
 public class MainUi extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private GoogleApiClient mGoogleApiClient;
+    public static final String LOGIN_FILE = "LogInFile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,23 +33,29 @@ public class MainUi extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        init();
+    }
+
+    private void init() {
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .enableAutoManage(this /* FragmentActivity */, null /* OnConnectionFailedListener */)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
+
     }
 
     @Override
@@ -71,6 +86,31 @@ public class MainUi extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         }
+        else if(id == R.id.action_logout){
+
+            SharedPreferences logInPref = getSharedPreferences(LOGIN_FILE, 0);
+            SharedPreferences.Editor logInEditor = logInPref.edit();
+            logInEditor.clear().putBoolean("isLoggedIn", false).apply();
+
+            //firebase signOut
+            FirebaseAuth.getInstance().signOut();
+
+            //Google signOut
+            Auth.GoogleSignInApi.signOut(mGoogleApiClient).setResultCallback(
+                    new ResultCallback<Status>() {
+                        @Override
+                        public void onResult(Status status) {
+                            // [START_EXCLUDE]
+                            // aakash updateUI(false);
+                            // [END_EXCLUDE]
+                        }
+                    });
+
+            startActivity(new Intent(getApplicationContext(), LogIn.class)
+                    .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            finish();
+
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -84,11 +124,11 @@ public class MainUi extends AppCompatActivity
         if (id == R.id.nav_about) {
             // Handle the camera action
         } else if (id == R.id.nav_cart) {
-            startActivity(new Intent(this,Cart.class));
+            startActivity(new Intent(this, Cart.class));
         } else if (id == R.id.nav_history) {
-            startActivity(new Intent(this,History.class));
+            startActivity(new Intent(this, History.class));
         } else if (id == R.id.nav_ngo_list) {
-
+            startActivity(new Intent(this, NgoList.class));
         } else if (id == R.id.nav_rate_us) {
 
         } else if (id == R.id.nav_credits) {
@@ -99,4 +139,6 @@ public class MainUi extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }

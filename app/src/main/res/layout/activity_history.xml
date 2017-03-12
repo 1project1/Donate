@@ -7,8 +7,15 @@
     tools:context="app.project.donate.History">
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/hist"
+        android:background="@android:color/transparent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/hist_rec_view"></android.support.v7.widget.RecyclerView>
+        android:layout_above="@+id/all_buttons">
+
+
+    </android.support.v7.widget.RecyclerView>
+
+
 
 </FrameLayout>
