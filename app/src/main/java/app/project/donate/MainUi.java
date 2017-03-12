@@ -21,8 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import app.project.donate.model.NgoList;
 
-public class MainUi extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainUi extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private GoogleApiClient mGoogleApiClient;
     public static final String LOGIN_FILE = "LogInFile";
 
@@ -84,6 +83,7 @@ public class MainUi extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startActivity(new Intent(this,AccountSettings.class));
             return true;
         }
         else if(id == R.id.action_logout){
