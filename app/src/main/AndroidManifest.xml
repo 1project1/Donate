@@ -26,7 +26,8 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".History" />
         <activity android:name=".AccountSettings" />
-        <activity android:name=".History" />
+        <activity android:name=".CreditsUI"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".MainUi"
             android:label="@string/title_activity_main_ui"

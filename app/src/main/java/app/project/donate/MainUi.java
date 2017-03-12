@@ -132,7 +132,7 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
         } else if (id == R.id.nav_rate_us) {
 
         } else if (id == R.id.nav_credits) {
-
+            startActivity(new Intent(this, CreditsUI.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
