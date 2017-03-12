@@ -36,4 +36,12 @@
         android:id="@+id/button2"
         android:onClick="openCart"
         android:layout_gravity="center"/>
+<Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:id="@+id/temp_account_settings_button"
+    android:onClick="startSettings"
+    android:text="Account Settings"/>
+
 </LinearLayout>

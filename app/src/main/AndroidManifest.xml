@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -28,10 +29,13 @@
             android:name=".Cart"
             android:theme="@style/AppTheme" />
         <activity android:name=".History" />
+        <activity android:name=".AccountSettings" />
+        <activity android:name=".History" />
         <activity
             android:name=".MainUi"
             android:label="@string/title_activity_main_ui"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".EditDetail"></activity>
     </application>
 
 </manifest>

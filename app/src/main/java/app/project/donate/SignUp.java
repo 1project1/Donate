@@ -49,7 +49,7 @@ public class SignUp extends DialogActivity implements View.OnClickListener {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
-                    //User Signed In
+                    //User successfully Signed In
                     Log.d("Firebase", "onAuthStateChanged:signed_in:" + user.getUid());
 
                     UserProfileChangeRequest up = new UserProfileChangeRequest.Builder()
