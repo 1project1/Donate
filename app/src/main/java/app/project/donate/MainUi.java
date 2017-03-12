@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import app.project.donate.model.Aakash;
 import app.project.donate.model.NgoList;
 
 public class MainUi extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
