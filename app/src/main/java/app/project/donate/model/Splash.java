@@ -29,7 +29,7 @@ public class Splash extends Activity {
 
                 finish();
             }
-        },4000);
+        },2000);
     }
     private void startAnimation(){
         Animation animation= AnimationUtils.loadAnimation(this, R.anim.fadein);
