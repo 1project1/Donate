@@ -18,6 +18,7 @@ public class CreditsUI extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.credits_activity_main);
 
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         //setSupportActionBar(toolbar);
 

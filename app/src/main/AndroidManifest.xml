@@ -17,6 +17,7 @@
             android:theme="@style/Login">
 
         </activity>
+
         <activity
             android:name=".SignUp"
             android:theme="@style/Login" />

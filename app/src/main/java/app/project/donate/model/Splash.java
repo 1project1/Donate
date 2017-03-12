@@ -19,6 +19,7 @@ public class Splash extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         startAnimation();
+
         textanimation();
         new Handler().postDelayed(new Runnable() {
             @Override
