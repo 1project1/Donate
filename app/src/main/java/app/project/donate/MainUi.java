@@ -20,10 +20,6 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
-import app.project.donate.model.Aakash;
 import app.project.donate.model.NgoList;
 
 public class MainUi extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -139,7 +135,7 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
             Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
             startActivity(launchBrowser);
         } else if (id == R.id.nav_credits) {
-            //not working
+
             startActivity(new Intent(this, CreditsUI.class));
 
         }

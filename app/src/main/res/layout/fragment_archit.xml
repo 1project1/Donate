@@ -24,7 +24,10 @@
             android:layout_height="match_parent"
             android:background="@mipmap/archit"
             android:scaleType="fitXY"
-            android:alpha="0.5"> </RelativeLayout>
+
+            android:alpha="0.5">
+
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
