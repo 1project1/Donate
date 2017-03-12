@@ -2,6 +2,7 @@ package app.project.donate;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,6 +19,9 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import app.project.donate.model.NgoList;
 
@@ -130,9 +134,13 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
         } else if (id == R.id.nav_ngo_list) {
             startActivity(new Intent(this, NgoList.class));
         } else if (id == R.id.nav_rate_us) {
-
+            Uri uriUrl = Uri.parse("https://docs.google.com/forms/d/1yln_gJBWt7N-Mrk0z47MB-TIpRZ3PgOTE4H2iYblSGo/viewform?edit_requested=true");
+            Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+            startActivity(launchBrowser);
         } else if (id == R.id.nav_credits) {
+            //not working
             startActivity(new Intent(this, CreditsUI.class));
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
