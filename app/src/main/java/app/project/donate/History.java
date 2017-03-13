@@ -1,9 +1,14 @@
 package app.project.donate;
 
+import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,7 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.project.donate.controllers.HistoryItemAdapter;
-import app.project.donate.model.CartItem;
 import app.project.donate.model.HistoryItem;
 
 public class History extends AppCompatActivity {
@@ -26,89 +30,149 @@ public class History extends AppCompatActivity {
     RecyclerView hist;
     HistoryItemAdapter adapter;
     List<HistoryItem> historyItemList;
-
-    final ArrayList<String>Title1=new ArrayList<>();
-    final ArrayList<Object> Quantity1=new ArrayList<>();
-    final ArrayList<String>Message1=new ArrayList<>();
+    ProgressBar progressBar;
+/*    List<String> Title1;
+    List<Long> Quantity1;
+    List<String> Message1;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
-        hist = (RecyclerView)findViewById(R.id.hist);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("History");
+        hist = (RecyclerView) findViewById(R.id.hist);
         historyItemList = new ArrayList<>();
-        adapter = new HistoryItemAdapter(this,historyItemList);
+        adapter = new HistoryItemAdapter(this, historyItemList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        progressBar = (ProgressBar) findViewById(R.id.pbar);
+        progressBar.setVisibility(View.VISIBLE);
+        progressBar.setIndeterminate(true);
         hist.setLayoutManager(layoutManager);
         hist.setAdapter(adapter);
-        abc();
 
-        //checkEmpty();
+        new BackTask(this).execute();
 
     }
 
+    public int getThumbnailId(String title) {
+        int id = 0;
+        switch (title.toLowerCase()) {
+            case "clothes":
+                id = R.mipmap.dummy;
+                break;
+            case "utensils":
+                id = R.mipmap.ic_launcher;
+                break;
+            case "shoes":
+                id = R.mipmap.dummy;
+                break;
+            case "bags":
+                id = R.mipmap.ic_launcher;
+                break;
+            case "furniture":
+                id = R.mipmap.dummy;
+                break;
+            case "bedsheets":
+                id = R.mipmap.ic_launcher;
+                break;
+            case "toys":
+                id = R.mipmap.dummy;
+                break;
+
+        }
+        return id;
+    }
+//No Use
+    /*private void prepareItems() {
+        Log.d("len:", Title1.size() + "");
+        for (int i = 0; i < Title1.size(); i++) {
+            HistoryItem item = new HistoryItem(Title1.get(i), getThumbnailId(Title1.get(i)),
+                    "Dummy NGO", "User Address", Message1.get(i), Quantity1.get(i));
+            Log.i("size", "Size:" + historyItemList.size());
+            Log.i("History", Title1.get(i) + "\n" + Message1.get(i) + "\n" + Quantity1.get(i));
+
+            historyItemList.add(item);
+            Log.i("size", "Size:" + historyItemList.size());
+        }
+
+        for (String i : Title1) {
+            Log.d("itemList", i);
+        }
+        adapter.notifyDataSetChanged();
+        Toast.makeText(this, "prepared", Toast.LENGTH_SHORT).show();
+    }
+*/
     private void checkEmpty() {
 
-        if(historyItemList.isEmpty())
+        if (historyItemList.isEmpty())
             Toast.makeText(this, "Empty history", Toast.LENGTH_SHORT).show();
-            finish();
+        finish();
 
     }
 
-    private void abc(){
-        final String Uid=FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+    public class BackTask extends AsyncTask<Void, Void, Void> {
 
 
+        Context mContext;
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference mmyRef = database.getReference("endUsers").child(Uid).child("Donations_item_Details");
-        //final List<CartItem>car=new ArrayList<CartItem>();
-        mmyRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                int count= (int) dataSnapshot.getChildrenCount();
-                int i=0;
-                for (DataSnapshot Snapshot : dataSnapshot.getChildren()) {
-                    for(DataSnapshot postSnapshot:Snapshot.getChildren()){
+        public BackTask(Context mContext) {
+            this.mContext = mContext;
+        }
 
+        @Override
+        protected void onPreExecute() {
+        }
 
-
-                        Title1.add(i, (String) postSnapshot.child("title").getValue());
-                        Message1.add(i, (String) postSnapshot.child("message").getValue());
-                        Quantity1.add(i, postSnapshot.child("quantity").getValue());
+        @Override
+        protected Void doInBackground(Void... voids) {
+            final String Uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
-                        Toast.makeText(History.this, ""+Title1.get(i)+"\n"+Message1.get(i)+"\n"+Quantity1.get(i), Toast.LENGTH_SHORT).show();
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference mmyRef = database.getReference("endUsers").child(Uid).child("Donations_item_Details");
+            mmyRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        /*CartItem cart=new CartItem();
-                               String a=((String) postSnapshot.child("title").getValue());
-                                String b=((String) postSnapshot.child("message").getValue());
-                                int c= (int) postSnapshot.child("quantity").getValue();
-                                cart.setTitle(a);
-                                cart.setMessage(b);
-                                cart.setQuantity(c);
-                                car.add(i,cart);
-                                Toast.makeText(History.this, ""+cart.getMessage()+cart.getTitle()+cart.getQuantity(), Toast.LENGTH_LONG).show();
+                    for (DataSnapshot Snapshot : dataSnapshot.getChildren()) {
+                        for (DataSnapshot postSnapshot : Snapshot.getChildren()) {
+                            String t = (String) postSnapshot.child("title").getValue();
+                            String m = (String) postSnapshot.child("message").getValue();
+                            historyItemList.add(new HistoryItem(t, getThumbnailId(t), "Dummy NGO", "Dummy Address",
+                                    m, (Long) postSnapshot.child("quantity").getValue()));
 
-                            */
-                            //Toast.makeText(History.this, "\t" + postSnapshot.child("title").getValue()+"\t"+postSnapshot.child("quantity").getValue()+"\t"+postSnapshot.child("message").getValue(), Toast.LENGTH_LONG).show();
-                        i++;
+//                        Log.i("History" ,Title1.get(i)+"\n"+Message1.get(i)+"\n"+Quantity1.get(i));
+
+
+                        }
+
 
                     }
 
 
-
-
                 }
 
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
 
-            }
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                }
+            });
 
-            }
-        });
+            return null;
+        }
 
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            progressBar.setVisibility(View.GONE);
+            adapter.notifyDataSetChanged();
+            //checkEmpty();
+        }
     }
 
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        return super.onKeyUp(keyCode, event);
+    }
 }
