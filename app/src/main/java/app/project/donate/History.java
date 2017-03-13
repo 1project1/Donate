@@ -73,7 +73,6 @@ public class History extends AppCompatActivity {
 
 
 
-
                         Title1.add(i, (String) postSnapshot.child("title").getValue());
                         Message1.add(i, (String) postSnapshot.child("message").getValue());
                         Quantity1.add(i, postSnapshot.child("quantity").getValue());
