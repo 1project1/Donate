@@ -41,7 +41,7 @@ public class HistoryItemAdapter extends RecyclerView.Adapter<HistoryItemAdapter.
     public void onBindViewHolder(HistoryItemVH holder,final int position) {
         HistoryItem item = itemListHistory.get(position);
         holder.title.setText(item.getTitle());
-        holder.quant.setText(item.getQuantity());
+        holder.quant.setText(item.getQuantity()+"");
         holder.ngo.setText(item.getNgo());
         holder.stats.setText(item.getStatus());
         holder.address.setText(item.getAddress());

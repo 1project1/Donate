@@ -6,10 +6,11 @@ package app.project.donate.model;
 
 public class HistoryItem {
 
-    String title, ngo,status,address;int quantity;
+    String title, ngo,status,address;
+    long quantity;
     int thumbnail;
 
-    public HistoryItem(String title, int thumbnail,String ngo,String address, String status, int quantity) {
+    public HistoryItem(String title, int thumbnail, String ngo, String address, String status, long quantity) {
         this.title = title;
         this.ngo = ngo;
         this.status = status;
@@ -58,11 +59,13 @@ public class HistoryItem {
         this.status = status;
     }
 
-    public int getQuantity() {
+    public long getQuantity() {
         return quantity;
     }
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+
 }
