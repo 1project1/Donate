@@ -64,7 +64,9 @@
         <item>http://www.google.com</item>
     </string-array>
 
-    <string name="credits_app_name">DevelopmentCredits</string>
+    <string name="group">
+        Every man is an artisan of his own fortune!!!
+    </string>
     <string name="aakash">
         Login\nNotifications\nLanguage
     </string>
@@ -75,11 +77,10 @@
         DevelopmentCredits\nFeedback\nAcknowledgement
     </string>
     <string name="arup">
-        Evert man is an artisan of his own fortune!!!
+        Cart\nAccount Setting
     </string>
     <string name="harsh">
         Database\nInformation
     </string>
-    <!---->
 
 </resources>
