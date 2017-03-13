@@ -7,6 +7,6 @@
 
 
     <include layout="@layout/credits_content_main"
-        android:layout_height="456dp" />
+        />
 
 </android.support.design.widget.CoordinatorLayout>

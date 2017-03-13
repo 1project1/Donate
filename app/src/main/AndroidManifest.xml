@@ -23,10 +23,13 @@
         <activity android:name=".Temp" />
         <activity
             android:name=".Cart"
+            android:parentActivityName=".MainUi"
             android:theme="@style/AppTheme" />
-        <activity android:name=".History" />
+        <activity android:name=".History"
+            android:parentActivityName=".MainUi"/>
         <activity android:name=".AccountSettings" />
         <activity android:name=".CreditsUI"
+            android:parentActivityName=".MainUi"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".MainUi"
@@ -40,7 +43,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".model.NgoList"></activity>
+        <activity android:name=".model.NgoList"
+            android:parentActivityName=".MainUi"></activity>
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".EditDetail"></activity>
     </application>
