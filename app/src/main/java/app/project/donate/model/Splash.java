@@ -20,7 +20,7 @@ public class Splash extends Activity {
         setContentView(R.layout.activity_splash);
         startAnimation();
 
-        textanimation();
+        //textanimation();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -44,11 +44,11 @@ public class Splash extends Activity {
         relativeLayout.startAnimation(animation);
         */
     }
-    private void textanimation(){
+   /* private void textanimation(){
         Animation animation1=AnimationUtils.loadAnimation(this, R.anim.translate);
         animation1.reset();
         TextView textView=(TextView)findViewById(R.id.textView2);
         textView.clearAnimation();
         textView.startAnimation(animation1);
-    }
+    }*/
 }
