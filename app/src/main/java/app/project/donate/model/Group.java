@@ -16,17 +16,18 @@ import app.project.donate.R;
 *
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Aakash.OnFragmentInteractionListener} interface
+ * {@link Group.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Aakash#newInstance} factory method to
+ * Use the {@link Group#newInstance} factory method to
  * create an instance of this fragment.
 */
-public class Aakash extends Fragment {
 
-    Button fb1, g1;
+public class Group extends Fragment {
 
-    public static Aakash newInstance() {
-        Aakash fragmentFirst = new Aakash();
+    Button fb0, g0;
+
+    public static Group newInstance() {
+        Group fragmentFirst = new Group();
         return fragmentFirst;
     }
 
@@ -35,16 +36,16 @@ public class Aakash extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View v =  inflater.inflate(R.layout.fragment_aakash, container, false);
+        View v =  inflater.inflate(R.layout.fragment_group, container, false);
 
-        fb1 = (Button) v.findViewById(R.id.aakashButtonFacebook);
-        g1 = (Button) v.findViewById(R.id.aakashButtonGoogle);
+        fb0 = (Button) v.findViewById(R.id.groupButtonFacebook);
+        g0 = (Button) v.findViewById(R.id.groupButtonGoogle);
 
-        fb1.setOnClickListener(new View.OnClickListener() {
+        fb0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent();
+                /*Intent intent = new Intent();
                 String pageURL = "https://www.facebook.com/AakashJhakas/";
                 String pageId = "AakashJhakas/";
                 try {
@@ -61,18 +62,18 @@ public class Aakash extends Fragment {
                 } catch (Exception e) {
                     intent =  new Intent(Intent.ACTION_VIEW, Uri.parse(pageURL));
                     startActivity(Intent.createChooser(intent,""));
-                }
+                }*/
 
             }
         });
 
-        g1.setOnClickListener(new View.OnClickListener() {
+        g0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 Intent intent = new Intent();
-                String pageURL = "https://plus.google.com/114254230356237119724";
-                String pageId = "114254230356237119724";
+                String pageURL = "https://plus.google.com/114349189622563690120";
+                String pageId = "114349189622563690120";
                 try {
                     intent.setClassName("com.google.android.apps.plus",
                             "com.google.android.apps.plus.phone.UrlGatewayActivity");
@@ -86,5 +87,6 @@ public class Aakash extends Fragment {
             }
         });
         return v;
+
     }
 }
