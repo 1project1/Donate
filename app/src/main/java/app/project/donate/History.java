@@ -7,8 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.KeyEvent;
-import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,15 +23,9 @@ import app.project.donate.controllers.HistoryItemAdapter;
 import app.project.donate.model.HistoryItem;
 
 public class History extends AppCompatActivity {
-
-
     RecyclerView hist;
     HistoryItemAdapter adapter;
     List<HistoryItem> historyItemList;
-    ProgressBar progressBar;
-/*    List<String> Title1;
-    List<Long> Quantity1;
-    List<String> Message1;*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,14 +37,10 @@ public class History extends AppCompatActivity {
         historyItemList = new ArrayList<>();
         adapter = new HistoryItemAdapter(this, historyItemList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        progressBar = (ProgressBar) findViewById(R.id.pbar);
-        progressBar.setVisibility(View.VISIBLE);
-        progressBar.setIndeterminate(true);
         hist.setLayoutManager(layoutManager);
         hist.setAdapter(adapter);
-
         new BackTask(this).execute();
-
+        adapter.notifyDataSetChanged();
     }
 
     public int getThumbnailId(String title) {
@@ -83,7 +71,33 @@ public class History extends AppCompatActivity {
         }
         return id;
     }
-//No Use
+
+    void abc() {
+        final String Uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference mmyRef = database.getReference("endUsers").child(Uid).child("Donations_item_Details");
+        mmyRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot Snapshot : dataSnapshot.getChildren()) {
+                    for (DataSnapshot postSnapshot : Snapshot.getChildren()) {
+                        String t = (String) postSnapshot.child("title").getValue();
+                        String m = (String) postSnapshot.child("message").getValue();
+                        historyItemList.add(new HistoryItem(t, getThumbnailId(t), "Dummy NGO", "Dummy Address",
+                                m, (Long) postSnapshot.child("quantity").getValue()));
+                        adapter.notifyDataSetChanged();
+//                        Log.i("History" ,Title1.get(i)+"\n"+Message1.get(i)+"\n"+Quantity1.get(i));
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+    }
+
+    //No Use
     /*private void prepareItems() {
         Log.d("len:", Title1.size() + "");
         for (int i = 0; i < Title1.size(); i++) {
@@ -127,45 +141,13 @@ public class History extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            final String Uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
-            DatabaseReference mmyRef = database.getReference("endUsers").child(Uid).child("Donations_item_Details");
-            mmyRef.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-
-                    for (DataSnapshot Snapshot : dataSnapshot.getChildren()) {
-                        for (DataSnapshot postSnapshot : Snapshot.getChildren()) {
-                            String t = (String) postSnapshot.child("title").getValue();
-                            String m = (String) postSnapshot.child("message").getValue();
-                            historyItemList.add(new HistoryItem(t, getThumbnailId(t), "Dummy NGO", "Dummy Address",
-                                    m, (Long) postSnapshot.child("quantity").getValue()));
-
-//                        Log.i("History" ,Title1.get(i)+"\n"+Message1.get(i)+"\n"+Quantity1.get(i));
-
-
-                        }
-
-
-                    }
-
-
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-
+            abc();
             return null;
         }
 
         @Override
         protected void onPostExecute(Void aVoid) {
-            progressBar.setVisibility(View.GONE);
+            //progressBar.setVisibility(View.GONE);
             adapter.notifyDataSetChanged();
             //checkEmpty();
         }
