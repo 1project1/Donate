@@ -39,6 +39,7 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //<check here>
         textView=(TextView)findViewById(R.id.tv1);
 
         String DonorName=FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
@@ -47,6 +48,9 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
 
         img=(CircularImageView)findViewById(R.id.iv1);
         //img.setImageResource(R.drawable.harsh);
+
+
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
