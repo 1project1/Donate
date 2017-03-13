@@ -12,13 +12,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.github.siyamed.shapeimageview.CircularImageView;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import app.project.donate.model.NgoList;
 
@@ -26,6 +30,8 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
     private GoogleApiClient mGoogleApiClient;
     public static final String LOGIN_FILE = "LogInFile";
 
+    public TextView textView;
+    public CircularImageView img;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +39,14 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        textView=(TextView)findViewById(R.id.tv1);
 
+        String DonorName=FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
+        Toast.makeText(this, ""+DonorName, Toast.LENGTH_SHORT).show();
+        //textView.setText(DonorName);
+
+        img=(CircularImageView)findViewById(R.id.iv1);
+        //img.setImageResource(R.drawable.harsh);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
