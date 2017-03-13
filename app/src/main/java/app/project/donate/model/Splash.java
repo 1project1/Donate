@@ -20,6 +20,7 @@ public class Splash extends Activity {
         setContentView(R.layout.activity_splash);
         startAnimation();
 
+
         //textanimation();
         new Handler().postDelayed(new Runnable() {
             @Override
