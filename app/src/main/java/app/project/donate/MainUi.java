@@ -2,6 +2,7 @@ package app.project.donate;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,8 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import app.project.donate.model.NgoList;
 
-public class MainUi extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainUi extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private GoogleApiClient mGoogleApiClient;
     public static final String LOGIN_FILE = "LogInFile";
 
@@ -32,6 +32,7 @@ public class MainUi extends AppCompatActivity
         setContentView(R.layout.activity_main_ui);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -80,11 +81,14 @@ public class MainUi extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            startActivity(new Intent(this,AccountSettings.class));
             return true;
         }
         else if(id == R.id.action_logout){
+
             SharedPreferences logInPref = getSharedPreferences(LOGIN_FILE, 0);
             SharedPreferences.Editor logInEditor = logInPref.edit();
             logInEditor.clear().putBoolean("isLoggedIn", false).apply();
@@ -127,10 +131,13 @@ public class MainUi extends AppCompatActivity
         } else if (id == R.id.nav_ngo_list) {
             startActivity(new Intent(this, NgoList.class));
         } else if (id == R.id.nav_rate_us) {
-            //startActivity(new Intent(this,Feed));
-
+            Uri uriUrl = Uri.parse("https://docs.google.com/forms/d/1yln_gJBWt7N-Mrk0z47MB-TIpRZ3PgOTE4H2iYblSGo/viewform?edit_requested=true");
+            Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+            startActivity(launchBrowser);
         } else if (id == R.id.nav_credits) {
-            startActivity(new Intent(this,CreditsUI.class));
+
+            startActivity(new Intent(this, CreditsUI.class));
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
