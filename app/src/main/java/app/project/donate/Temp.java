@@ -120,5 +120,9 @@ public class Temp extends AppCompatActivity {
     public void openCart(View view) {
         startActivity(new Intent(this,Cart.class));
     }
+
+    public void startSettings(View v ){
+        startActivity(new Intent(this,AccountSettings.class));
+    }
 }
 

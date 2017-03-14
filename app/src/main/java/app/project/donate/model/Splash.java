@@ -19,7 +19,9 @@ public class Splash extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         startAnimation();
-        textanimation();
+
+
+        //textanimation();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -29,7 +31,7 @@ public class Splash extends Activity {
 
                 finish();
             }
-        },4000);
+        },2000);
     }
     private void startAnimation(){
         Animation animation= AnimationUtils.loadAnimation(this, R.anim.fadein);
@@ -43,11 +45,11 @@ public class Splash extends Activity {
         relativeLayout.startAnimation(animation);
         */
     }
-    private void textanimation(){
+   /* private void textanimation(){
         Animation animation1=AnimationUtils.loadAnimation(this, R.anim.translate);
         animation1.reset();
         TextView textView=(TextView)findViewById(R.id.textView2);
         textView.clearAnimation();
         textView.startAnimation(animation1);
-    }
+    }*/
 }
