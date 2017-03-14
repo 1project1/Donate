@@ -13,4 +13,7 @@
     <color name="lightblue">#BBDEFB</color>
     <color name="cancelBack">#EF6C00</color>
     <color name="donateBack">#43A047</color>
+
+    <color name="material_orange_500">#ffff9800</color>
+
 </resources>

@@ -78,7 +78,7 @@ public class LogIn extends DialogActivity implements View.OnClickListener, Googl
                     logInEditor.putString("name", user.getDisplayName());
                     logInEditor.putBoolean("isLoggedIn", true);
                     logInEditor.apply();
-                    Intent i = new Intent(getApplicationContext(), MainUi.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    Intent i = new Intent(getApplicationContext(), RecyclerViewActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     finish();
                     startActivity(i);
 

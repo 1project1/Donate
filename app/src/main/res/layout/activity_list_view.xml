@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
+
+    <RelativeLayout
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:id="@+id/button"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:gravity="center">
+
+        <View
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:background="@drawable/triangle"/>
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/button"
+        android:gravity="center"
+        android:padding="8dp"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        android:textSize="15sp"/>
+
+    <com.github.aakira.expandablelayout.ExpandableLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/expandableLayout"
+        android:layout_below="@+id/textView"
+        android:orientation="vertical"
+        app:ael_duration="400"
+        app:ael_expanded="false">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/imageView"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:padding="2dp"
+            android:text="ENTER THE QUANTITY IN APPROX"
+            android:textColor="#fff"
+            android:textSize="20sp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:id="@+id/quantity"
+            android:layout_marginTop="15dp"
+            android:ems="@android:integer/config_longAnimTime"/>
+
+        <Button
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="DONATE"
+            android:textSize="20sp"/>
+
+        <Button
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ADD TO CART"
+            android:textSize="20sp"/>
+    </com.github.aakira.expandablelayout.ExpandableLinearLayout>
+</RelativeLayout>

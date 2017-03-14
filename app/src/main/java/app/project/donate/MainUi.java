@@ -1,5 +1,6 @@
 package app.project.donate;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ExpandableListView;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -25,6 +27,10 @@ public class MainUi extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private GoogleApiClient mGoogleApiClient;
     public static final String LOGIN_FILE = "LogInFile";
+
+    final Context context = this;
+    private static final String data[][] = {{"CLOTHES"},{"BOOKS"},{"FOOD ITEMS"},{"TOYS"},{"UTENSILS"}};
+    private ExpandableListView expandableListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
