@@ -1,8 +1,8 @@
 package app.project.donate;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,43 +12,32 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.ExpandableListView;
 
-import com.github.siyamed.shapeimageview.CircularImageView;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import app.project.donate.model.NgoList;
 
-public class MainUi extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainUi extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
     private GoogleApiClient mGoogleApiClient;
     public static final String LOGIN_FILE = "LogInFile";
 
-    public TextView textView;
-    public CircularImageView img;
+    final Context context = this;
+    private static final String data[][] = {{"CLOTHES"},{"BOOKS"},{"FOOD ITEMS"},{"TOYS"},{"UTENSILS"}};
+    private ExpandableListView expandableListView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_ui);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        //<check here>
-        textView=(TextView)findViewById(R.id.tv1);
-
-        String DonorName=FirebaseAuth.getInstance().getCurrentUser().getDisplayName();
-        Toast.makeText(this, ""+DonorName, Toast.LENGTH_SHORT).show();
-        //textView.setText(DonorName);
-
-        img=(CircularImageView)findViewById(R.id.iv1);
-        //img.setImageResource(R.drawable.harsh);
-
 
 
 
@@ -102,7 +91,6 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            startActivity(new Intent(this,AccountSettings.class));
             return true;
         }
         else if(id == R.id.action_logout){
@@ -149,12 +137,8 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
         } else if (id == R.id.nav_ngo_list) {
             startActivity(new Intent(this, NgoList.class));
         } else if (id == R.id.nav_rate_us) {
-            Uri uriUrl = Uri.parse("https://docs.google.com/forms/d/1yln_gJBWt7N-Mrk0z47MB-TIpRZ3PgOTE4H2iYblSGo/viewform?edit_requested=true");
-            Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
-            startActivity(launchBrowser);
-        } else if (id == R.id.nav_credits) {
 
-            startActivity(new Intent(this, CreditsUI.class));
+        } else if (id == R.id.nav_credits) {
 
         }
 

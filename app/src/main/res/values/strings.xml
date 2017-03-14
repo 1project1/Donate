@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Donate</string>
+    <string name="app_name">DonateAgain</string>
     <string name="password">Password</string>
     <string name="email">Email</string>
     <string name="log_in">Log In</string>
@@ -45,10 +45,10 @@
     <string-array name="intro">
         <item>Theodore Komnenos Doukas (died c. 1253) ruled Epirus and Thessaly from 1215 to 1230, and most of Macedonia and western Thrace as Emperor of Thessalonica from 1224 to 1230. He was also the power behind the rule of his two sons John and Demetrios over Thessalonica in 1237–46. The scion of a distinguished Byzantine aristocratic family, he was called to Epirus by his bastard half-brother Michael I Komnenos Doukas, who had founded an independent principality there after the Fourth Crusade. When Michael died in 1215, Theodore assumed governance and allied with Serbia, taking the Latin Kingdom of Thessalonica in 1224. He declared himself emperor, challenging the claims of the Nicaean emperor John III Vatatzes on the Byzantine imperial throne. In 1230 he amassed an army to besiege Constantinople, but diverted it to fight in Bulgaria, where he was defeated, blinded, and imprisoned for seven years. In 1237 he installed his older son John, and later Demetrios, as emperor in Thessalonica, remaining the de facto regent of the state. He was taken prisoner again in 1252 by Vatatzes and sent into exile in Nicaea, where he died the next year.</item>
         <item>harsh is a good boy.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</item>
-        <item>amsn is a good boy.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</item>
+        <item>aman is a good boy.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</item>
         <item>arup is a good boy.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</item>
         <item>aakash is a good boy.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</item>
-        <item>aakash is a good boy.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</item>
+        <item>archit is a good boy.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</item>
         <item>aakash is a good boy.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</item>
         <item>aakash is a good boy.aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</item>
     </string-array>
@@ -82,6 +82,12 @@
     <string name="harsh">
         Database\nInformation
     </string>
+
+    <string name="aboutUs">
+        Donation is nothing but an act of presenting something as a gift, grant, or contribution to the deprived section of the society.
+        JeevOne is an APP
+    </string>
+
     <!---->
 
 </resources>
