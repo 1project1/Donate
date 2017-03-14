@@ -15,30 +15,46 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".LogIn"
-            android:theme="@style/Login">
+            android:theme="@style/Login"
+            android:screenOrientation="portrait">
 
         </activity>
         <activity
             android:name=".SignUp"
-            android:theme="@style/Login" />
-        <activity android:name=".Temp" />
+            android:theme="@style/Login"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Temp"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".About"
+            android:parentActivityName=".MainUi"
+            android:screenOrientation="portrait">
+        </activity>
         <activity
             android:name=".Cart"
             android:parentActivityName=".MainUi"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
         <activity android:name=".History"
-            android:parentActivityName=".MainUi"/>
-        <activity android:name=".AccountSettings" />
+            android:parentActivityName=".MainUi"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".AccountSettings"
+            android:screenOrientation="portrait"/>
         <activity android:name=".CreditsUI"
             android:parentActivityName=".MainUi"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".MainUi"
             android:label="@string/title_activity_main_ui"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
+        </activity>
 
         <activity android:name=".model.Splash"
-            android:theme="@style/Login">
+            android:theme="@style/Login"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -46,9 +62,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".model.NgoList"
-            android:parentActivityName=".MainUi"></activity>
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".EditDetail"></activity>
+            android:parentActivityName=".MainUi"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".EditDetail"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

@@ -2,6 +2,7 @@ package app.project.donate;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -23,7 +24,6 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
 import app.project.donate.model.NgoList;
 
 public class MainUi extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -140,7 +140,7 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
         int id = item.getItemId();
 
         if (id == R.id.nav_about) {
-            // Handle the camera action
+            startActivity(new Intent(this, About.class));
         } else if (id == R.id.nav_cart) {
             startActivity(new Intent(this, Cart.class));
         } else if (id == R.id.nav_history) {
