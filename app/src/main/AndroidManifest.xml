@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     package="app.project.donate">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -22,8 +23,8 @@
         <activity android:name=".Temp" />
         <activity
             android:name=".Cart"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".History" />
+            android:theme="@style/AppTheme" android:parentActivityName=".MainUi" />
+        <activity android:name=".History" android:parentActivityName=".MainUi"/>
         <activity
             android:name=".MainUi"
             android:label="@string/title_activity_main_ui"
@@ -36,9 +37,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".model.NgoList"></activity>
-        <activity android:name=".RecyclerViewActivity"
-            android:label="@string/app_name" />
+        <activity android:name=".model.NgoList" android:parentActivityName=".MainUi"></activity>
+        <activity android:name=".CreditsUI" android:theme="@style/AppTheme.NoActionBar" android:parentActivityName=".MainUi"/>
     </application>
 
 </manifest>

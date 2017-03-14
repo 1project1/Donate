@@ -1,6 +1,5 @@
 package app.project.donate;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,7 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ExpandableListView;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -28,18 +26,12 @@ public class MainUi extends AppCompatActivity
     private GoogleApiClient mGoogleApiClient;
     public static final String LOGIN_FILE = "LogInFile";
 
-    final Context context = this;
-    private static final String data[][] = {{"CLOTHES"},{"BOOKS"},{"FOOD ITEMS"},{"TOYS"},{"UTENSILS"}};
-    private ExpandableListView expandableListView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_ui);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -88,13 +80,11 @@ public class MainUi extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
         else if(id == R.id.action_logout){
-
             SharedPreferences logInPref = getSharedPreferences(LOGIN_FILE, 0);
             SharedPreferences.Editor logInEditor = logInPref.edit();
             logInEditor.clear().putBoolean("isLoggedIn", false).apply();
@@ -137,9 +127,10 @@ public class MainUi extends AppCompatActivity
         } else if (id == R.id.nav_ngo_list) {
             startActivity(new Intent(this, NgoList.class));
         } else if (id == R.id.nav_rate_us) {
+            //startActivity(new Intent(this,Feed));
 
         } else if (id == R.id.nav_credits) {
-
+            startActivity(new Intent(this,CreditsUI.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
