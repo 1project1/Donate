@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F68C6F"
+    android:background="@color/fragmentBackground"
+    android:padding="10dp"
     android:orientation="vertical">
 
     <ImageView
@@ -20,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter the quantity in approx"
+            android:inputType="numberDecimal"
             android:ems="@android:integer/config_longAnimTime"
             android:id="@+id/edit_quantity"/>
     </android.support.design.widget.TextInputLayout>
@@ -27,6 +29,8 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/fragmentBackground"
         android:layout_marginTop="50dp"
         android:text="ADD TO CART"
         android:textSize="20sp"/>

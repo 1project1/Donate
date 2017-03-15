@@ -1,6 +1,5 @@
 package app.project.donate;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,7 +16,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ExpandableListView;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -26,6 +24,12 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
 
+import app.project.donate.fragments.BooksFragment;
+import app.project.donate.fragments.ClothesFragment;
+import app.project.donate.fragments.FoodFragment;
+import app.project.donate.fragments.ShoesFragment;
+import app.project.donate.fragments.ToysFragment;
+import app.project.donate.fragments.UtensilsFragment;
 import app.project.donate.model.NgoList;
 
 public class MainUi extends AppCompatActivity
@@ -57,12 +61,16 @@ public class MainUi extends AppCompatActivity
 
         tabLayout.setupWithViewPager(viewPager);
 
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_one);
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_two);
-        tabLayout.getTabAt(2).setIcon(R.drawable.ic_three);
+        tabLayout.getTabAt(0).setIcon(R.drawable.hamburguer);
+        tabLayout.getTabAt(1).setIcon(R.drawable.uniform);
+        tabLayout.getTabAt(2).setIcon(R.drawable.train);
+        tabLayout.getTabAt(3).setIcon(R.drawable.books);
+        tabLayout.getTabAt(4).setIcon(R.drawable.fryingpan);
+        tabLayout.getTabAt(5).setIcon(R.drawable.shoes);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setItemIconTintList(null);
         init();
     }
 
@@ -176,6 +184,15 @@ public class MainUi extends AppCompatActivity
                 case 2:
                     ToysFragment toysFragment = new ToysFragment();
                     return toysFragment;
+                case 3:
+                    BooksFragment booksFragment = new BooksFragment();
+                    return booksFragment;
+                case 4:
+                    UtensilsFragment utensilsFragment = new UtensilsFragment();
+                    return utensilsFragment;
+                case 5:
+                    ShoesFragment shoesFragment = new ShoesFragment();
+                    return shoesFragment;
             }
             return null;
         }
@@ -183,7 +200,7 @@ public class MainUi extends AppCompatActivity
 
         @Override
         public int getCount() {
-            return 3;
+            return 6;
         }
 
         @Override
@@ -195,6 +212,12 @@ public class MainUi extends AppCompatActivity
                     return "CLOTHES";
                 case 2:
                     return "TOYS";
+                case 3:
+                    return "BOOKS";
+                case 4:
+                    return "UTENSILS";
+                case 5:
+                    return "SHOES";
             }
             return null;
         }
