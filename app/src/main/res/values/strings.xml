@@ -80,6 +80,8 @@
     <string name="harsh">
         Database\nInformation
     </string>
+    <string name="address">Address</string>
+    <string name="phone">Phone Number</string>
     <!---->
 
 </resources>

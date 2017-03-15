@@ -74,7 +74,7 @@ public class LogIn extends DialogActivity implements View.OnClickListener, Googl
                     //User Signed In
                     Log.d("Firebase", "onAuthStateChanged:signed_in:" + user.getUid());
                     logInEditor.putString("Uid", user.getUid());
-                    logInEditor.putString("user", user.getEmail());
+                    logInEditor.putString("user", user.getDisplayName());
                     logInEditor.putString("name", user.getDisplayName());
                     logInEditor.putBoolean("isLoggedIn", true);
                     logInEditor.apply();

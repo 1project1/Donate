@@ -13,22 +13,44 @@
     <android.support.design.widget.TextInputLayout
         android:id="@+id/edited_data_layout"
         android:layout_width="match_parent"
-        android:hint="Some Dummy Text"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:hint="Some Dummy Text">
 
         <EditText
             android:id="@+id/edited_data"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
+        <TextView
+            android:id="@+id/edit_detail_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="Error is here"
+            android:textColor="@android:color/holo_red_dark"
+            android:visibility="gone" />
+
     </android.support.design.widget.TextInputLayout>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/edited_data_layout"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:id="@+id/save_change"
-        android:text="Save"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:id="@+id/cancel_change"
+            android:text="@string/cancel"/>
+        <Button
+            android:id="@+id/save_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="Save" />
+    </LinearLayout>
 
 </RelativeLayout>
