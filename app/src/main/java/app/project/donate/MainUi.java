@@ -5,7 +5,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -28,9 +33,8 @@ public class MainUi extends AppCompatActivity
     private GoogleApiClient mGoogleApiClient;
     public static final String LOGIN_FILE = "LogInFile";
 
-    final Context context = this;
-    private static final String data[][] = {{"CLOTHES"},{"BOOKS"},{"FOOD ITEMS"},{"TOYS"},{"UTENSILS"}};
-    private ExpandableListView expandableListView;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,17 @@ public class MainUi extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
+        viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
+
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+
+        tabLayout.setupWithViewPager(viewPager);
+
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_one);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_two);
+        tabLayout.getTabAt(2).setIcon(R.drawable.ic_three);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -145,6 +160,44 @@ public class MainUi extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    public class ViewPagerAdapter extends FragmentPagerAdapter {
 
+        public ViewPagerAdapter(FragmentManager manager){ super(manager); }
+
+        @Override
+        public Fragment getItem(int position) {
+            switch (position){
+                case 0:
+                    FoodFragment foodFragment = new FoodFragment();
+                    return foodFragment;
+                case 1:
+                    ClothesFragment clothesFragment = new ClothesFragment();
+                    return clothesFragment;
+                case 2:
+                    ToysFragment toysFragment = new ToysFragment();
+                    return toysFragment;
+            }
+            return null;
+        }
+
+
+        @Override
+        public int getCount() {
+            return 3;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position){
+                case 0:
+                    return "FOOD ITEMS";
+                case 1:
+                    return "CLOTHES";
+                case 2:
+                    return "TOYS";
+            }
+            return null;
+        }
+    }
 
 }
