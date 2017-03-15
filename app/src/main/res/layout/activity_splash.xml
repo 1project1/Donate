@@ -20,6 +20,7 @@
         android:background="@drawable/child"/>
 
 
+<!--
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="50dp"
@@ -37,4 +38,5 @@
         android:textStyle="bold"
 
         />
+-->
 </RelativeLayout>
