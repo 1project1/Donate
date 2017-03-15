@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="app.project.donate">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -15,39 +14,40 @@
 
         <activity
             android:name=".LogIn"
-            android:theme="@style/Login"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/Login"></activity>
         <activity
             android:name=".About"
             android:parentActivityName=".MainUi"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".SignUp"
-            android:theme="@style/Login"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Login" />
         <activity
             android:name=".Temp"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Cart"
             android:theme="@style/AppTheme" />
-        <activity android:name=".History" />
         <activity android:name=".AccountSettings" />
         <activity
             android:name=".CreditsUI"
             android:theme="@style/AppTheme.NoActionBar" />
-            android:theme="@style/AppTheme"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".History" android:screenOrientation="portrait" />
+        android:theme="@style/AppTheme"
+        android:screenOrientation="portrait"/>
+        <activity
+            android:name=".History"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainUi"
             android:label="@string/title_activity_main_ui"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
 
-        <activity android:name=".model.Splash" android:screenOrientation="portrait">
+        <activity
+            android:name=".model.Splash"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -59,8 +59,6 @@
         <activity
             android:name=".EditDetail"
             android:windowSoftInputMode="adjustResize"></activity>
-        <activity android:name=".model.NgoList" android:screenOrientation="portrait"></activity>
-        <activity android:name=".CreditsUI" android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>
