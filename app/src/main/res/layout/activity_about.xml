@@ -32,8 +32,10 @@
 
             <TextView
                 android:text="@string/aboutUs"
-                android:textSize="20sp"
+                android:textSize="19sp"
                 android:textStyle="normal"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

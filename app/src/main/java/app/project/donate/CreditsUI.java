@@ -17,12 +17,12 @@ public class CreditsUI extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.credits_activity_main);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.credits_toolbar);
+        /*Toolbar toolbar = (Toolbar) findViewById(R.id.credits_toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);*/
 
-///kjkj///
+
         VerticalViewPager vpPager = (VerticalViewPager) findViewById(R.id.pager);
         adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
         vpPager.setAdapter(adapterViewPager);

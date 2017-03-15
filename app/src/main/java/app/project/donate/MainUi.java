@@ -123,7 +123,7 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
         int id = item.getItemId();
 
         if (id == R.id.nav_about) {
-            // Handle the camera action
+            startActivity(new Intent(this, About.class));
         } else if (id == R.id.nav_cart) {
             startActivity(new Intent(this, Cart.class));
         } else if (id == R.id.nav_history) {

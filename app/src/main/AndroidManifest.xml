@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="app.project.donate">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -11,33 +12,44 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".LogIn"
-            android:theme="@style/Login">
-
+            android:theme="@style/Login"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".About"
+            android:parentActivityName=".MainUi"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".SignUp"
-            android:theme="@style/Login" />
-        <activity android:name=".Temp" />
+            android:theme="@style/Login"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Temp"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".Cart"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".History" />
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".History" android:screenOrientation="portrait" />
         <activity
             android:name=".MainUi"
             android:label="@string/title_activity_main_ui"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"></activity>
 
-        <activity android:name=".model.Splash">
+        <activity android:name=".model.Splash" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".model.NgoList"></activity>
-        <activity android:name=".CreditsUI"></activity>
+        <activity android:name=".model.NgoList" android:screenOrientation="portrait"></activity>
+        <activity android:name=".CreditsUI" android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

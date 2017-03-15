@@ -84,8 +84,15 @@
     </string>
 
     <string name="aboutUs">
-        Donation is nothing but an act of presenting something as a gift, grant, or contribution to the deprived section of the society.
-        JeevOne is an APP
+        "Donation is nothing but an act of presenting something as a gift, grant, or contribution "
+        "to the deprived section of the society. JeevOne is an APP made to serve the purpose of "
+        "donation. It is an online platform which makes it easier for you to experience the joy of "
+        "giving. This APP helps people connect to the NGO's committed to social cause. This "
+        "platform allow people to donate any kind of item they wish to in a well administered and "
+        "transparent manner via the connected NGO's.\n\n A list of items are there in the APP to "
+        "indicate the type of item the person wants to donate. All the items selected an given by "
+        "people will be passed on to the people in need via the NGO's in a well administered "
+        "manner."
     </string>
 
     <!---->
