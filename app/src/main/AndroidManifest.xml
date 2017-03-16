@@ -24,26 +24,33 @@
             android:name=".SignUp"
             android:screenOrientation="portrait"
             android:theme="@style/Login" />
+
         <activity
             android:name=".Temp"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".Cart"
             android:theme="@style/AppTheme" />
+
         <activity android:name=".AccountSettings" />
+
         <activity
             android:name=".CreditsUI"
-            android:theme="@style/AppTheme.NoActionBar" />
-        android:theme="@style/AppTheme"
-        android:screenOrientation="portrait"/>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
+        </activity>
+
         <activity
             android:name=".History"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".MainUi"
             android:label="@string/title_activity_main_ui"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
 
         <activity
             android:name=".model.Splash"
@@ -54,11 +61,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".model.NgoList"></activity>
-        android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".model.NgoList"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+
         <activity
             android:name=".EditDetail"
-            android:windowSoftInputMode="adjustResize"></activity>
+            android:windowSoftInputMode="adjustResize">
+        </activity>
     </application>
 
 </manifest>
