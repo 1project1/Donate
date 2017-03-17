@@ -31,7 +31,7 @@
 
         <activity
             android:name=".Cart"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme" android:parentActivityName=".MainUi"/>
 
         <activity android:name=".AccountSettings" />
 
@@ -43,7 +43,8 @@
 
         <activity
             android:name=".History"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:parentActivityName=".MainUi"/>
 
         <activity
             android:name=".MainUi"
