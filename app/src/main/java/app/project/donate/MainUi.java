@@ -10,17 +10,23 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import app.project.donate.model.NgoList;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainUi extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private GoogleApiClient mGoogleApiClient;
@@ -56,6 +62,17 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View hView = navigationView.getHeaderView(0);
+        ((TextView) hView.findViewById(R.id.display_name_drawer)).setText(user.getDisplayName());
+        Log.w("Image", "" + user.getPhotoUrl());
+
+        CircleImageView civ = (CircleImageView) hView.findViewById(R.id.profile_picture_drawer);
+        if (user.getPhotoUrl() != null)
+            Glide.with(this).load(user.getPhotoUrl()).fitCenter().into(civ);
+
     }
 
     @Override
@@ -84,10 +101,9 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            startActivity(new Intent(this,AccountSettings.class));
+            startActivity(new Intent(this, AccountSettings.class));
             return true;
-        }
-        else if(id == R.id.action_logout){
+        } else if (id == R.id.action_logout) {
 
             SharedPreferences logInPref = getSharedPreferences(LOGIN_FILE, 0);
             SharedPreferences.Editor logInEditor = logInPref.edit();
@@ -121,7 +137,6 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         if (id == R.id.nav_about) {
             startActivity(new Intent(this, About.class));
         } else if (id == R.id.nav_cart) {

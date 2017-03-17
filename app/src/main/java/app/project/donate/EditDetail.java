@@ -52,8 +52,9 @@ public class EditDetail extends DialogActivity implements View.OnClickListener {
         layout = (TextInputLayout) findViewById(R.id.edited_data_layout);
         save = (Button) findViewById(R.id.save_change);
         cancel = (Button) findViewById(R.id.cancel_change);
-        layout.setHint(type);
+
         data.setText(currentValue);
+        layout.setHint(type);
         data.selectAll();
         data.requestFocus();
 

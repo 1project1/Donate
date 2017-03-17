@@ -105,7 +105,6 @@ public class Temp extends AppCompatActivity {
             }
         }).show();
 
-
     }
 
     private void changeLanguage(String lang) {

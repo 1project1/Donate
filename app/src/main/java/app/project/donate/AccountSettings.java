@@ -1,26 +1,35 @@
 package app.project.donate;
 
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+
 
 public class AccountSettings extends AppCompatActivity implements View.OnFocusChangeListener, View.OnTouchListener {
 
     FirebaseAuth mAuth;
     private FirebaseAnalytics mFirebaseAnalytics;
     TextView name, email, address,phone;
+    CircleImageView profilePicture;
 
 
     @Override
@@ -30,7 +39,7 @@ public class AccountSettings extends AppCompatActivity implements View.OnFocusCh
         init();
         setDetails();
 
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        //mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         name.setOnFocusChangeListener(this);
         email.setOnFocusChangeListener(this);
 
@@ -46,6 +55,7 @@ public class AccountSettings extends AppCompatActivity implements View.OnFocusCh
         email = (TextView) findViewById(R.id.display_email);
         address = (TextView) findViewById(R.id.display_address);
         phone =(TextView) findViewById(R.id.display_phone);
+        profilePicture = (CircleImageView)findViewById(R.id.display_profile_picture);
         mAuth = FirebaseAuth.getInstance();
     }
 
@@ -57,6 +67,9 @@ public class AccountSettings extends AppCompatActivity implements View.OnFocusCh
             ((TextView) findViewById(R.id.email_verified)).setText("eMailVerified=" + user.isEmailVerified());
             ((TextView) findViewById(R.id.display_name)).setText(user.getDisplayName());
             ((TextView) findViewById(R.id.display_email)).setText(user.getEmail());
+
+            if (user.getPhotoUrl() != null)
+                Glide.with(this).load(user.getPhotoUrl()).fitCenter().into(profilePicture);
             //((EditText) findViewById(R.id.display_providerId)).setText(user.getProviderId());
             //((EditText) findViewById(R.id.display_gender)).setText(mFirebaseAnalytics.);
             //TODO display values here harsh
@@ -159,7 +172,29 @@ public class AccountSettings extends AppCompatActivity implements View.OnFocusCh
 
         return false;
 
+    }
 
+    public void lang(View view) {
+        final ArrayAdapter<String> languages = new ArrayAdapter<String>(view.getContext(), android.R.layout.select_dialog_item, getResources().getStringArray(R.array.languages));
 
+        AlertDialog.Builder ad = new AlertDialog.Builder(this).setTitle(getResources().getString(R.string.select_language))
+                .setNegativeButton(getResources().getString(R.string.cancel), null);
+        ad.setAdapter(languages, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String selectedLang = languages.getItem(which);
+                changeLanguage(selectedLang);
+            }
+        }).show();
+
+    }
+
+    private void changeLanguage(String lang) {
+        Log.i("Lang", lang);
+        if (lang.equals("Hindi")) {
+            LocaleHelper.setLocale(this, "hi");
+        } else {
+            Context context = LocaleHelper.setLocale(this, "en");
+        }
     }
 }
