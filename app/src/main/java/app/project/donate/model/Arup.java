@@ -1,6 +1,7 @@
 package app.project.donate.model;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import app.project.donate.R;
 
@@ -24,7 +26,7 @@ import app.project.donate.R;
 public class Arup extends Fragment {
 
     Button fb4,g4;
-
+    TextView tv,tv2;
     public static Arup newInstance() {
         Arup fragmentFirst = new Arup();
         return fragmentFirst;
@@ -38,6 +40,11 @@ public class Arup extends Fragment {
 
         fb4 = (Button) v.findViewById(R.id.arupButtonFacebook);
         g4 = (Button) v.findViewById(R.id.arupButtonGoogle);
+        tv = (TextView) v.findViewById(R.id.arupTextView1);
+        tv2 = (TextView) v.findViewById(R.id.arupTextView2);
+        Typeface typeface = Typeface.createFromAsset(getActivity().getAssets(), "fonts/billabong.ttf");
+        tv.setTypeface(typeface);
+        tv2.setTypeface(typeface);
 
         fb4.setOnClickListener(new View.OnClickListener() {
             @Override

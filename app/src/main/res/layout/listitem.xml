@@ -16,7 +16,7 @@
         android:layout_height="70dp"
         android:layout_marginBottom="20dp"
         android:layout_marginTop="20dp"
-        android:background="#000000"
+        android:background="@color/fragmentBackground"
         android:weightSum="1">
 
 
@@ -30,7 +30,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="5dp"
             android:src="@mipmap/ic_launcher"
-            app:siBorderColor="#f24566"
+            app:siBorderColor="@color/colorPrimary"
             app:siBorderWidth="3dp" />
 
         <TextView
@@ -41,9 +41,9 @@
             android:layout_marginRight="10dp"
             android:gravity="center_vertical|center_horizontal"
             android:text="TextView"
-            android:textColor="#ffffff"
+            android:textColor="@color/colorPrimary"
             android:textSize="30dp"
-            android:textStyle="normal" />
+            android:textStyle="bold" />
     </LinearLayout>
 
     <TextView

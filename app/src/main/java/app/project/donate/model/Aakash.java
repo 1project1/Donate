@@ -2,6 +2,7 @@ package app.project.donate.model;
 
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+
 import app.project.donate.R;
 
 
@@ -24,7 +27,7 @@ import app.project.donate.R;
 public class Aakash extends Fragment {
 
     Button fb1, g1;
-
+    TextView tv,tv2;
     public static Aakash newInstance() {
         Aakash fragmentFirst = new Aakash();
         return fragmentFirst;
@@ -39,7 +42,11 @@ public class Aakash extends Fragment {
 
         fb1 = (Button) v.findViewById(R.id.aakashButtonFacebook);
         g1 = (Button) v.findViewById(R.id.aakashButtonGoogle);
-
+        tv = (TextView) v.findViewById(R.id.aakashTextView1);
+        tv2 = (TextView) v.findViewById(R.id.aakashTextView2);
+        Typeface typeface = Typeface.createFromAsset(getActivity().getAssets(), "fonts/billabong.ttf");
+        tv.setTypeface(typeface);
+        tv2.setTypeface(typeface);
         fb1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

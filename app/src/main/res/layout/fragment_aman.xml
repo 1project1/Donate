@@ -40,8 +40,9 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:text="Aman Singh Chauhan"
-                android:textColor="#000"
-                android:textSize="40sp" />
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                android:textSize="60sp" />
 
             <TextView
                 android:id="@+id/amanTextView2"
@@ -53,7 +54,7 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/aman"
                 android:textColor="#000"
-                android:textSize="20sp" />
+                android:textSize="30sp" />
 
             <LinearLayout
                 android:id="@+id/aman_social_buttons"

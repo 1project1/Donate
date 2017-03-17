@@ -13,5 +13,5 @@
         android:clipToPadding="false"
         android:divider="@android:drawable/button_onoff_indicator_on"
         android:footerDividersEnabled="true"
-        android:headerDividersEnabled="true"></ListView>
+        android:headerDividersEnabled="true"/>
 </RelativeLayout>

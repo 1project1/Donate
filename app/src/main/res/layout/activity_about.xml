@@ -7,20 +7,20 @@
 
     <TextView
         android:text="About JeevOne"
-        android:textSize="30sp"
-        android:textColor="#000"
+        android:textSize="50sp"
+        android:textColor="@color/colorAccent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:textStyle="bold"
         android:gravity="center"
-        android:background="#c2da44"
         android:id="@+id/abouttextView1" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/abouttextView1"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp">
@@ -32,7 +32,7 @@
 
             <TextView
                 android:text="@string/aboutUs"
-                android:textSize="19sp"
+                android:textSize="18sp"
                 android:textStyle="normal"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
