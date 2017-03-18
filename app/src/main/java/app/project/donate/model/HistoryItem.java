@@ -6,17 +6,30 @@ package app.project.donate.model;
 
 public class HistoryItem {
 
-    String title, ngo,status,address;
+    String title, ngo,status,address,date;
     long quantity;
     int thumbnail;
 
-    public HistoryItem(String title, int thumbnail, String ngo, String address, String status, long quantity) {
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public void setQuantity(long quantity) {
+        this.quantity = quantity;
+    }
+
+    public HistoryItem(String title, int thumbnail, String ngo, String address, String status, long quantity,String date) {
         this.title = title;
         this.ngo = ngo;
         this.status = status;
         this.quantity = quantity;
         this.address = address;
         this.thumbnail = thumbnail;
+        this.date = date;
     }
 
     public int getThumbnail() {

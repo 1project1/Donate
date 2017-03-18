@@ -1,11 +1,16 @@
 package app.project.donate;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,12 +23,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import app.project.donate.controllers.CartItemAdapter;
 import app.project.donate.model.CartItem;
 import app.project.donate.model.DonateItem;
+import app.project.donate.ngolocator.GIS;
 
 public class Cart extends AppCompatActivity {
     DatabaseReference myRef;
@@ -31,6 +39,11 @@ public class Cart extends AppCompatActivity {
     CartItemAdapter adapter;
     List<CartItem> itemList;
     List<DonateItem> donationList;
+    double longitude;
+    double latitude;
+
+    LocationManager locationManager;
+    Location location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,27 +83,60 @@ public class Cart extends AppCompatActivity {
                 "Clothes",
                 "Utensils",
                 "Shoes",
-                "Bags",
-                "Furniture",
-                "BedSheets",
+                "Books",
+                "Food",
                 "Toys",
                 "Clothes",
                 "Utensils",
                 "Shoes",
-                "Bags",
-                "Furniture",
-                "BedSheets",
+                "Books",
+                "Food",
                 "Toys"
 
         };
         CartItem[] x = new CartItem[14];
-        for (int i = 0; i < 14; i++) {
+        for (int i = 0; i < 12; i++) {
             x[i] = new CartItem(thumbs[i], titles[i], "Pending", "995 1st Floor, Sectot-37 ," +
                     " Faridabad, Haryana-121003 near Devi Sahai Market", i + 1);
             itemList.add(x[i]);
             Log.i("Added", itemList.get(i).getTitle());
         }
+
+        for( CartItem d: itemList){
+            d.setThumbnail(mapThumb(d.getTitle()));
+        }
         adapter.notifyDataSetChanged();
+    }
+
+    private int mapThumb(String title) {
+        int id = R.mipmap.dummy;
+
+        switch (title.toLowerCase()) {
+            case "clothes":
+                id = R.drawable.uniform;
+                break;
+            case "utensils":
+                id = R.drawable.fryingpan;
+                break;
+            case "shoes":
+                id = R.drawable.shoes;
+                break;
+            case "books":
+                id = R.drawable.books;
+                break;
+            case "toys":
+                id = R.drawable.train;
+                break;
+            case "food":
+                id = R.drawable.food;
+                break;
+
+            default:
+                id = R.mipmap.dummy;
+        }
+
+        return id;
+
     }
 
     public void removeAll(View view) {
@@ -135,10 +181,10 @@ public class Cart extends AppCompatActivity {
                         NotificationCompat.Builder b =
                                 (NotificationCompat.Builder)
                                         new NotificationCompat.Builder(getApplicationContext()).
-                                setSmallIcon(R.mipmap.happy)
-                                .setContentTitle("Donation")
-                                .setContentText("Your donation list is successfully confirmed").
-                                        setColor(Color.parseColor("#43A047"));
+                                                setSmallIcon(R.mipmap.happy)
+                                                .setContentTitle("Donation")
+                                                .setContentText("Your donation list is successfully confirmed").
+                                                setColor(Color.parseColor("#43A047"));
                         NotificationManager mNotificationManager = (NotificationManager)
                                 getSystemService(Context.NOTIFICATION_SERVICE);
                         mNotificationManager.notify(0, b.build());
@@ -169,24 +215,65 @@ public class Cart extends AppCompatActivity {
     }
 
     public List<DonateItem> getAllCartItems() {
+
+
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+            } else
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+
+        } else {
+
+            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+            location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            try {
+                latitude = location.getLatitude();
+                longitude = location.getLongitude();
+                Log.i("Current Location", latitude + " " + longitude);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(this, "Location Not Found", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+
         donationList = new ArrayList<>();
+        GIS g = new GIS(); // using the algorithm implementation to get centres inside 5km radius
+        Log.i("NGO Location", g.getNgoLocation(latitude, longitude));
+        String date = DateFormat.getDateTimeInstance().format(new Date());
+        Toast.makeText(this, date, Toast.LENGTH_SHORT).show();
+        Log.i("currdate", date);
         for (CartItem x : itemList) {
-            DonateItem l = new DonateItem(x.getTitle(), x.getMessage(), x.getQuantity(),true);
+            DonateItem l = new DonateItem(x.getTitle(), x.getMessage(), x.getQuantity(), g.getNgoLocation(latitude, longitude), date);
             donationList.add(l);
+        }
+
+        for (DonateItem x: donationList){
+            Log.i("Items",x.getTitle()+"-" +x.getMessage()+"-" + x.getQuantity()+"-" +x.getNgoLocation()+"-" +x.getDate());
         }
         return donationList;
     }
 
-    private void firebasesavedonationitem(){
-        FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
-        String Uid=firebaseAuth.getCurrentUser().getUid();
-        myRef=FirebaseDatabase.getInstance().getReference();
+    private void firebasesavedonationitem() {
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        String Uid = firebaseAuth.getCurrentUser().getUid();
+        myRef = FirebaseDatabase.getInstance().getReference();
         myRef.child("endUsers").child(Uid).child("Donations_item_Details").push().setValue(getAllCartItems());
-        /*Person person=new Person();
-        person.setName("");
-        person.setAddress("");
-        person.setPhone("");
+        /*Person person = new Person();
+        person.setName("harsh");
+        person.setAddress("delhi");
+        person.setPhone("9716490060");
         myRef.child("endUsers").child(Uid).child("User_details").setValue(person);
-        */
+   */ }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
     }
+
+
 }

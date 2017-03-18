@@ -42,9 +42,10 @@ public class HistoryItemAdapter extends RecyclerView.Adapter<HistoryItemAdapter.
         HistoryItem item = itemListHistory.get(position);
         holder.title.setText(item.getTitle());
         holder.quant.setText(item.getQuantity()+"");
-        holder.ngo.setText(item.getNgo());
-        holder.stats.setText(item.getStatus());
+        holder.ngo.setText("Donated to:" + item.getNgo());
+        holder.stats.setText("Status:"+item.getStatus());
         holder.address.setText(item.getAddress());
+        holder.historyItemDate.setText("Date:"+item.getDate());
         Glide.with(mContext).load(item.getThumbnail()).into(holder.thumb);
     }
 
@@ -58,7 +59,7 @@ public class HistoryItemAdapter extends RecyclerView.Adapter<HistoryItemAdapter.
         public ImageView thumb;
         public TextView title, stats,ngo;
         public TextView quant,address;
-
+        public TextView historyItemDate;
 
         public HistoryItemVH(View itemView) {
             super(itemView);
@@ -69,6 +70,8 @@ public class HistoryItemAdapter extends RecyclerView.Adapter<HistoryItemAdapter.
             ngo = (TextView)itemView.findViewById(R.id.ngo_name);
             address = (TextView)itemView.findViewById(R.id.user_address);
             stats = (TextView)itemView.findViewById(R.id.status_message);
+            historyItemDate = (TextView)itemView.findViewById(R.id.history_item_date);
         }
+
     }
 }
