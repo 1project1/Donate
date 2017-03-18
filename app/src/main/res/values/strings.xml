@@ -104,6 +104,7 @@
 
     <string name="address">Address</string>
     <string name="phone">Phone Number</string>
+    <string name="permission_denied_contacts">Permission Denied By User</string>
     <!---->
 
 </resources>

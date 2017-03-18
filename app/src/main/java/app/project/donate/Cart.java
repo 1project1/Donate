@@ -8,8 +8,12 @@ import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.NotificationCompat;
@@ -33,7 +37,7 @@ import app.project.donate.model.CartItem;
 import app.project.donate.model.DonateItem;
 import app.project.donate.ngolocator.GIS;
 
-public class Cart extends AppCompatActivity {
+public class Cart extends AppCompatActivity implements LocationListener {
     DatabaseReference myRef;
     RecyclerView sv;
     CartItemAdapter adapter;
@@ -45,10 +49,24 @@ public class Cart extends AppCompatActivity {
     LocationManager locationManager;
     Location location;
 
+    private final int REQUEST_PERMISSION_PHONE_STATE = 1;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) !=
+                PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) !=
+                        PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+            } else
+                finish();
+            //ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+
+        }
         sv = (RecyclerView) findViewById(R.id.sv);
         itemList = new ArrayList<>();
         adapter = new CartItemAdapter(this, itemList);
@@ -102,7 +120,7 @@ public class Cart extends AppCompatActivity {
             Log.i("Added", itemList.get(i).getTitle());
         }
 
-        for( CartItem d: itemList){
+        for (CartItem d : itemList) {
             d.setThumbnail(mapThumb(d.getTitle()));
         }
         adapter.notifyDataSetChanged();
@@ -214,20 +232,60 @@ public class Cart extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+
+        if (requestCode == 99) {
+            // for each permission check if the user granted/denied them
+            // you may want to group the rationale in a single dialog,
+            // this is just an example
+            for (int i = 0, len = permissions.length; i < len; i++) {
+                String permission = permissions[i];
+                if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
+                    // user rejected the permission
+                    boolean showRationale = shouldShowRequestPermissionRationale( permission );
+                    if (! showRationale) {
+                        // user also CHECKED "never ask again"
+                        // you can either enable some fall back,
+                        // disable features of your app
+                        // or open another dialog explaining
+                        // again the permission and directing to
+                        // the app setting
+                    } else if (Manifest.permission.WRITE_CONTACTS.equals(permission)) {
+                        showRationale(new String[]{permission}, R.string.permission_denied_contacts);
+                        // user did NOT check "never ask again"
+                        // this is a good place to explain the user
+                        // why you need the permission and ask if he wants
+                        // to accept it (the rationale)
+
+                    }
+                }
+            }
+        }
+    }
+
+    private void showRationale(String permission[], int permission_denied_contacts) {
+        ActivityCompat.requestPermissions(this,permission,1);
+    }
+
+
     public List<DonateItem> getAllCartItems() {
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling -- not working
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
 
-
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_COARSE_LOCATION)) {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
-            } else
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
-
-        } else {
-
-            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-
-            location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},99);
+        }
+        else{
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, (LocationListener) this);
+            //location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
             try {
                 latitude = location.getLatitude();
                 longitude = location.getLongitude();
@@ -238,6 +296,7 @@ public class Cart extends AppCompatActivity {
                 Toast.makeText(this, "Location Not Found", Toast.LENGTH_SHORT).show();
             }
         }
+
 
 
         donationList = new ArrayList<>();
@@ -276,4 +335,23 @@ public class Cart extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onLocationChanged(Location location) {
+
+    }
+
+    @Override
+    public void onStatusChanged(String s, int i, Bundle bundle) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String s) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String s) {
+
+    }
 }
