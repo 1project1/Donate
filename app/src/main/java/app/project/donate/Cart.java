@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.project.donate.controllers.CartItemAdapter;
-import app.project.donate.controllers.Person;
 import app.project.donate.model.CartItem;
 import app.project.donate.model.DonateItem;
 
@@ -183,10 +182,11 @@ public class Cart extends AppCompatActivity {
         String Uid=firebaseAuth.getCurrentUser().getUid();
         myRef=FirebaseDatabase.getInstance().getReference();
         myRef.child("endUsers").child(Uid).child("Donations_item_Details").push().setValue(getAllCartItems());
-        Person person=new Person();
-        person.setName("harsh");
-        person.setAddress("delhi");
-        person.setPhone("9716490060");
+        /*Person person=new Person();
+        person.setName("");
+        person.setAddress("");
+        person.setPhone("");
         myRef.child("endUsers").child(Uid).child("User_details").setValue(person);
+        */
     }
 }
