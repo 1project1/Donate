@@ -23,8 +23,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class EditDetail extends DialogActivity implements View.OnClickListener {
+
+    DatabaseReference mref;
+    FirebaseAuth firebaseAuth;
 
     EditText data;
     TextInputLayout layout;
@@ -38,6 +43,9 @@ public class EditDetail extends DialogActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.edit_detail);
         Bundle b = getIntent().getExtras();
+
+        firebaseAuth=FirebaseAuth.getInstance();
+        mref= FirebaseDatabase.getInstance().getReference();
 
         if (b != null) {
             title = b.getString("title");
@@ -57,6 +65,8 @@ public class EditDetail extends DialogActivity implements View.OnClickListener {
         layout.setHint(type);
         data.selectAll();
         data.requestFocus();
+
+
 
 //        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 //        imm.showSoftInput(data, InputMethodManager.SHOW_IMPLICIT);
@@ -131,11 +141,33 @@ public class EditDetail extends DialogActivity implements View.OnClickListener {
             case "Address":
                 //TODO
                 // harsh to update address here
+                val = data.getText().toString();
+                if (val.isEmpty() || val.contentEquals(currentValue)) return;
+                else
+                    mref.child("endUsers").child(user.getUid()).child("User_details").child("address").setValue(val).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                finish();
+                            }
+                        }
+                    });
 
                 break;
             case "Phone":
                 //TODO
                 // harsh to update phone number here
+                val = data.getText().toString();
+                if (val.isEmpty() || val.contentEquals(currentValue)) return;
+                else
+                    mref.child("endUsers").child(user.getUid()).child("User_details").child("phone").setValue(val).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                finish();
+                            }
+                        }
+                    });
                 break;
         }
     }

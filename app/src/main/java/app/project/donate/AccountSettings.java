@@ -1,5 +1,6 @@
 package app.project.donate;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -15,16 +16,23 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
-public class AccountSettings extends AppCompatActivity implements View.OnFocusChangeListener, View.OnTouchListener {
+public class AccountSettings extends DialogActivity implements View.OnFocusChangeListener, View.OnTouchListener {
+    DatabaseReference mref;
 
     FirebaseAuth mAuth;
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -61,18 +69,42 @@ public class AccountSettings extends AppCompatActivity implements View.OnFocusCh
 
     private void setDetails() {
 
-        FirebaseUser user = mAuth.getCurrentUser();
+        final FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
 
             ((TextView) findViewById(R.id.email_verified)).setText("eMailVerified=" + user.isEmailVerified());
             ((TextView) findViewById(R.id.display_name)).setText(user.getDisplayName());
             ((TextView) findViewById(R.id.display_email)).setText(user.getEmail());
 
-            if (user.getPhotoUrl() != null)
+            if (user.getPhotoUrl() != null) {
                 Glide.with(this).load(user.getPhotoUrl()).fitCenter().into(profilePicture);
-            //((EditText) findViewById(R.id.display_providerId)).setText(user.getProviderId());
-            //((EditText) findViewById(R.id.display_gender)).setText(mFirebaseAnalytics.);
-            //TODO display values here harsh
+            }
+                //((EditText) findViewById(R.id.display_providerId)).setText(user.getProviderId());
+                //((EditText) findViewById(R.id.display_gender)).setText(mFirebaseAnalytics.);
+                //TODO display values here harsh
+                mref= FirebaseDatabase.getInstance().getReference();
+                showProgressDialog();
+                //final FirebaseUser User=FirebaseAuth.getInstance().getCurrentUser();
+                // mref.child("endUsers").child(user.getUid()).child("User_details");
+                mref.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        address.setText ((String) dataSnapshot.child("endUsers").child(user.getUid()).child("User_details").child("address").getValue());
+                        phone.setText((String) dataSnapshot.child("endUsers").child(user.getUid()).child("User_details").child("phone").getValue());
+                        //address.setText(addr);
+                        //phone.setText(ph);
+                        // Toast.makeText(AccountSettings.this, "" + addr + ph, Toast.LENGTH_SHORT).show();
+                        hideProgressDialog();
+                    }
+
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+
+                });
 
 
         }
@@ -90,6 +122,7 @@ public class AccountSettings extends AppCompatActivity implements View.OnFocusCh
 
     @Override
     protected void onStart() {
+
         setDetails();
         super.onStart();
     }
