@@ -70,7 +70,7 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
         tabLayout.getTabAt(0).setIcon(R.drawable.hamburguer);
         tabLayout.getTabAt(1).setIcon(R.drawable.uniform);
         tabLayout.getTabAt(2).setIcon(R.drawable.train);
-        tabLayout.getTabAt(3).setIcon(R.drawable.drawablebooks);
+        tabLayout.getTabAt(3).setIcon(R.drawable.books);
         tabLayout.getTabAt(4).setIcon(R.drawable.fryingpan);
         tabLayout.getTabAt(5).setIcon(R.drawable.shoes);
 
@@ -179,9 +179,7 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
             Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
             startActivity(launchBrowser);
         } else if (id == R.id.nav_credits) {
-
             startActivity(new Intent(this, CreditsUI.class));
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

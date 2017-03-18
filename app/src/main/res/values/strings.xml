@@ -68,16 +68,16 @@
         Every man is an artisan of his own fortune!!!
     </string>
     <string name="aakash">
-        Login\nNotifications\nLanguage
+        Login\nAccount Settings
     </string>
     <string name="aman">
-        Layout Design\n Search
+        Layout Design\nGraphics Design
     </string>
     <string name="archit">
-        DevelopmentCredits\nFeedback\nAcknowledgement
+        Development Credits\nFeedback\nAbout APP
     </string>
     <string name="arup">
-        Cart\nAccount Setting
+        Cart\nHistory
     </string>
     <string name="harsh">
         Database\nInformation
@@ -85,14 +85,21 @@
 
     <string name="aboutUs">
         "Donation is nothing but an act of presenting something as a gift, grant, or contribution "
-        "to the deprived section of the society. JeevOne is an APP made to serve the purpose of "
+        "to the deprived section of the society. JeeOne is an APP made to serve the purpose of "
         "donation. It is an online platform which makes it easier for you to experience the joy of "
-        "giving. This APP helps people connect to the NGO's committed to social cause. This "
-        "platform allow people to donate any kind of item they wish to in a well administered and "
-        "transparent manner via the connected NGO's.\n\n A list of items are there in the APP to "
-        "indicate the type of item the person wants to donate. All the items selected an given by "
-        "people will be passed on to the people in need via the NGO's in a well administered "
-        "manner. "
+        "giving. This APP helps people connect to the NGO's near their locality committed to "
+        "social cause. This platform allow people to donate any kind of item they wish to in a "
+        "well administered and transparent manner via the connected NGO's.\n\n A list of items are "
+        "there in the APP to indicate the type of item the person wants to donate. All the items "
+        "selected an given by people will be passed on to the people in need via the NGO's in a "
+        "well administered manner.\n\n You can also separately list the items(Food, Clothes, "
+        "Electronic Items etc.) and their conditions (Good, Moderate or Bad). Only the NGO "
+        "selected will get access to the information you share(i.e. about you and your donation "
+        "details). Once the NGO gets all the information, the donor will be contacted. \n\n You "
+        "will be informed on every step of processing of items to maintain integrity. The "
+        "shared information will be in the form of messages, images and short videos. The story of "
+        "your good deed will be shared on our social page as well and also by the NGO in their own "
+        "pages or magazines."
     </string>
 
     <string name="address">Address</string>
