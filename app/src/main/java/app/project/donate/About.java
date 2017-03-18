@@ -13,10 +13,13 @@ public class About extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
-        TextView textView = (TextView) findViewById(R.id.abouttextView1);
-        getSupportActionBar().setTitle("About JeevOne");
+        TextView textView1 = (TextView) findViewById(R.id.abouttextView1);
+        TextView textView2 = (TextView) findViewById(R.id.abouttextView2);
+
+        getSupportActionBar().setTitle("About JeeOne");
 
         Typeface typeface = Typeface.createFromAsset(getAssets(),"fonts/billabong.ttf");
-        textView.setTypeface(typeface);
+        textView1.setTypeface(typeface);
+        textView2.setTypeface(typeface);
     }
 }
