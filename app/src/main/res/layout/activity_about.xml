@@ -5,21 +5,9 @@
     android:layout_height="match_parent"
     android:id="@+id/activity_about">
 
-    <TextView
-        android:text="About JeevOne"
-        android:textSize="50sp"
-        android:textColor="@color/colorAccent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:id="@+id/abouttextView1" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/abouttextView1"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
@@ -31,11 +19,21 @@
             android:orientation="vertical" >
 
             <TextView
+                android:text="About JeeOne"
+                android:textSize="40sp"
+                android:textColor="@color/colorAccent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:id="@+id/abouttextView1" />
+
+            <TextView
                 android:text="@string/aboutUs"
-                android:textSize="18sp"
+                android:textSize="22sp"
                 android:textStyle="normal"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

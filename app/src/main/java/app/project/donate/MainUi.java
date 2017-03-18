@@ -179,9 +179,7 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
             Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
             startActivity(launchBrowser);
         } else if (id == R.id.nav_credits) {
-
             startActivity(new Intent(this, CreditsUI.class));
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
