@@ -40,8 +40,9 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:text="Archit Samnol"
-                android:textColor="#000"
-                android:textSize="40sp" />
+                android:textStyle="bold"
+                android:textColor="@color/colorPrimary"
+                android:textSize="60sp" />
 
             <TextView
                 android:id="@+id/architTextView2"
@@ -53,7 +54,8 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/archit"
                 android:textColor="#000"
-                android:textSize="20sp" />
+                android:textSize="30sp"
+                android:textStyle="bold"/>
 
             <LinearLayout
                 android:id="@+id/archit_social_buttons"

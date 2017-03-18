@@ -40,8 +40,9 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:text="Arup Kumar Gupta"
-                android:textColor="#000"
-                android:textSize="40sp" />
+                android:textColor="@color/colorPrimary"
+                android:textStyle="bold"
+                android:textSize="60sp" />
 
             <TextView
                 android:id="@+id/arupTextView2"
@@ -54,7 +55,8 @@
                 android:gravity="end"
                 android:text="@string/arup"
                 android:textColor="#000"
-                android:textSize="20sp" />
+                android:textSize="30sp"
+                android:textStyle="bold"/>
 
             <LinearLayout
                 android:id="@+id/social_buttons"

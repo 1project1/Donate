@@ -5,7 +5,12 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -25,12 +30,21 @@ import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import app.project.donate.Fragments.BooksFragment;
+import app.project.donate.Fragments.ClothesFragment;
+import app.project.donate.Fragments.FoodFragment;
+import app.project.donate.Fragments.ShoesFragment;
+import app.project.donate.Fragments.ToysFragment;
+import app.project.donate.Fragments.UtensilsFragment;
 import app.project.donate.model.NgoList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainUi extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private GoogleApiClient mGoogleApiClient;
     public static final String LOGIN_FILE = "LogInFile";
+
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +60,23 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
+        viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
+
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+
+        tabLayout.setupWithViewPager(viewPager);
+
+        tabLayout.getTabAt(0).setIcon(R.drawable.hamburguer);
+        tabLayout.getTabAt(1).setIcon(R.drawable.uniform);
+        tabLayout.getTabAt(2).setIcon(R.drawable.train);
+        tabLayout.getTabAt(3).setIcon(R.drawable.drawablebooks);
+        tabLayout.getTabAt(4).setIcon(R.drawable.fryingpan);
+        tabLayout.getTabAt(5).setIcon(R.drawable.shoes);
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setItemIconTintList(null);
         init();
     }
 
@@ -160,5 +189,60 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
         return true;
     }
 
+    public class ViewPagerAdapter extends FragmentPagerAdapter {
 
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+                    FoodFragment foodFragment = new FoodFragment();
+                    return foodFragment;
+                case 1:
+                    ClothesFragment clothesFragment = new ClothesFragment();
+                    return clothesFragment;
+                case 2:
+                    ToysFragment toysFragment = new ToysFragment();
+                    return toysFragment;
+                case 3:
+                    BooksFragment booksFragment = new BooksFragment();
+                    return booksFragment;
+                case 4:
+                    UtensilsFragment utensilsFragment = new UtensilsFragment();
+                    return utensilsFragment;
+                case 5:
+                    ShoesFragment shoesFragment = new ShoesFragment();
+                    return shoesFragment;
+            }
+            return null;
+        }
+
+
+        @Override
+        public int getCount() {
+            return 6;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return "FOOD ITEMS";
+                case 1:
+                    return "CLOTHES";
+                case 2:
+                    return "TOYS";
+                case 3:
+                    return "BOOKS";
+                case 4:
+                    return "UTENSILS";
+                case 5:
+                    return "SHOES";
+            }
+            return null;
+        }
+    }
 }
