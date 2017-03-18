@@ -44,4 +44,6 @@ public class PointFloating {
         System.out.println("NGO: "+ this.name + " Lat: " + this.x + " Long: " + this.y);
     }
 
+
+
 }

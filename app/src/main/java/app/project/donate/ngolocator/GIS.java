@@ -76,10 +76,15 @@ public class GIS {
                 c++;
             }
         }
+
+        double min = 999999;
         for (int i = 0; i < c; i++) {
             if (AlgorithmGIS.pointIsInCircle(filtered[i], center, radius)) {
-                filtered[i].printAll();
-                 s = filtered[i].getName();
+                //filtered[i].printAll();
+                if(AlgorithmGIS.getDistanceBetweenTwoPoints(filtered[i],center) < min) {
+                    min = AlgorithmGIS.getDistanceBetweenTwoPoints(filtered[i],center);
+                    s = filtered[i].getName();
+                }
             }
         }
 
