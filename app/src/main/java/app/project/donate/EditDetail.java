@@ -61,6 +61,7 @@ public class EditDetail extends DialogActivity implements View.OnClickListener {
         save = (Button) findViewById(R.id.save_change);
         cancel = (Button) findViewById(R.id.cancel_change);
 
+        data.setSingleLine(b.getBoolean("singleLine"));
         data.setText(currentValue);
         layout.setHint(type);
         data.selectAll();
@@ -68,8 +69,11 @@ public class EditDetail extends DialogActivity implements View.OnClickListener {
 
 
 
-//        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-//        imm.showSoftInput(data, InputMethodManager.SHOW_IMPLICIT);
+        if(type.equals("Phone")){
+            Log.w("aaaaa","Phone Input type");
+            data.setInputType(b.getInt("inputType"));
+        }
+
         save.setOnClickListener(this);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override

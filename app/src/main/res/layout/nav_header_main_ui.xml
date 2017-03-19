@@ -19,7 +19,7 @@
         android:id="@+id/profile_picture_drawer"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_gravity="center|center_horizontal"
+        android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:src="@mipmap/dummy" />
 

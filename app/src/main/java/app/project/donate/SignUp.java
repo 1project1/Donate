@@ -54,17 +54,20 @@ public class SignUp extends DialogActivity implements View.OnClickListener {
 
                     UserProfileChangeRequest up = new UserProfileChangeRequest.Builder()
                             .setDisplayName(name.getText().toString()).build();
-                    user.updateProfile(up);
+
 
                     user.sendEmailVerification()
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
+
+                            Log.w("App", "EmailVerification");
                             if(!task.isSuccessful()){
                                 Log.w("App", "EmailVerification", task.getException());
                             }
                         }
                     });
+                    user.updateProfile(up);
                     finish();
                 } else {
                     //User Signed out

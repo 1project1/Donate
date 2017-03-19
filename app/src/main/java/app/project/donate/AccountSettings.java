@@ -4,8 +4,17 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.Uri;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -19,25 +28,38 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
-public class AccountSettings extends DialogActivity implements View.OnFocusChangeListener, View.OnTouchListener {
+public class AccountSettings extends DialogActivity implements View.OnFocusChangeListener, View.OnTouchListener, View.OnClickListener {
     DatabaseReference mref;
 
     FirebaseAuth mAuth;
     private FirebaseAnalytics mFirebaseAnalytics;
-    TextView name, email, address,phone;
+    TextView name, email, address, phone;
+    FloatingActionButton editDP;
     CircleImageView profilePicture;
+
+
+    private static int CAMERA_REQUEST, GALLERY_PICTURE = 1008;
 
 
     @Override
@@ -56,20 +78,23 @@ public class AccountSettings extends DialogActivity implements View.OnFocusChang
         email.setOnTouchListener(this);
         address.setOnTouchListener(this);
         phone.setOnTouchListener(this);
+
+        editDP.setOnClickListener(this);
     }
 
     private void init() {
         name = (TextView) findViewById(R.id.display_name);
         email = (TextView) findViewById(R.id.display_email);
         address = (TextView) findViewById(R.id.display_address);
-        phone =(TextView) findViewById(R.id.display_phone);
-        profilePicture = (CircleImageView)findViewById(R.id.display_profile_picture);
+        phone = (TextView) findViewById(R.id.display_phone);
+        profilePicture = (CircleImageView) findViewById(R.id.display_profile_picture);
+        editDP = (FloatingActionButton) findViewById(R.id.edit_profile_picture);
         mAuth = FirebaseAuth.getInstance();
     }
 
     private void setDetails() {
 
-        final FirebaseUser user = mAuth.getCurrentUser();
+        final FirebaseUser user=mAuth.getCurrentUser();
         if (user != null) {
 
             ((TextView) findViewById(R.id.email_verified)).setText("eMailVerified=" + user.isEmailVerified());
@@ -79,25 +104,20 @@ public class AccountSettings extends DialogActivity implements View.OnFocusChang
             if (user.getPhotoUrl() != null) {
                 Glide.with(this).load(user.getPhotoUrl()).fitCenter().into(profilePicture);
             }
-                //((EditText) findViewById(R.id.display_providerId)).setText(user.getProviderId());
-                //((EditText) findViewById(R.id.display_gender)).setText(mFirebaseAnalytics.);
-                //TODO display values here harsh
-                mref= FirebaseDatabase.getInstance().getReference();
+            //((EditText) findViewById(R.id.display_providerId)).setText(user.getProviderId());
+            //((EditText) findViewById(R.id.display_gender)).setText(mFirebaseAnalytics.);
+
+            if (isNetworkAvailable()) {
+                mref = FirebaseDatabase.getInstance().getReference();
                 showProgressDialog();
-                //final FirebaseUser User=FirebaseAuth.getInstance().getCurrentUser();
-                // mref.child("endUsers").child(user.getUid()).child("User_details");
                 mref.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
 
-                        address.setText ((String) dataSnapshot.child("endUsers").child(user.getUid()).child("User_details").child("address").getValue());
+                        address.setText((String) dataSnapshot.child("endUsers").child(user.getUid()).child("User_details").child("address").getValue());
                         phone.setText((String) dataSnapshot.child("endUsers").child(user.getUid()).child("User_details").child("phone").getValue());
-                        //address.setText(addr);
-                        //phone.setText(ph);
-                        // Toast.makeText(AccountSettings.this, "" + addr + ph, Toast.LENGTH_SHORT).show();
                         hideProgressDialog();
                     }
-
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
@@ -105,7 +125,16 @@ public class AccountSettings extends DialogActivity implements View.OnFocusChang
                     }
 
                 });
-
+            } else {
+                Snackbar.make(getWindow().getDecorView().getRootView(),
+                        getString(R.string.no_internet) + " some information may not be available", Snackbar.LENGTH_INDEFINITE)
+                        .setAction(getString(R.string.retry), new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                setDetails();
+                            }
+                        }).show();
+            }
 
         }
     }
@@ -139,7 +168,7 @@ public class AccountSettings extends DialogActivity implements View.OnFocusChang
             //For email Button
             case R.id.display_email:
                 if (event.getAction() == MotionEvent.ACTION_UP) {
-                    if (event.getRawX() >= (name.getRight() - name.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                    if (event.getRawX() >= (email.getRight() - email.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
                         // your action here
                         Log.e("Clicked", "Pencil");
                         //mFirebaseAnalytics.setUserProperty("Gender", "Male");
@@ -147,6 +176,7 @@ public class AccountSettings extends DialogActivity implements View.OnFocusChang
                         i.putExtra("title", "Edit Your Email");
                         i.putExtra("type", "Email");
                         i.putExtra("currentValue", email.getText().toString());
+                        i.putExtra("singleLine", true);
                         startActivity(i);
                         return true;
                     }
@@ -164,6 +194,7 @@ public class AccountSettings extends DialogActivity implements View.OnFocusChang
                         i.putExtra("title", "Edit Your Name");
                         i.putExtra("type", "Name");
                         i.putExtra("currentValue", name.getText().toString());
+                        i.putExtra("singleLine", true);
                         startActivity(i);
                         return true;
                     }
@@ -171,24 +202,25 @@ public class AccountSettings extends DialogActivity implements View.OnFocusChang
                 return false;
 
             case R.id.display_address:
-            if (event.getAction() == MotionEvent.ACTION_UP) {
-                if (event.getRawX() >= (name.getRight() - name.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
-                    // your action here
-                    Log.e("Clicked", "Pencil");
-                    //mFirebaseAnalytics.setUserProperty("Gender", "Male");
-                    Intent i = new Intent(getApplicationContext(), EditDetail.class);
-                    i.putExtra("title", "Edit Your Address");
-                    i.putExtra("type", "Address");
-                    i.putExtra("currentValue", address.getText().toString());
-                    startActivity(i);
-                    return true;
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (address.getRight() - address.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        // your action here
+                        Log.e("Clicked", "Pencil");
+                        //mFirebaseAnalytics.setUserProperty("Gender", "Male");
+                        Intent i = new Intent(getApplicationContext(), EditDetail.class);
+                        i.putExtra("title", "Edit Your Address");
+                        i.putExtra("type", "Address");
+                        i.putExtra("currentValue", address.getText().toString());
+                        i.putExtra("singleLine", false);
+                        startActivity(i);
+                        return true;
+                    }
                 }
-            }
-            return false;
+                return false;
 
             case R.id.display_phone:
                 if (event.getAction() == MotionEvent.ACTION_UP) {
-                    if (event.getRawX() >= (name.getRight() - name.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                    if (event.getRawX() >= (phone.getRight() - phone.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
                         // your action here
                         Log.e("Clicked", "Pencil");
                         //mFirebaseAnalytics.setUserProperty("Gender", "Male");
@@ -196,6 +228,8 @@ public class AccountSettings extends DialogActivity implements View.OnFocusChang
                         i.putExtra("title", "Edit Your Phone");
                         i.putExtra("type", "Phone");
                         i.putExtra("currentValue", phone.getText().toString());
+                        i.putExtra("singleLine", true);
+                        i.putExtra("inputType", InputType.TYPE_CLASS_PHONE);
                         startActivity(i);
                         return true;
                     }
@@ -229,5 +263,122 @@ public class AccountSettings extends DialogActivity implements View.OnFocusChang
         } else {
             Context context = LocaleHelper.setLocale(this, "en");
         }
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.edit_profile_picture) {
+            startDialog();
+        }
+    }
+
+    private void startDialog() {
+        AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
+        myAlertDialog.setTitle("Upload Pictures Option");
+        myAlertDialog.setMessage("How do you want to set your picture?");
+
+        myAlertDialog.setPositiveButton("Gallery",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+                        Intent pictureActionIntent = null;
+
+                        pictureActionIntent = new Intent(
+                                Intent.ACTION_PICK,
+                                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                        startActivityForResult(
+                                pictureActionIntent,
+                                GALLERY_PICTURE);
+
+                    }
+                });
+
+        myAlertDialog.setNegativeButton("Camera",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface arg0, int arg1) {
+
+                        Intent intent = new Intent(
+                                MediaStore.ACTION_IMAGE_CAPTURE);
+                        File f = new File(android.os.Environment
+                                .getExternalStorageDirectory(), "temp.jpg");
+                        intent.putExtra(MediaStore.EXTRA_OUTPUT,
+                                Uri.fromFile(f));
+
+                        startActivityForResult(intent, CAMERA_REQUEST);
+
+                    }
+                });
+        myAlertDialog.show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        FirebaseUser user  = mAuth.getCurrentUser();
+        if (resultCode == RESULT_OK && requestCode == GALLERY_PICTURE && data != null && data.getData() != null) {
+            Uri uri = data.getData();
+
+            try {
+                InputStream is = getContentResolver().openInputStream(data.getData());
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inSampleSize = 8;
+                Bitmap preview_bitmap = BitmapFactory.decodeStream(is, null, options);
+                //profilePicture.setImageBitmap(preview_bitmap);
+
+
+                UserProfileChangeRequest up = new UserProfileChangeRequest.Builder()
+                        .setPhotoUri(data.getData()).build();
+                showProgressDialog();
+                user.updateProfile(up).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w("App", "UpdateProfile", task.getException());
+                        }
+
+                        hideProgressDialog();
+                        setDetails();
+                    }
+                });
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+    }
+
+    private Bitmap decodeFile(File f) {
+        try {
+            // Decode image size
+            BitmapFactory.Options o = new BitmapFactory.Options();
+            o.inJustDecodeBounds = true;
+            BitmapFactory.decodeStream(new FileInputStream(f), null, o);
+
+            // The new size we want to scale to
+            final int REQUIRED_SIZE = 70;
+
+            // Find the correct scale value. It should be the power of 2.
+            int scale = 1;
+            while (o.outWidth / scale / 2 >= REQUIRED_SIZE &&
+                    o.outHeight / scale / 2 >= REQUIRED_SIZE) {
+                scale *= 2;
+            }
+
+            // Decode with inSampleSize
+            BitmapFactory.Options o2 = new BitmapFactory.Options();
+            o2.inSampleSize = scale;
+            return BitmapFactory.decodeStream(new FileInputStream(f), null, o2);
+        } catch (FileNotFoundException e) {
+        }
+        return null;
     }
 }
