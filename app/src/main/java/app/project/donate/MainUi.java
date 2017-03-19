@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -179,7 +180,9 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
             Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
             startActivity(launchBrowser);
         } else if (id == R.id.nav_credits) {
-            startActivity(new Intent(this, CreditsUI.class));
+
+           startActivity(new Intent(this, CreditsUI.class));
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

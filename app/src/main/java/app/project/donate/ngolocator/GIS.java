@@ -1,8 +1,5 @@
 package app.project.donate.ngolocator;
 
-/**
- * Created by ArupPc on 18-03-2017.
- */
 
 public class GIS {
 
@@ -30,13 +27,20 @@ public class GIS {
 
      void init() {
         for (int i = 0; i < SIZE; i++) latlongT[i] = new PointFloating();
-        latlongT[0].setXY(28.4498, 77.2851, "MRCE Faridabad");//MRCE
-        latlongT[1].setXY(29.9493, 76.8164, "NIT Kurukshetra");//NIIT Kurukshetra
-        latlongT[2].setXY(28.6305, 77.3721, "JIIT Noida");//JIIT Noida
-        latlongT[3].setXY(28.8741, 76.6087, "MDU Rohtak");//MDU
-        latlongT[4].setXY(28.4092901, 77.3331242, "Lingyas Faridabad");//Lingyas
-        latlongT[5].setXY(20.353625, 85.8171453, "KIIT Varanasi");//KIIT
-        latlongT[6].setXY(28.5449756, 77.1904396, "IIT Delhi");//IITD
+         // Distt. Red Cross Society, Red Cross Bhawan, Sec-12, Faridabad- Ph: 2283176
+                latlongT[0].setXY(28.386993, 77.297040, "Distt. Red Cross Society");
+         // Distt. Child Welfare Council, Bal Bhawan, NIT Faridabad
+                latlongT[1].setXY(28.387570, 77.300378, "Distt. Child Welfare Council");
+         // Saint Mary Church, Sec-9, Faridabad
+                latlongT[2].setXY(28.378118, 77.333748, "Saint Mary Church");
+         // Lion Club, 115, Sector-10, Faridabad
+                latlongT[3].setXY(28.376900, 77.325746, "Lion Club");
+         // Plot No-3, Near Sector 37 Police Station, Faridabad - 121002
+                latlongT[4].setXY(28.480521, 77.329061, "Lala Diwan Chand Trust");
+         // Rotary Club Of Faridabad, B-321-323, 2nd Floor, Nehru Ground, NIT Faridabad - 121001
+                latlongT[5].setXY(28.391532, 77.305287, "Rotary Club Of Faridabad");
+         // National Association For The Blind, Haryana State Branch, Central Green, K.C. Road N.I.T. Faridabad 121001
+                latlongT[6].setXY(28.395879, 77.300690, "National Association For The Blind, Haryana State Branch");
         latlongT[7].setXY(28.3639812, 75.5847897, "BITS Pilani");//BITS
         latlongT[8].setXY(12.9713946, 79.1530457, "VIT Vellore");//VIT
         latlongT[9].setXY(15.4225771, 73.9776508, "IIT Goa");//IIT Goa
