@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
@@ -47,26 +48,24 @@ public class History extends AppCompatActivity {
         int id = 0;
         switch (title.toLowerCase()) {
             case "clothes":
-                id = R.mipmap.dummy;
+                id = R.drawable.uniform;
                 break;
             case "utensils":
-                id = R.mipmap.ic_launcher;
+                id = R.drawable.fryingpan;
                 break;
             case "shoes":
-                id = R.mipmap.dummy;
+                id = R.drawable.shoes;
                 break;
-            case "bags":
-                id = R.mipmap.ic_launcher;
-                break;
-            case "furniture":
-                id = R.mipmap.dummy;
-                break;
-            case "bedsheets":
-                id = R.mipmap.ic_launcher;
+            case "books":
+                id = R.drawable.books;
                 break;
             case "toys":
-                id = R.mipmap.dummy;
+                id = R.drawable.train;
                 break;
+            case "food":
+                id = R.drawable.food;
+                break;
+            default: id = R.mipmap.dummy;
 
         }
         return id;
@@ -83,8 +82,13 @@ public class History extends AppCompatActivity {
                     for (DataSnapshot postSnapshot : Snapshot.getChildren()) {
                         String t = (String) postSnapshot.child("title").getValue();
                         String m = (String) postSnapshot.child("message").getValue();
-                        historyItemList.add(new HistoryItem(t, getThumbnailId(t), "Dummy NGO", "Dummy Address",
-                                m, (Long) postSnapshot.child("quantity").getValue()));
+                        String ngo = (String) postSnapshot.child("ngoLocation").getValue();
+                        String date = (String) postSnapshot.child("date").getValue();
+
+                        Log.i("history Items",t + ": " + m + ": " + ngo + ": " + date + ": "+
+                                (Long) postSnapshot.child("quantity").getValue());
+                        historyItemList.add(new HistoryItem(t, getThumbnailId(t), ngo, "Dummy Address",
+                                m, (Long) postSnapshot.child("quantity").getValue(),date));
                         adapter.notifyDataSetChanged();
 //                        Log.i("History" ,Title1.get(i)+"\n"+Message1.get(i)+"\n"+Quantity1.get(i));
                     }

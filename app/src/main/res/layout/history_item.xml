@@ -84,6 +84,16 @@
                     android:layout_above="@+id/buttons"/>
 
                 <TextView
+                    android:id="@+id/history_item_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/status_message"
+                    android:text="Date"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:layout_marginTop="5dp"/>
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Donated to: NGO Name"

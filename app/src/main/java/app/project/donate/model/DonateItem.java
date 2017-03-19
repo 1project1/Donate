@@ -5,16 +5,45 @@ package app.project.donate.model;
  */
 
 public class DonateItem {
-    String title,message;
+    String title,message,ngoLocation;
     int quantity;
     boolean requestPending;
+    String date;
 
-    public DonateItem(String title, String message, int quantity, boolean pending) {
+    public String getNgoLocation() {
+        return ngoLocation;
+    }
+
+    public void setNgoLocation(String ngoLocation) {
+        this.ngoLocation = ngoLocation;
+    }
+
+    public boolean isRequestPending() {
+        return requestPending;
+    }
+
+    public void setRequestPending(boolean requestPending) {
+        this.requestPending = requestPending;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public DonateItem(String title, String message, int quantity,  String ngo, String date) {
         this.title = title;
         this.message = message;
         this.quantity = quantity;
-        this.requestPending=pending;
+
+        this.ngoLocation = ngo;
+        this.date = date;
     }
+
+
 
     public String getTitle() {
         return title;

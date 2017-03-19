@@ -55,7 +55,7 @@
 
     <string-array name="link">
         <item>http://www.google.com</item>
-        <item>http://www.yahooo.com</item>
+        <item>http://www.yahoo.com</item>
         <item>http://www.gmail.com</item>
         <item>http://www.facebook.com</item>
         <item>http://www.google.com</item>
@@ -104,7 +104,6 @@
 
     <string name="address">Address</string>
     <string name="phone">Phone Number</string>
-    <string name="retry">Retry</string>
     <!---->
 
 </resources>
