@@ -18,6 +18,7 @@
         android:layout_marginTop="20dp">
 
         <EditText
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter the quantity in approx"
@@ -27,6 +28,8 @@
     </android.support.design.widget.TextInputLayout>
 
     <Button
+        android:id="@+id/food_page"
+        android:onClick="sendItemsToCart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"

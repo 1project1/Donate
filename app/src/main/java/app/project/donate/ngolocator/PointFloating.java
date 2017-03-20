@@ -1,5 +1,7 @@
 package app.project.donate.ngolocator;
 
+import android.util.Log;
+
 /**
  * Created by ArupPc on 18-03-2017.
  */
@@ -41,7 +43,7 @@ public class PointFloating {
         return name;
     }
     public void printAll(){
-        System.out.println("NGO: "+ this.name + " Lat: " + this.x + " Long: " + this.y);
+        Log.d("NGO loc","NGO: "+ this.name + " Lat: " + this.x + " Long: " + this.y);
     }
 
 

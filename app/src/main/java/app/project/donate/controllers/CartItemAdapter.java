@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,6 +19,7 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 import app.project.donate.Cart;
+import app.project.donate.CartDb.CartDatabase;
 import app.project.donate.R;
 import app.project.donate.model.CartItem;
 
@@ -31,6 +31,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
 
     private Context mContext;
     private List<CartItem> itemList;
+    private CartDatabase db;
     public CartItemAdapter(Context mContext, List<CartItem> itemList) {
         this.mContext = mContext;
         this.itemList = itemList;
@@ -70,6 +71,7 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
                                     mContext.startActivity(new Intent(mContext,Cart.class));
                                 }
                             });
+
                 }
                 Toast.makeText(mContext, "Removed This Item from the Cart", Toast.LENGTH_SHORT).show();
 
@@ -84,12 +86,12 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
         public ImageView thumb;
         public TextView title, address,message;
         public Button cancelItem;
-        public EditText quant;
+        public TextView quant;
 
         public CartItemVH(View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.item_title);
-            quant = (EditText) itemView.findViewById(R.id.item_quantity);
+            quant = (TextView) itemView.findViewById(R.id.item_quantity);
             address = (TextView)itemView.findViewById(R.id.user_address);
             thumb = (ImageView)itemView.findViewById(R.id.item_type_icon);
             message = (TextView) itemView.findViewById(R.id.feedback_message);

@@ -48,19 +48,19 @@ public class History extends AppCompatActivity {
         int id = 0;
         switch (title.toLowerCase()) {
             case "clothes":
-                id = R.drawable.uniform;
+                id = R.drawable.clothes;
                 break;
             case "utensils":
-                id = R.drawable.fryingpan;
+                id = R.drawable.utensils;
                 break;
             case "shoes":
-                id = R.drawable.shoes;
+                id = R.drawable.shoess;
                 break;
             case "books":
-                id = R.drawable.books;
+                id = R.drawable.boooks;
                 break;
             case "toys":
-                id = R.drawable.train;
+                id = R.drawable.toys;
                 break;
             case "food":
                 id = R.drawable.food;

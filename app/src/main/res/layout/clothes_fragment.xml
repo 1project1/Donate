@@ -27,6 +27,8 @@
     </android.support.design.widget.TextInputLayout>
 
     <Button
+        android:id="@+id/clothes_page"
+        android:onClick="sendItemsToCart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/fragmentBackground"

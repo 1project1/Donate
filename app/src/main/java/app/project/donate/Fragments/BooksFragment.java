@@ -1,7 +1,6 @@
 package app.project.donate.Fragments;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,35 +10,44 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import app.project.donate.Cart;
 import app.project.donate.R;
 
 /**
  * Created by AmanPC on 15-03-2017.
  */
 
-public class BooksFragment extends Fragment {
+public class BooksFragment extends Fragment implements IGetValue {
 
-    Activity context;
+Activity activity1;
+    Button b;
+    EditText e;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        context = getActivity();
+        activity1 = getActivity();
 
-        return inflater.inflate(R.layout.books_fragment, container, false);
+        View v1 =  inflater.inflate(R.layout.books_fragment, container, false);
+
+        b = (Button) v1.findViewById(R.id.books_page);
+        e = (EditText) v1.findViewById(R.id.edit_quantity);
+
+       return  v1;
+    }
+
+
+
+    @Override
+    public String getEdTValue() {
+    String s =  e.getText().toString();
+        if(s.isEmpty()){
+            e.requestFocus();
+
+        }
+        e.setText("");
+        return s;
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        Button button = (Button) context.findViewById(R.id.cartButton);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                EditText quantity = (EditText) context.findViewById(R.id.edit_quantity);
-                Intent intent = new Intent(context, Cart.class);
-                intent.putExtra("text",quantity.getText().toString());
-                startActivity(intent);
-            }
-        });
+    public void sendValue() {
+
     }
 }

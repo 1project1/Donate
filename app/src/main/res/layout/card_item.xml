@@ -47,8 +47,7 @@
                 android:layout_toRightOf="@id/item_type_icon"
                 android:text="Quantity: "
                 android:textSize="18sp" />
-
-            <EditText
+            <TextView
                 android:background="@android:color/transparent"
                 android:id="@+id/item_quantity"
                 android:width="50dp"

@@ -27,11 +27,13 @@
     </android.support.design.widget.TextInputLayout>
 
     <Button
+        android:id="@+id/books_page"
+        android:onClick="sendItemsToCart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:text="ADD TO CART"
-        android:id="@+id/cartButton"
+
         android:textColor="@color/fragmentBackground"
         android:background="@color/colorPrimary"
         android:textSize="20sp"/>

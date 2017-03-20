@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -21,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.Auth;
@@ -31,6 +31,7 @@ import com.google.android.gms.common.api.Status;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import app.project.donate.CartDb.CartDatabase;
 import app.project.donate.Fragments.BooksFragment;
 import app.project.donate.Fragments.ClothesFragment;
 import app.project.donate.Fragments.FoodFragment;
@@ -46,6 +47,17 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
+
+    static  CartDatabase cartDatabase;
+    String temp="";
+    FoodFragment foodFragment;
+    ClothesFragment clothesFragment;
+    UtensilsFragment utensilsFragment;
+    ToysFragment toysFragment;
+    BooksFragment booksFragment;
+    ShoesFragment shoesFragment;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +91,12 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setItemIconTintList(null);
         init();
+        databaseInit();
+    }
+
+    private void databaseInit() {
+        cartDatabase = new CartDatabase(this);
+        Toast.makeText(this, "DB created!!!", Toast.LENGTH_SHORT).show();
     }
 
     private void init() {
@@ -189,6 +207,114 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    int quant=1;
+    public void sendItemsToCart(View view) {
+        String title="";
+        quant = 1;
+
+        //q.setText("");
+        switch (view.getId()){
+
+            case R.id.toys_page:
+
+                title = "toys";
+                temp = toysFragment.getEdTValue();
+                try {
+                    quant = Integer.parseInt(temp);
+                }catch (NumberFormatException e){
+                    quant = 1;
+
+                    Toast.makeText(this, "Number format Excp:" + temp, Toast.LENGTH_SHORT).show();
+                }
+                if(quant == 0) quant  = 1;
+                //quant = Integer.parseInt(q.getText().toString());
+                sendToDb(title,quant);
+                break;
+            case R.id.clothes_page:
+                title = "clothes";
+                temp = clothesFragment.getEdTValue();
+                try {
+                    quant = Integer.parseInt(temp);
+                }catch (NumberFormatException e){
+                    quant = 1;
+
+                    Toast.makeText(this, "Number format Excp:" + temp, Toast.LENGTH_SHORT).show();
+                }
+                if(quant == 0) quant  = 1;
+                //quant = Integer.parseInt(q.getText().toString());
+                sendToDb(title,quant);
+                break;
+            case R.id.shoes_page:
+                title = "shoes";
+                temp = shoesFragment.getEdTValue();
+                try {
+                    quant = Integer.parseInt(temp);
+                }catch (NumberFormatException e){
+                    quant = 1;
+
+                    Toast.makeText(this, "Number format Excp:" + temp, Toast.LENGTH_SHORT).show();
+                }
+                if(quant == 0) quant  = 1;
+                //quant = Integer.parseInt(q.getText().toString());
+                sendToDb(title,quant);
+                break;
+            case R.id.utensils_page:
+                title = "utensils";
+                temp = utensilsFragment.getEdTValue();
+                try {
+                    quant = Integer.parseInt(temp);
+                }catch (NumberFormatException e){
+                    quant = 1;
+
+                    Toast.makeText(this, "Number format Excp:" + temp, Toast.LENGTH_SHORT).show();
+                }
+                if(quant == 0) quant  = 1;
+                //quant = Integer.parseInt(q.getText().toString());
+                sendToDb(title,quant);
+                break;
+            case R.id.books_page:
+                title = "books";
+                temp = booksFragment.getEdTValue();
+                try {
+                    quant = Integer.parseInt(temp);
+                }catch (NumberFormatException e){
+                    quant = 1;
+
+                    Toast.makeText(this, "Number format Excp:" + temp, Toast.LENGTH_SHORT).show();
+                }
+                if(quant == 0) quant  = 1;
+                sendToDb(title,quant);
+                //quant = Integer.parseInt(q.getText().toString());
+
+                break;
+            case R.id.food_page:
+                title = "food";
+                temp = foodFragment.getEdTValue();
+                try {
+                    quant = Integer.parseInt(temp);
+                }catch (NumberFormatException e){
+                    quant = 1;
+
+                    Toast.makeText(this, "Number format Excp:" + temp, Toast.LENGTH_SHORT).show();
+                }
+                if(quant == 0) quant  = 1;
+                sendToDb(title,quant);
+                //quant = Integer.parseInt(q.getText().toString());
+                break;
+            default:
+                title = "others";
+                quant = 1;
+                sendToDb(title,quant);
+        }
+
+        Toast.makeText(this, title + ":" + quant, Toast.LENGTH_SHORT).show();
+
+    }
+
+    private void sendToDb(String title, int quant) {
+        Toast.makeText(this, "Sent:" + title, Toast.LENGTH_SHORT).show();
+        cartDatabase.addData(title,quant);
+    }
 
     public class ViewPagerAdapter extends FragmentPagerAdapter {
 
@@ -200,22 +326,24 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    FoodFragment foodFragment = new FoodFragment();
+
+                    foodFragment = new FoodFragment();
+
                     return foodFragment;
                 case 1:
-                    ClothesFragment clothesFragment = new ClothesFragment();
+                    clothesFragment = new ClothesFragment();
                     return clothesFragment;
                 case 2:
-                    ToysFragment toysFragment = new ToysFragment();
+                    toysFragment = new ToysFragment();
                     return toysFragment;
                 case 3:
-                    BooksFragment booksFragment = new BooksFragment();
+                    booksFragment = new BooksFragment();
                     return booksFragment;
                 case 4:
-                    UtensilsFragment utensilsFragment = new UtensilsFragment();
+                    utensilsFragment = new UtensilsFragment();
                     return utensilsFragment;
                 case 5:
-                    ShoesFragment shoesFragment = new ShoesFragment();
+                    shoesFragment = new ShoesFragment();
                     return shoesFragment;
             }
             return null;

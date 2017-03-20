@@ -1,6 +1,8 @@
 package app.project.donate.ngolocator;
 
 
+import android.util.Log;
+
 public class GIS {
 
     public static final int SIZE = 10;
@@ -48,15 +50,20 @@ public class GIS {
 
 
     public String getNgoLocation(double X, double Y){
+
+        Log.i("index",X+","+Y);
         String s = "";
         init();
         initTests();
+        /*
+       // For Printing all the centres in the array <===> for database it will be query insteadof loop
+        for (PointF i:latlongT) {
+            i.printAll();
+        }*/
         PointFloating[] filtered = new PointFloating[SIZE];
-        int radius = 10;
+        int radius = 15;
         radius *= 1000;
         int pos = 0;
-        /*double X = TESTS[pos].getX();
-        double Y = TESTS[pos].getY();*/
 
         PointFloating center = new PointFloating(X, Y);
 
@@ -82,16 +89,23 @@ public class GIS {
         }
 
         double min = 999999;
+        int minIndex = 0;
         for (int i = 0; i < c; i++) {
             if (AlgorithmGIS.pointIsInCircle(filtered[i], center, radius)) {
-                //filtered[i].printAll();
-                if(AlgorithmGIS.getDistanceBetweenTwoPoints(filtered[i],center) < min) {
-                    min = AlgorithmGIS.getDistanceBetweenTwoPoints(filtered[i],center);
-                    s = filtered[i].getName();
+                double d = (AlgorithmGIS.getDistanceBetweenTwoPoints(filtered[i], center) / 1000);
+                if(d < min){
+                    min = d;
+                    minIndex = i;
                 }
             }
         }
 
+        try {
+            s = filtered[minIndex].getName();
+        }catch (NullPointerException e){
+            Log.i("index","Null pointer Location");
+            s="Dummy";
+        }
         return s;
     }
 
