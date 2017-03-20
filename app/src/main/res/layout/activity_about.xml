@@ -20,7 +20,7 @@
 
             <TextView
                 android:text="About JeeOne"
-                android:textSize="25sp"
+                android:textSize="35sp"
                 android:textColor="@color/colorAccent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
 
             <TextView
                 android:text="@string/aboutUs"
-                android:textSize="22sp"
+                android:textSize="15sp"
                 android:textStyle="normal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
