@@ -28,7 +28,7 @@
                 android:title="Rate Us" />
             <item
                 android:id="@+id/nav_feedback"
-                android:icon="@drawable/feedback"
+                android:icon="@drawable/star"
                 android:title="Feedback" />
             <item
                 android:id="@+id/nav_credits"

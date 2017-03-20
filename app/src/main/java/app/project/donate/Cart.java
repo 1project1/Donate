@@ -419,6 +419,8 @@ public class Cart extends AppCompatActivity {
         person.setPhone("9716490060");
         myRef.child("endUsers").child(Uid).child("User_details").setValue(person);
    */
+        //TODO
+        myRef.child("Ngos").child("NGO1").child("endUsers").child(Uid).setValue("true");
     }
 
 
