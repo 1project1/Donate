@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">JEEONE</string>
+    <string name="app_name">JeeOne</string>
     <string name="password">Password</string>
     <string name="email">Email</string>
     <string name="log_in">Log In</string>
@@ -104,7 +104,8 @@
 
     <string name="address">Address</string>
     <string name="phone">Phone Number</string>
-    <string name="retry">Retry</string>
+    <string name="permission_denied_contacts">Permission Denied By User</string>
+    <string name="retry">Please Retry</string>
     <!---->
 
 </resources>
