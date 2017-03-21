@@ -109,18 +109,6 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
                 .enableAutoManage(this /* FragmentActivity */, null /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        View hView = navigationView.getHeaderView(0);
-        ((TextView) hView.findViewById(R.id.display_name_drawer)).setText(user.getDisplayName());
-        Log.w("Image", "" + user.getPhotoUrl());
-
-        CircleImageView civ = (CircleImageView) hView.findViewById(R.id.profile_picture_drawer);
-        if (user.getPhotoUrl() != null)
-            Glide.with(this).load(user.getPhotoUrl()).asBitmap().fitCenter().into(civ);
-
     }
 
     @Override
@@ -373,5 +361,21 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
             }
             return null;
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        //Setting Profile Picture and Name on Resume of Activity
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View hView = navigationView.getHeaderView(0);
+        ((TextView) hView.findViewById(R.id.display_name_drawer)).setText(user.getDisplayName());
+        Log.w("Image", "" + user.getPhotoUrl());
+
+        CircleImageView civ = (CircleImageView) hView.findViewById(R.id.profile_picture_drawer);
+        if (user.getPhotoUrl() != null)
+            Glide.with(this).load(user.getPhotoUrl()).asBitmap().fitCenter().into(civ);
     }
 }

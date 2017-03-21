@@ -9,6 +9,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -317,18 +318,18 @@ public class AccountSettings extends DialogActivity implements View.OnFocusChang
 
         FirebaseUser user  = mAuth.getCurrentUser();
         if (resultCode == RESULT_OK && requestCode == GALLERY_PICTURE && data != null && data.getData() != null) {
-            Uri uri = data.getData();
 
             try {
                 InputStream is = getContentResolver().openInputStream(data.getData());
                 BitmapFactory.Options options = new BitmapFactory.Options();
-                options.inSampleSize = 8;
+                options.inSampleSize = 2;
                 Bitmap preview_bitmap = BitmapFactory.decodeStream(is, null, options);
                 //profilePicture.setImageBitmap(preview_bitmap);
 
-                //Uri imageUri = getImageUri(this,preview_bitmap);
+                final Uri imageUri = getImageUri(this,preview_bitmap);
+
                 UserProfileChangeRequest up = new UserProfileChangeRequest.Builder()
-                        .setPhotoUri(data.getData()).build();
+                        .setPhotoUri(imageUri).build();
                 showProgressDialog();
                 user.updateProfile(up).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
@@ -339,8 +340,13 @@ public class AccountSettings extends DialogActivity implements View.OnFocusChang
 
                         hideProgressDialog();
                         setDetails();
+                        File fDelete = new File(imageUri.getPath());
+                        Log.w("Image Path", Environment.getExternalStorageDirectory()+"  "+fDelete.getName());
+                        boolean deleted = fDelete.delete();
                     }
                 });
+                //getContentResolver().delete(imageUri, null, null);
+
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -350,35 +356,10 @@ public class AccountSettings extends DialogActivity implements View.OnFocusChang
         }
     }
 
-    private Bitmap decodeFile(File f) {
-        try {
-            // Decode image size
-            BitmapFactory.Options o = new BitmapFactory.Options();
-            o.inJustDecodeBounds = true;
-            BitmapFactory.decodeStream(new FileInputStream(f), null, o);
-
-            // The new size we want to scale to
-            final int REQUIRED_SIZE = 70;
-
-            // Find the correct scale value. It should be the power of 2.
-            int scale = 1;
-            while (o.outWidth / scale / 2 >= REQUIRED_SIZE &&
-                    o.outHeight / scale / 2 >= REQUIRED_SIZE) {
-                scale *= 2;
-            }
-
-            // Decode with inSampleSize
-            BitmapFactory.Options o2 = new BitmapFactory.Options();
-            o2.inSampleSize = scale;
-            return BitmapFactory.decodeStream(new FileInputStream(f), null, o2);
-        } catch (FileNotFoundException e) {
-        }
-        return null;
-    }
 
     public Uri getImageUri(Context inContext, Bitmap inImage) {
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        inImage.compress(Bitmap.CompressFormat.WEBP, 100, bytes);
+        inImage.compress(Bitmap.CompressFormat.JPEG, 0, bytes);
         String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
         return Uri.parse(path);
     }
