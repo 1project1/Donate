@@ -20,7 +20,8 @@ public class CartDatabase extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String createTb = "create table cart_items (id integer primary key autoincrement, title varchar, quantity integer)";
+        String createTb = "create table cart_items ( id integer primary key autoincrement," +
+                " title varchar, quantity integer)";
         sqLiteDatabase.execSQL(createTb);
     }
 
@@ -46,8 +47,8 @@ public class CartDatabase extends SQLiteOpenHelper{
     }
 
     public void deleteAllData(){
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS cart_items");
-        onCreate(sqLiteDatabase);
+        sqLiteDatabase.execSQL("delete from cart_items");
+        //onCreate(sqLiteDatabase);
 
     }
     public boolean deleteTitle(String name)

@@ -187,7 +187,7 @@ public class Cart extends AppCompatActivity {
         for(int i = 0; i < c.getCount(); i++){
             String title = c.getString(c.getColumnIndex("title"));
             int quant = c.getInt(c.getColumnIndex("quantity"));
-            Log.d("data","Title: " + title + " Qty: " + quant);
+            Log.d("thisArup","Title: " + title + " Qty: " + quant + "\n");
             CartItem x = new CartItem(mapThumb(title),title,"Pending", "995 1st Floor, Sectot-37 ," +
                     " Faridabad, Haryana-121003 near Devi Sahai Market", quant);
             itemList.add(x);
@@ -329,6 +329,7 @@ public class Cart extends AppCompatActivity {
                         itemList.clear();
                         adapter.notifyDataSetChanged();
                         MainUi.cartDatabase.deleteAllData();
+
                         checkEmpty();
 
                     }

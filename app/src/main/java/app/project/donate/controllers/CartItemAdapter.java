@@ -20,6 +20,7 @@ import java.util.List;
 
 import app.project.donate.Cart;
 import app.project.donate.CartDb.CartDatabase;
+import app.project.donate.MainUi;
 import app.project.donate.R;
 import app.project.donate.model.CartItem;
 
@@ -29,12 +30,23 @@ import app.project.donate.model.CartItem;
 
 public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartItemVH> {
 
+    public int getPos() {
+        return pos;
+    }
+
+    public void setPos(int pos) {
+        this.pos = pos;
+    }
+
+    private int pos;
     private Context mContext;
     private List<CartItem> itemList;
     private CartDatabase db;
     public CartItemAdapter(Context mContext, List<CartItem> itemList) {
         this.mContext = mContext;
         this.itemList = itemList;
+        db = MainUi.returnDb();
+
     }
     @Override
     public CartItemVH onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -55,9 +67,17 @@ public class CartItemAdapter extends RecyclerView.Adapter<CartItemAdapter.CartIt
             public void onClick(View view) {
                 //TODO
                 holder.cancelItem.setEnabled(false);
+                db.deleteAllData();
+
                 itemList.remove(holder.getAdapterPosition());
                 notifyItemRemoved(holder.getAdapterPosition());
-                Log.i("Size",itemList.size()+"");
+
+                for(CartItem x:itemList){
+                    String t= x.getTitle();
+                    int q = x.getQuantity();
+                    db.addData(t,q);
+                }
+               Log.i("Size",itemList.size()+"");
                 if(itemList.isEmpty()){
                     Log.i("Empty Cart","Cart Empty!!!");
                     new AlertDialog.Builder(mContext)

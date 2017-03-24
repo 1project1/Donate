@@ -47,7 +47,6 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
-
     static  CartDatabase cartDatabase;
     String temp="";
     FoodFragment foodFragment;
@@ -299,6 +298,9 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
 
     }
 
+    public  static CartDatabase returnDb(){
+        return cartDatabase ;
+    }
     private void sendToDb(String title, int quant) {
         Toast.makeText(this, "Sent:" + title, Toast.LENGTH_SHORT).show();
         cartDatabase.addData(title,quant);
