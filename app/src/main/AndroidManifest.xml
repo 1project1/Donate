@@ -5,10 +5,9 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -16,52 +15,39 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".LogIn"
             android:screenOrientation="portrait"
-            android:theme="@style/Login">
-        </activity>
-
+            android:theme="@style/Login"></activity>
         <activity
             android:name=".About"
             android:parentActivityName=".MainUi"
-            android:screenOrientation="portrait">
-        </activity>
-
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name=".SignUp"
             android:screenOrientation="portrait"
             android:theme="@style/Login" />
-
         <activity
             android:name=".Temp"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".Cart"
-            android:theme="@style/AppTheme" android:parentActivityName=".MainUi"/>
-
+            android:parentActivityName=".MainUi"
+            android:theme="@style/AppTheme" />
         <activity android:name=".AccountSettings" />
-
         <activity
             android:name=".CreditsUI"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:screenOrientation="portrait">
-        </activity>
-
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".History"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainUi"/>
-
+            android:parentActivityName=".MainUi"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainUi"
             android:label="@string/title_activity_main_ui"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".model.Splash"
             android:screenOrientation="portrait">
@@ -71,16 +57,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".model.NgoList"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
-
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".EditDetail"
-            android:windowSoftInputMode="adjustResize">
-        </activity>
+            android:windowSoftInputMode="adjustResize"></activity>
+        <activity android:name=".ngolocator.Gallerys"></activity>
     </application>
 
 </manifest>
