@@ -209,7 +209,7 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
             case R.id.toys_page:
 
                 title = "toys";
-                temp = toysFragment.getEdTValue();
+                temp = toysFragment.getEDTValue();
                 try {
                     quant = Integer.parseInt(temp);
                 }catch (NumberFormatException e){
@@ -223,7 +223,7 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
                 break;
             case R.id.clothes_page:
                 title = "clothes";
-                temp = clothesFragment.getEdTValue();
+                temp = clothesFragment.getEDTValue();
                 try {
                     quant = Integer.parseInt(temp);
                 }catch (NumberFormatException e){
@@ -237,7 +237,7 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
                 break;
             case R.id.shoes_page:
                 title = "shoes";
-                temp = shoesFragment.getEdTValue();
+                temp = shoesFragment.getEDTValue();
                 try {
                     quant = Integer.parseInt(temp);
                 }catch (NumberFormatException e){
@@ -251,7 +251,7 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
                 break;
             case R.id.utensils_page:
                 title = "utensils";
-                temp = utensilsFragment.getEdTValue();
+                temp = utensilsFragment.getEDTValue();
                 try {
                     quant = Integer.parseInt(temp);
                 }catch (NumberFormatException e){

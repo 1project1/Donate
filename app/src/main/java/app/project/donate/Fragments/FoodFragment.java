@@ -46,6 +46,31 @@ public class FoodFragment extends Fragment implements BookInterface {
     }
 
     @Override
+    public String getEncyclopedia() {
+        return null;
+    }
+
+    @Override
+    public String getStoryBooks() {
+        return null;
+    }
+
+    @Override
+    public String getTextBooks() {
+        return null;
+    }
+
+    @Override
+    public String getReferenceBooks() {
+        return null;
+    }
+
+    @Override
+    public String getNovelBooks() {
+        return null;
+    }
+
+    @Override
     public void sendValue() {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
