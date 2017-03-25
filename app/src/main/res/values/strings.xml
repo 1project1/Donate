@@ -23,7 +23,7 @@
         <item>Hindi</item>
     </string-array>
 
-    <string name="title_activity_main_ui">MainUi</string>
+    <string name="title_activity_main_ui">JeeOne</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -106,6 +106,7 @@
     <string name="phone">Phone Number</string>
     <string name="permission_denied_contacts">Permission Denied By User</string>
     <string name="retry">Please Retry</string>
+    <string name="book_donation_type">What type of book do you want to donate?</string>
     <!---->
 
 </resources>

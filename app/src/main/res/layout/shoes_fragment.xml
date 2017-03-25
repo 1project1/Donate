@@ -12,26 +12,129 @@
         android:layout_height="200dp"
         android:background="@drawable/shoess"/>
 
-    <android.support.design.widget.TextInputLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
+        android:layout_height="200dp"
+        android:orientation="vertical">
 
-        <EditText
+        <ScrollView
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:hint="Enter the quantity in approx"
-            android:ems="@android:integer/config_longAnimTime"
-            android:id="@+id/edit_quantity"/>
-    </android.support.design.widget.TextInputLayout>
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Whom do you want to donate the shoes?"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:id="@+id/shoesQues"
+                    android:textColor="@color/colorPrimary"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/shoesQuesLayout"
+                    android:layout_below="@+id/shoesQues"
+                    android:layout_marginTop="5dp">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimary"
+                        android:text="Kids"
+                        android:layout_weight="1"/>
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Male"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_weight="1"/>
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Female"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_weight="1"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/shoesSizeLayout"
+                    android:layout_below="@+id/shoesQuesLayout"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimary"
+                        android:text="Shoe Size"
+                        android:textStyle="bold"
+                        android:textSize="15sp"/>
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="4 shoe size"
+                        android:textColor="@color/colorPrimary"/>
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimary"
+                        android:text="5 shoe size"/>
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="6 shoe size"
+                        android:textColor="@color/colorPrimary"/>
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="7 shoe size"
+                        android:textColor="@color/colorPrimary"/>
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="8 shoe size"
+                        android:textColor="@color/colorPrimary"/>
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="9+ shoe size"
+                        android:textColor="@color/colorPrimary"/>
+                </LinearLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/shoesSizeLayout"
+                    android:layout_marginTop="20dp">
+
+                    <EditText
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter the quantity in approx"
+                        android:inputType="numberDecimal"
+                        android:ems="@android:integer/config_longAnimTime"
+                        android:id="@+id/edit_quantity"/>
+                </android.support.design.widget.TextInputLayout>
+            </RelativeLayout>
+        </ScrollView>
+    </LinearLayout>
 
     <Button
         android:id="@+id/shoes_page"
         android:onClick="sendItemsToCart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:background="@color/colorPrimary"
         android:textColor="@color/fragmentBackground"
         android:text="ADD TO CART"

@@ -30,7 +30,7 @@ public class FoodFragment extends Fragment implements IGetValue{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         activity=getActivity();
-        View v = inflater.inflate(R.layout.fragment_layout, container, false);
+        View v = inflater.inflate(R.layout.medicines_layout, container, false);
         quantity = (EditText)v.findViewById(R.id.edit_quantity);
         button = (Button)v.findViewById(R.id.food_page);
         return  v;

@@ -12,26 +12,32 @@
         android:layout_height="200dp"
         android:background="@drawable/utensils"/>
 
-    <android.support.design.widget.TextInputLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_marginTop="20dp">
 
-        <EditText
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:hint="Enter the quantity in approx"
-            android:ems="@android:integer/config_longAnimTime"
-            android:id="@+id/edit_quantity"/>
-    </android.support.design.widget.TextInputLayout>
+            android:id="@+id/utensilsQues"
+            android:text="What type of utensils do you want to donate?"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:textSize="15sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/utensilsQues"></LinearLayout>
+    </RelativeLayout>
 
     <Button
         android:id="@+id/utensils_page"
         android:onClick="sendItemsToCart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:background="@color/colorPrimary"
         android:textColor="@color/fragmentBackground"
         android:text="ADD TO CART"
