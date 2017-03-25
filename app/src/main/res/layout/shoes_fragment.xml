@@ -46,21 +46,27 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorPrimary"
+                        android:buttonTint="@color/colorPrimary"
                         android:text="Kids"
+                        android:id="@+id/kidsOption"
                         android:layout_weight="1"/>
 
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Male"
+                        android:id="@+id/maleOption"
                         android:textColor="@color/colorPrimary"
+                        android:buttonTint="@color/colorPrimary"
                         android:layout_weight="1"/>
 
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Female"
+                        android:id="@+id/femaleOption"
                         android:textColor="@color/colorPrimary"
+                        android:buttonTint="@color/colorPrimary"
                         android:layout_weight="1"/>
                 </LinearLayout>
                 <LinearLayout
@@ -83,31 +89,43 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="4 shoe size"
+                        android:id="@+id/shoeSize4"
+                        android:buttonTint="@color/colorPrimary"
                         android:textColor="@color/colorPrimary"/>
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/colorPrimary"
+                        android:buttonTint="@color/colorPrimary"
+                        android:id="@+id/shoeSize5"
                         android:text="5 shoe size"/>
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="6 shoe size"
+                        android:id="@+id/shoeSize6"
+                        android:buttonTint="@color/colorPrimary"
                         android:textColor="@color/colorPrimary"/>
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="7 shoe size"
+                        android:id="@+id/shoeSize7"
+                        android:buttonTint="@color/colorPrimary"
                         android:textColor="@color/colorPrimary"/>
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="8 shoe size"
+                        android:id="@+id/shoeSize8"
+                        android:buttonTint="@color/colorPrimary"
                         android:textColor="@color/colorPrimary"/>
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="9+ shoe size"
+                        android:id="@+id/shoeSize9"
+                        android:buttonTint="@color/colorPrimary"
                         android:textColor="@color/colorPrimary"/>
                 </LinearLayout>
                 <android.support.design.widget.TextInputLayout

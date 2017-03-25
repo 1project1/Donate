@@ -10,12 +10,27 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@drawable/food"/>
+        android:background="@drawable/medicine"/>
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp">
+
+        <EditText
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Please enter the Expiry Date of the medicines"
+            android:inputType="date"
+            android:ems="@android:integer/config_longAnimTime"
+            android:id="@+id/expiryDate"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp">
 
         <EditText
 

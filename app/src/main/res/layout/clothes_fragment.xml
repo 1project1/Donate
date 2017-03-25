@@ -46,13 +46,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Male"
+                        android:id="@+id/maleOption"
                         android:layout_weight="1"
+                        android:buttonTint="@color/colorPrimary"
                         android:textColor="@color/colorPrimary"/>
 
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Female"
+                        android:id="@+id/femaleOption"
+                        android:buttonTint="@color/colorPrimary"
                         android:layout_weight="1"
                         android:textColor="@color/colorPrimary"/>
                 </LinearLayout>
@@ -76,26 +80,36 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="0 - 3 Years"
+                        android:id="@+id/years0to3"
+                        android:buttonTint="@color/colorPrimary"
                         android:textColor="@color/colorPrimary"/>
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="4 - 6 Years"
+                        android:id="@+id/years4to6"
+                        android:buttonTint="@color/colorPrimary"
                         android:textColor="@color/colorPrimary"/>
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="7 - 12 Years"
+                        android:id="@+id/years7to12"
+                        android:buttonTint="@color/colorPrimary"
                         android:textColor="@color/colorPrimary"/>
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="13 - 18 Years"
+                        android:id="@+id/years13to18"
+                        android:buttonTint="@color/colorPrimary"
                         android:textColor="@color/colorPrimary"/>
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="18+ Years"
+                        android:id="@+id/years18andAbove"
+                        android:buttonTint="@color/colorPrimary"
                         android:textColor="@color/colorPrimary"/>
                 </LinearLayout>
                 <android.support.design.widget.TextInputLayout

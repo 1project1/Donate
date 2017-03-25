@@ -46,35 +46,45 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Encyclopedia"
+                        android:id="@+id/encyclopediaBooks"
                         android:textColor="@color/colorPrimary"
+                        android:buttonTint="@color/colorPrimary"
                         android:textSize="15sp"
                         />
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Story Books"
+                        android:id="@+id/storyBooks"
                         android:textColor="@color/colorPrimary"
+                        android:buttonTint="@color/colorPrimary"
                         android:textSize="15sp"
                         />
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Text Books"
+                        android:id="@+id/textBooks"
                         android:textColor="@color/colorPrimary"
+                        android:buttonTint="@color/colorPrimary"
                         android:textSize="15sp"
                         />
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Reference Books"
+                        android:id="@+id/referenceBooks"
                         android:textColor="@color/colorPrimary"
+                        android:buttonTint="@color/colorPrimary"
                         android:textSize="15sp"
                         />
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Novels"
+                        android:id="@+id/novelBooks"
                         android:textColor="@color/colorPrimary"
+                        android:buttonTint="@color/colorPrimary"
                         android:textSize="15sp"
                         />
                 </LinearLayout>

@@ -81,7 +81,7 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
 
         tabLayout.setupWithViewPager(viewPager);
 
-        tabLayout.getTabAt(0).setIcon(R.drawable.hamburguer);
+        tabLayout.getTabAt(0).setIcon(R.drawable.medicine_icon);
         tabLayout.getTabAt(1).setIcon(R.drawable.uniform);
         tabLayout.getTabAt(2).setIcon(R.drawable.train);
         tabLayout.getTabAt(3).setIcon(R.drawable.books);
@@ -353,7 +353,7 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "FOOD ITEMS";
+                    return "MEDICINES";
                 case 1:
                     return "CLOTHES";
                 case 2:
