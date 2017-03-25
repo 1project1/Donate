@@ -39,6 +39,7 @@ import app.project.donate.Fragments.ShoesFragment;
 import app.project.donate.Fragments.ToysFragment;
 import app.project.donate.Fragments.UtensilsFragment;
 import app.project.donate.model.NgoList;
+import app.project.donate.ngolocator.Gallerys;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static app.project.donate.R.id.nav_feedback;
@@ -182,7 +183,10 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
             startActivity(new Intent(this, History.class));
         } else if (id == R.id.nav_ngo_list) {
             startActivity(new Intent(this, NgoList.class));
-        } else if (id == R.id.nav_rate_us) {
+        } else if(id ==R.id.nav_gallery){
+            startActivity(new Intent(this, Gallerys.class));
+        }
+        else if (id == R.id.nav_rate_us) {
 
         } else if (id == nav_feedback) {
             Uri uriUrl = Uri.parse("https://docs.google.com/forms/d/1yln_gJBWt7N-Mrk0z47MB-TIpRZ3PgOTE4H2iYblSGo/viewform?edit_requested=true");
