@@ -7,34 +7,120 @@
     android:padding="10dp"
     android:orientation="vertical">
 
-    <ImageView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@drawable/boooks"/>
-
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
-
-        <EditText
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter the quantity in approx"
-            android:inputType="numberDecimal"
-            android:ems="@android:integer/config_longAnimTime"
-            android:id="@+id/edit_quantity"/>
-    </android.support.design.widget.TextInputLayout>
+            android:layout_marginTop="20dp">
 
-    <Button
-        android:id="@+id/books_page"
-        android:onClick="sendItemsToCart"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:text="ADD TO CART"
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-        android:textColor="@color/fragmentBackground"
-        android:background="@color/colorPrimary"
-        android:textSize="20sp"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:id="@+id/booksImage"
+                    android:background="@drawable/boooks"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:id="@+id/bookQues"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/booksImage"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/book_donation_type"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    android:textSize="15sp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/bookTypeLayout"
+                    android:layout_below="@+id/bookQues"
+                    android:orientation="vertical"
+                    android:layout_marginTop="10dp">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Encyclopedia"
+                        android:id="@+id/encyclopediaBooks"
+                        android:textColor="@color/colorPrimary"
+                        android:buttonTint="@color/colorPrimary"
+                        android:textSize="15sp"
+                        />
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Story Books"
+                        android:id="@+id/storyBooks"
+                        android:textColor="@color/colorPrimary"
+                        android:buttonTint="@color/colorPrimary"
+                        android:textSize="15sp"
+                        />
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Text Books"
+                        android:id="@+id/textBooks"
+                        android:textColor="@color/colorPrimary"
+                        android:buttonTint="@color/colorPrimary"
+                        android:textSize="15sp"
+                        />
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Reference Books"
+                        android:id="@+id/referenceBooks"
+                        android:textColor="@color/colorPrimary"
+                        android:buttonTint="@color/colorPrimary"
+                        android:textSize="15sp"
+                        />
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Novels"
+                        android:id="@+id/novelBooks"
+                        android:textColor="@color/colorPrimary"
+                        android:buttonTint="@color/colorPrimary"
+                        android:textSize="15sp"
+                        />
+                </LinearLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/edit_quantity_layout"
+                    android:layout_below="@+id/bookTypeLayout"
+                    android:layout_marginTop="50dp">
+
+                    <EditText
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter the quantity in approx"
+                        android:inputType="numberDecimal"
+                        android:ems="@android:integer/config_longAnimTime"
+                        android:id="@+id/edit_quantity"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <Button
+                    android:id="@+id/books_page"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/colorPrimary"
+                    android:onClick="sendItemsToCart"
+                    android:layout_below="@+id/edit_quantity_layout"
+                    android:text="ADD TO CART"
+                    android:textColor="@color/fragmentBackground"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+        </ScrollView>
+
+    </LinearLayout>
 </LinearLayout>

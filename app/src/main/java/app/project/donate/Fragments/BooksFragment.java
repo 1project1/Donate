@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import app.project.donate.R;
@@ -16,11 +17,12 @@ import app.project.donate.R;
  * Created by AmanPC on 15-03-2017.
  */
 
-public class BooksFragment extends Fragment implements IGetValue {
+public class BooksFragment extends Fragment implements BookInterface {
 
 Activity activity1;
     Button b;
     EditText e;
+    CheckBox ec,sb,tb,rb,nb;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         activity1 = getActivity();
@@ -29,7 +31,11 @@ Activity activity1;
 
         b = (Button) v1.findViewById(R.id.books_page);
         e = (EditText) v1.findViewById(R.id.edit_quantity);
-
+        ec = (CheckBox) v1.findViewById(R.id.encyclopediaBooks);
+        sb = (CheckBox) v1.findViewById(R.id.storyBooks);
+        tb = (CheckBox) v1.findViewById(R.id.textBooks);
+        rb = (CheckBox) v1.findViewById(R.id.referenceBooks);
+        nb = (CheckBox) v1.findViewById(R.id.novelBooks);
        return  v1;
     }
 
@@ -46,6 +52,40 @@ Activity activity1;
         return s;
     }
 
+    public String getEncyclopedia(){
+        String s = ec.getText().toString();
+        if(ec.isChecked())
+            return s;
+        return null;
+    }
+
+    public String getStoryBooks(){
+        String s = sb.getText().toString();
+        if(sb.isChecked())
+            return s;
+        return null;
+    }
+
+    public String getTextBooks(){
+        String s = tb.getText().toString();
+        if(tb.isChecked())
+            return s;
+        return null;
+    }
+
+    public String getReferenceBooks(){
+        String s = rb.getText().toString();
+        if(rb.isChecked())
+            return s;
+        return null;
+    }
+
+    public String getNovelBooks(){
+        String s = nb.getText().toString();
+        if (nb.isChecked())
+            return s;
+        return null;
+    }
     @Override
     public void sendValue() {
 

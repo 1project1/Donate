@@ -41,13 +41,14 @@ import app.project.donate.Fragments.UtensilsFragment;
 import app.project.donate.model.NgoList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
+import static app.project.donate.R.id.nav_feedback;
+
 public class MainUi extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private GoogleApiClient mGoogleApiClient;
     public static final String LOGIN_FILE = "LogInFile";
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
-
     static  CartDatabase cartDatabase;
     String temp="";
     FoodFragment foodFragment;
@@ -80,7 +81,7 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
 
         tabLayout.setupWithViewPager(viewPager);
 
-        tabLayout.getTabAt(0).setIcon(R.drawable.hamburguer);
+        tabLayout.getTabAt(0).setIcon(R.drawable.medicine_icon);
         tabLayout.getTabAt(1).setIcon(R.drawable.uniform);
         tabLayout.getTabAt(2).setIcon(R.drawable.train);
         tabLayout.getTabAt(3).setIcon(R.drawable.books);
@@ -182,6 +183,8 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
         } else if (id == R.id.nav_ngo_list) {
             startActivity(new Intent(this, NgoList.class));
         } else if (id == R.id.nav_rate_us) {
+
+        } else if (id == nav_feedback) {
             Uri uriUrl = Uri.parse("https://docs.google.com/forms/d/1yln_gJBWt7N-Mrk0z47MB-TIpRZ3PgOTE4H2iYblSGo/viewform?edit_requested=true");
             Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
             startActivity(launchBrowser);
@@ -299,6 +302,9 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
 
     }
 
+    public  static CartDatabase returnDb(){
+        return cartDatabase ;
+    }
     private void sendToDb(String title, int quant) {
         Toast.makeText(this, "Sent:" + title, Toast.LENGTH_SHORT).show();
         cartDatabase.addData(title,quant);
@@ -347,7 +353,7 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "FOOD ITEMS";
+                    return "MEDICINES";
                 case 1:
                     return "CLOTHES";
                 case 2:

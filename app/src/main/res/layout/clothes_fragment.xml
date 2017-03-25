@@ -7,33 +7,142 @@
     android:background="@color/fragmentBackground"
     android:orientation="vertical">
 
-    <ImageView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@drawable/clothes"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
-
-        <EditText
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter the quantity in approx"
-            android:ems="@android:integer/config_longAnimTime"
-            android:inputType="numberDecimal"
-            android:id="@+id/edit_quantity"/>
-    </android.support.design.widget.TextInputLayout>
+            android:layout_marginTop="20dp">
 
-    <Button
-        android:id="@+id/clothes_page"
-        android:onClick="sendItemsToCart"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/fragmentBackground"
-        android:background="@color/colorPrimary"
-        android:layout_marginTop="50dp"
-        android:text="ADD TO CART"
-        android:textSize="20sp"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:id="@+id/clothesImage"
+                    android:background="@drawable/clothes"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/clothesImage"
+                    android:layout_marginTop="20dp"
+                    android:text="Whom do you want to donate Clothes?"
+                    android:textSize="15sp"
+                    android:id="@+id/clothesQues"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/genderTypeLayout"
+                    android:layout_below="@+id/clothesQues"
+                    android:layout_marginTop="5dp">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Male"
+                        android:id="@+id/maleOption"
+                        android:layout_weight="1"
+                        android:buttonTint="@color/colorPrimary"
+                        android:textColor="@color/colorPrimary"/>
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Female"
+                        android:id="@+id/femaleOption"
+                        android:buttonTint="@color/colorPrimary"
+                        android:layout_weight="1"
+                        android:textColor="@color/colorPrimary"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/yearTypeLayout"
+                    android:layout_below="@+id/genderTypeLayout">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Age Category"
+                        android:textColor="@color/colorPrimary"
+                        android:textSize="15sp"
+                        android:textStyle="bold"/>
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 - 3 Years"
+                        android:id="@+id/years0to3"
+                        android:buttonTint="@color/colorPrimary"
+                        android:textColor="@color/colorPrimary"/>
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="4 - 6 Years"
+                        android:id="@+id/years4to6"
+                        android:buttonTint="@color/colorPrimary"
+                        android:textColor="@color/colorPrimary"/>
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="7 - 12 Years"
+                        android:id="@+id/years7to12"
+                        android:buttonTint="@color/colorPrimary"
+                        android:textColor="@color/colorPrimary"/>
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="13 - 18 Years"
+                        android:id="@+id/years13to18"
+                        android:buttonTint="@color/colorPrimary"
+                        android:textColor="@color/colorPrimary"/>
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="18+ Years"
+                        android:id="@+id/years18andAbove"
+                        android:buttonTint="@color/colorPrimary"
+                        android:textColor="@color/colorPrimary"/>
+                </LinearLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_below="@+id/yearTypeLayout"
+                    android:layout_width="match_parent"
+                    android:id="@+id/edit_quantity_layout"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp">
+
+                    <EditText
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter the quantity in approx"
+                        android:inputType="numberDecimal"
+                        android:ems="@android:integer/config_longAnimTime"
+                        android:id="@+id/edit_quantity"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <Button
+                    android:id="@+id/clothes_page"
+                    android:onClick="sendItemsToCart"
+                    android:layout_below="@+id/edit_quantity_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/fragmentBackground"
+                    android:background="@color/colorPrimary"
+                    android:layout_marginTop="20dp"
+                    android:text="ADD TO CART"
+                    android:textSize="20sp"/>
+            </RelativeLayout>
+        </ScrollView>
+    </LinearLayout>
 </LinearLayout>

@@ -7,33 +7,100 @@
     android:padding="10dp"
     android:orientation="vertical">
 
-    <ImageView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@drawable/utensils"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
-
-        <EditText
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:hint="Enter the quantity in approx"
-            android:ems="@android:integer/config_longAnimTime"
-            android:id="@+id/edit_quantity"/>
-    </android.support.design.widget.TextInputLayout>
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/utensils_page"
-        android:onClick="sendItemsToCart"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:background="@color/colorPrimary"
-        android:textColor="@color/fragmentBackground"
-        android:text="ADD TO CART"
-        android:textSize="20sp"/>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:id="@+id/utensilsImage"
+                    android:background="@drawable/utensils"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/utensilsQues"
+                    android:layout_below="@+id/utensilsImage"
+                    android:layout_marginTop="20dp"
+                    android:text="What type of utensils do you want to donate?"
+                    android:textColor="@color/colorPrimary"
+                    android:textStyle="bold"
+                    android:textSize="15sp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/utensilsQuesLayout"
+                    android:layout_below="@+id/utensilsQues"
+                    android:layout_marginTop="10dp">
+
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:buttonTint="@color/colorPrimary"
+                        android:text="Pressure Cooker"
+                        android:id="@+id/pressureCooker"
+                        android:textColor="@color/colorPrimary"/>
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Frying Pans"
+                        android:id="@+id/fryingPans"
+                        android:buttonTint="@color/colorPrimary"
+                        android:textColor="@color/colorPrimary"/>
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Plates"
+                        android:id="@+id/plates"
+                        android:textColor="@color/colorPrimary"
+                        android:buttonTint="@color/colorPrimary"/>
+                    <CheckBox
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Glasses"
+                        android:id="@+id/glass"
+                        android:buttonTint="@color/colorPrimary"
+                        android:textColor="@color/colorPrimary"/>
+                </LinearLayout>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/edit_quantity_layout"
+                    android:layout_below="@+id/utensilsQuesLayout"
+                    android:layout_marginTop="50dp">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal"
+                        android:hint="Enter the quantity in approx"
+                        android:ems="@android:integer/config_longAnimTime"
+                        android:id="@+id/edit_quantity"/>
+                </android.support.design.widget.TextInputLayout>
+
+                <Button
+                    android:id="@+id/utensils_page"
+                    android:onClick="sendItemsToCart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@+id/edit_quantity_layout"
+                    android:background="@color/colorPrimary"
+                    android:textColor="@color/fragmentBackground"
+                    android:text="ADD TO CART"
+                    android:textSize="20sp"/>
+            </RelativeLayout>
+        </ScrollView>
+    </LinearLayout>
+
 </LinearLayout>
