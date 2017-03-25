@@ -376,6 +376,6 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
 
         CircleImageView civ = (CircleImageView) hView.findViewById(R.id.profile_picture_drawer);
         if (user.getPhotoUrl() != null)
-            Glide.with(this).load(user.getPhotoUrl()).asBitmap().fitCenter().into(civ);
+            Glide.with(this).load(user.getPhotoUrl()).into(civ);
     }
 }

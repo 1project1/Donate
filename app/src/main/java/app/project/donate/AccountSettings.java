@@ -3,17 +3,23 @@ package app.project.donate;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.text.InputType;
 import android.util.Log;
@@ -21,6 +27,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -44,7 +51,7 @@ import java.io.InputStream;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
-public class AccountSettings extends DialogActivity implements View.OnFocusChangeListener, View.OnTouchListener, View.OnClickListener {
+public class AccountSettings extends DialogActivity implements View.OnTouchListener, View.OnClickListener {
     DatabaseReference mref;
 
     FirebaseAuth mAuth;
@@ -52,9 +59,11 @@ public class AccountSettings extends DialogActivity implements View.OnFocusChang
     TextView name, email, address, phone;
     FloatingActionButton editDP;
     CircleImageView profilePicture;
+    private static final int PERMISSION_REQUEST_CODE = 98;
 
+    private static int CAMERA_REQUEST = 1009, GALLERY_PICTURE = 1008;
 
-    private static int CAMERA_REQUEST, GALLERY_PICTURE = 1008;
+    File f;
 
 
     @Override
@@ -65,8 +74,6 @@ public class AccountSettings extends DialogActivity implements View.OnFocusChang
         setDetails();
 
         //mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        name.setOnFocusChangeListener(this);
-        email.setOnFocusChangeListener(this);
 
 
         name.setOnTouchListener(this);
@@ -75,6 +82,7 @@ public class AccountSettings extends DialogActivity implements View.OnFocusChang
         phone.setOnTouchListener(this);
 
         editDP.setOnClickListener(this);
+
     }
 
     private void init() {
@@ -89,7 +97,7 @@ public class AccountSettings extends DialogActivity implements View.OnFocusChang
 
     private void setDetails() {
 
-        final FirebaseUser user=mAuth.getCurrentUser();
+        final FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
 
             ((TextView) findViewById(R.id.email_verified)).setText("eMailVerified=" + user.isEmailVerified());
@@ -97,7 +105,7 @@ public class AccountSettings extends DialogActivity implements View.OnFocusChang
             ((TextView) findViewById(R.id.display_email)).setText(user.getEmail());
 
             if (user.getPhotoUrl() != null) {
-                Glide.with(this).load(user.getPhotoUrl()).fitCenter().into(profilePicture);
+                Glide.with(this).load(user.getPhotoUrl()).into(profilePicture);
             }
             //((EditText) findViewById(R.id.display_providerId)).setText(user.getProviderId());
             //((EditText) findViewById(R.id.display_gender)).setText(mFirebaseAnalytics.);
@@ -134,15 +142,6 @@ public class AccountSettings extends DialogActivity implements View.OnFocusChang
         }
     }
 
-    @Override
-    public void onFocusChange(View v, boolean hasFocus) {
-        if (hasFocus) {
-            v.getBackground().clearColorFilter();
-
-        } else {
-            //v.getBackground().setColorFilter(getResources().getColor(R.color.color_primary_accent_login), PorterDuff.Mode.SRC_IN);
-        }
-    }
 
     @Override
     protected void onStart() {
@@ -269,8 +268,23 @@ public class AccountSettings extends DialogActivity implements View.OnFocusChang
 
     @Override
     public void onClick(View v) {
+
+
         if (v.getId() == R.id.edit_profile_picture) {
-            startDialog();
+
+            if (Build.VERSION.SDK_INT >= 23) {
+                if (checkPermission()) {
+                    // Code for above or equal 23 API Oriented Device
+                    // Your Permission granted already .Do next code
+                    startDialog();
+                } else {
+                    requestPermission(); // Code for permission
+                }
+            } else {
+                startDialog();
+            }
+
+
         }
     }
 
@@ -294,13 +308,13 @@ public class AccountSettings extends DialogActivity implements View.OnFocusChang
                     }
                 });
 
-        myAlertDialog.setNegativeButton("Camera",
+        myAlertDialog.setNegativeButton(getString(R.string.camera),
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
 
                         Intent intent = new Intent(
                                 MediaStore.ACTION_IMAGE_CAPTURE);
-                        File f = new File(android.os.Environment
+                        f = new File(android.os.Environment
                                 .getExternalStorageDirectory(), "temp.jpg");
                         intent.putExtra(MediaStore.EXTRA_OUTPUT,
                                 Uri.fromFile(f));
@@ -316,9 +330,9 @@ public class AccountSettings extends DialogActivity implements View.OnFocusChang
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        FirebaseUser user  = mAuth.getCurrentUser();
+        FirebaseUser user = mAuth.getCurrentUser();
         if (resultCode == RESULT_OK && requestCode == GALLERY_PICTURE && data != null && data.getData() != null) {
-
+            Log.e("Called", "" + CAMERA_REQUEST);
             try {
                 InputStream is = getContentResolver().openInputStream(data.getData());
                 BitmapFactory.Options options = new BitmapFactory.Options();
@@ -326,7 +340,7 @@ public class AccountSettings extends DialogActivity implements View.OnFocusChang
                 Bitmap preview_bitmap = BitmapFactory.decodeStream(is, null, options);
                 //profilePicture.setImageBitmap(preview_bitmap);
 
-                final Uri imageUri = getImageUri(this,preview_bitmap);
+                final Uri imageUri = getImageUri(this, preview_bitmap);
 
                 UserProfileChangeRequest up = new UserProfileChangeRequest.Builder()
                         .setPhotoUri(imageUri).build();
@@ -341,7 +355,7 @@ public class AccountSettings extends DialogActivity implements View.OnFocusChang
                         hideProgressDialog();
                         setDetails();
                         File fDelete = new File(imageUri.getPath());
-                        Log.w("Image Path", Environment.getExternalStorageDirectory()+"  "+fDelete.getName());
+                        Log.w("Image Path", Environment.getExternalStorageDirectory() + "  " + fDelete.getName());
                         boolean deleted = fDelete.delete();
                     }
                 });
@@ -354,6 +368,37 @@ public class AccountSettings extends DialogActivity implements View.OnFocusChang
 
 
         }
+
+        if (requestCode == CAMERA_REQUEST && resultCode == RESULT_OK) {
+            try {
+
+                Uri temp = Uri.fromFile(f);
+                InputStream is = getContentResolver().openInputStream(temp);
+                BitmapFactory.Options options = new BitmapFactory.Options();
+                options.inSampleSize = 2;
+                Bitmap preview_bitmap = BitmapFactory.decodeStream(is, null, options);
+                final Uri imageUri = getImageUri(this, preview_bitmap);
+
+                UserProfileChangeRequest up = new UserProfileChangeRequest.Builder()
+                        .setPhotoUri(imageUri).build();
+                showProgressDialog();
+                user.updateProfile(up).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w("App", "UpdateProfile", task.getException());
+                        }
+
+                        hideProgressDialog();
+                        setDetails();
+                        Log.w("Image Path", Environment.getExternalStorageDirectory() + "  " + f.getName());
+                        boolean deleted = f.delete();
+                    }
+                });
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 
@@ -363,4 +408,48 @@ public class AccountSettings extends DialogActivity implements View.OnFocusChang
         String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
         return Uri.parse(path);
     }
+
+
+    private boolean checkPermission() {
+        int result = ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (result == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        } else if (result == PackageManager.PERMISSION_DENIED) {
+            requestPermission();
+            return false;
+        }
+        return false;
+    }
+
+
+    private void requestPermission() {
+
+        ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+
+    }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == PERMISSION_REQUEST_CODE) {
+            for (int i = 0; i < permissions.length; i++) {
+
+                if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
+                    boolean showRationale = shouldShowRequestPermissionRationale(permissions[i]);
+                    if (!showRationale) {
+                        Toast.makeText(this, "Write External Storage permission allows us to do store images. Please allow this permission in App Settings.", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+                        Uri uri = Uri.fromParts("package", getPackageName(), null);
+                        intent.setData(uri);
+                        startActivityForResult(intent, PERMISSION_REQUEST_CODE);
+                    }
+                }
+            }
+        }
+    }
+
+
 }
