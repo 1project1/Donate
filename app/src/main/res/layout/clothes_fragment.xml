@@ -14,7 +14,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         android:orientation="vertical">
 
         <ScrollView
@@ -115,6 +115,7 @@
                 <android.support.design.widget.TextInputLayout
                     android:layout_below="@+id/yearTypeLayout"
                     android:layout_width="match_parent"
+                    android:id="@+id/edit_quantity_layout"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp">
 
@@ -127,17 +128,19 @@
                         android:ems="@android:integer/config_longAnimTime"
                         android:id="@+id/edit_quantity"/>
                 </android.support.design.widget.TextInputLayout>
+
+                <Button
+                    android:id="@+id/clothes_page"
+                    android:onClick="sendItemsToCart"
+                    android:layout_below="@+id/edit_quantity_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/fragmentBackground"
+                    android:background="@color/colorPrimary"
+                    android:layout_marginTop="20dp"
+                    android:text="ADD TO CART"
+                    android:textSize="20sp"/>
             </RelativeLayout>
         </ScrollView>
     </LinearLayout>
-    <Button
-        android:id="@+id/clothes_page"
-        android:onClick="sendItemsToCart"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/fragmentBackground"
-        android:background="@color/colorPrimary"
-        android:layout_marginTop="20dp"
-        android:text="ADD TO CART"
-        android:textSize="20sp"/>
 </LinearLayout>

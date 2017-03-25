@@ -12,45 +12,60 @@
         android:layout_height="200dp"
         android:background="@drawable/medicine"/>
 
-    <android.support.design.widget.TextInputLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp">
-
-        <EditText
-
+        android:layout_height="250dp"
+        android:orientation="vertical">
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Please enter the Expiry Date of the medicines"
-            android:inputType="date"
-            android:ems="@android:integer/config_longAnimTime"
-            android:id="@+id/expiryDate"/>
-    </android.support.design.widget.TextInputLayout>
+            android:layout_marginTop="20dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-    <android.support.design.widget.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp">
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
 
-        <EditText
+                    <EditText
 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter the quantity in approx"
-            android:inputType="numberDecimal"
-            android:ems="@android:integer/config_longAnimTime"
-            android:id="@+id/edit_quantity"/>
-    </android.support.design.widget.TextInputLayout>
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Please enter the Expiry Date of the medicines"
+                        android:inputType="date"
+                        android:ems="@android:integer/config_longAnimTime"
+                        android:id="@+id/expiryDate"/>
+                </android.support.design.widget.TextInputLayout>
 
-    <Button
-        android:id="@+id/food_page"
-        android:onClick="sendItemsToCart"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:textColor="@color/fragmentBackground"
-        android:layout_marginTop="50dp"
-        android:text="ADD TO CART"
-        android:textSize="20sp"/>
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp">
+
+                    <EditText
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter the quantity in approx"
+                        android:inputType="numberDecimal"
+                        android:ems="@android:integer/config_longAnimTime"
+                        android:id="@+id/edit_quantity"/>
+                </android.support.design.widget.TextInputLayout>
+                <Button
+                    android:id="@+id/food_page"
+                    android:onClick="sendItemsToCart"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:textColor="@color/fragmentBackground"
+                    android:layout_marginTop="20dp"
+                    android:text="ADD TO CART"
+                    android:textSize="20sp"/>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 
 </LinearLayout>
