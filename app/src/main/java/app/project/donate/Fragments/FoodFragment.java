@@ -17,7 +17,7 @@ import app.project.donate.R;
  * Created by AmanPC on 14-03-2017.
  */
 
-public class FoodFragment extends Fragment implements IGetValue{
+public class FoodFragment extends Fragment implements BookInterface {
 
     EditText title;
     Activity activity;

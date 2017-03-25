@@ -7,28 +7,29 @@
     android:padding="10dp"
     android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@drawable/utensils"/>
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp">
+            android:layout_height="wrap_content">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:id="@+id/utensilsImage"
+                    android:background="@drawable/utensils"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/utensilsQues"
+                    android:layout_below="@+id/utensilsImage"
+                    android:layout_marginTop="20dp"
                     android:text="What type of utensils do you want to donate?"
                     android:textColor="@color/colorPrimary"
                     android:textStyle="bold"
@@ -76,7 +77,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/edit_quantity_layout"
                     android:layout_below="@+id/utensilsQuesLayout"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="50dp">
 
                     <EditText
                         android:layout_width="match_parent"
