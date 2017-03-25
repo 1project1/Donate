@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import app.project.donate.R;
 
@@ -17,12 +16,12 @@ import app.project.donate.R;
  * Created by AmanPC on 14-03-2017.
  */
 
-public class FoodFragment extends Fragment implements IGetValue{
+public class OthersFragment extends Fragment implements OthersInterface{
 
     EditText title;
     Activity activity;
     Button button;
-    EditText quantity;
+    EditText quantity, itemName, itemDescription;
 
 
 
@@ -30,28 +29,39 @@ public class FoodFragment extends Fragment implements IGetValue{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         activity=getActivity();
-        View v = inflater.inflate(R.layout.medicines_layout, container, false);
+        View v = inflater.inflate(R.layout.others_fragment, container, false);
         quantity = (EditText)v.findViewById(R.id.edit_quantity);
+        itemDescription = (EditText)v.findViewById(R.id.item_description);
+        itemName = (EditText)v.findViewById(R.id.item_name);
         button = (Button)v.findViewById(R.id.food_page);
         return  v;
     }
 
+    @Override
+    public String getEDTValue() {
+        String quant = quantity.getText().toString();
+        return quant;
+    }
 
     @Override
-    public String getEdTValue() {
+    public String getItemName() {
+        String name = itemName.getText().toString();
+        return name;
+    }
 
-        String x=  quantity.getText().toString();
-        quantity.setText("");
-        return  x;
+    @Override
+    public String getCategory() {
+        return null;
+    }
+
+    @Override
+    public String getDescription() {
+        String desc = itemDescription.getText().toString();
+        return desc;
     }
 
     @Override
     public void sendValue() {
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(activity, "Qty:" + getEdTValue(), Toast.LENGTH_SHORT).show();
-            }
-        });
+
     }
 }

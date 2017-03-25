@@ -7,14 +7,9 @@
     android:background="@color/fragmentBackground"
     android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@drawable/clothes"/>
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
         <ScrollView
@@ -24,11 +19,20 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
                 android:layout_height="match_parent">
 
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:id="@+id/clothesImage"
+                    android:background="@drawable/clothes"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/clothesImage"
+                    android:layout_marginTop="20dp"
                     android:text="Whom do you want to donate Clothes?"
                     android:textSize="15sp"
                     android:id="@+id/clothesQues"
@@ -117,7 +121,7 @@
                     android:layout_width="match_parent"
                     android:id="@+id/edit_quantity_layout"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="50dp">
 
                     <EditText
 

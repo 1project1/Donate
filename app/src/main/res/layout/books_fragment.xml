@@ -7,14 +7,9 @@
     android:padding="10dp"
     android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@drawable/boooks"/>
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="match_parent"
         android:orientation="vertical">
         <ScrollView
             android:layout_width="match_parent"
@@ -23,12 +18,21 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
+                android:focusableInTouchMode="true"
+                android:focusable="true"
                 android:layout_height="match_parent">
 
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:id="@+id/booksImage"
+                    android:background="@drawable/boooks"/>
                 <TextView
                     android:layout_width="match_parent"
                     android:id="@+id/bookQues"
                     android:layout_height="wrap_content"
+                    android:layout_below="@+id/booksImage"
+                    android:layout_marginTop="20dp"
                     android:text="@string/book_donation_type"
                     android:textColor="@color/colorPrimary"
                     android:textStyle="bold"
@@ -94,7 +98,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/edit_quantity_layout"
                     android:layout_below="@+id/bookTypeLayout"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="50dp">
 
                     <EditText
 
