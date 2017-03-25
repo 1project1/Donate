@@ -264,9 +264,6 @@ public class Cart extends AppCompatActivity {
             case "toys":
                 id = R.drawable.toys;
                 break;
-            case "food":
-                id = R.drawable.food;
-                break;
 
             default:
                 id = R.mipmap.dummy;

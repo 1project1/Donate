@@ -73,10 +73,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="ADD TO CART"
+                android:onClick="sendItemsToCart"
                 android:layout_marginTop="150dp"
                 android:background="@color/colorPrimary"
                 android:textColor="@color/fragmentBackground"
-                android:id="@+id/food_page"
+                android:id="@+id/others_page"
                 android:textSize="20sp"/>
         </LinearLayout>
     </ScrollView>

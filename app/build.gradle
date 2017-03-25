@@ -38,8 +38,11 @@ dependencies {
     compile 'com.github.aakira:expandable-layout:1.6.0@aar'
     compile 'com.github.siyamed:android-shape-imageview:0.9.+@aar'
     compile 'com.github.delight-im:Android-SimpleLocation:v1.0.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta5'
+
     testCompile 'junit:junit:4.12'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha7'
+
+
 }
 
 

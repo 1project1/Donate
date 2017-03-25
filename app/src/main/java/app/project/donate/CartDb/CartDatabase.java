@@ -51,9 +51,6 @@ public class CartDatabase extends SQLiteOpenHelper{
         //onCreate(sqLiteDatabase);
 
     }
-    public boolean deleteTitle(String name)
-    {
-        return sqLiteDatabase.delete("CART_DB", "title" + "=" + name, null) > 0;
-    }
+
 
 }

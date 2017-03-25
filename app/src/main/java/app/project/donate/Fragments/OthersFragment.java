@@ -33,7 +33,7 @@ public class OthersFragment extends Fragment implements OthersInterface{
         quantity = (EditText)v.findViewById(R.id.edit_quantity);
         itemDescription = (EditText)v.findViewById(R.id.item_description);
         itemName = (EditText)v.findViewById(R.id.item_name);
-        button = (Button)v.findViewById(R.id.food_page);
+        button = (Button)v.findViewById(R.id.others_page);
         return  v;
     }
 

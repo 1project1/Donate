@@ -98,7 +98,7 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
 
     private void databaseInit() {
         cartDatabase = new CartDatabase(this);
-        Toast.makeText(this, "DB created!!!", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "DB created!!!", Toast.LENGTH_SHORT).show();
     }
 
     private void init() {
@@ -219,7 +219,7 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
                 }catch (NumberFormatException e){
                     quant = 1;
 
-                    Toast.makeText(this, "Number format Excp:" + temp, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(this, "Number format Excp:" + temp, Toast.LENGTH_SHORT).show();
                 }
                 if(quant == 0) quant  = 1;
                 //quant = Integer.parseInt(q.getText().toString());
@@ -233,7 +233,7 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
                 }catch (NumberFormatException e){
                     quant = 1;
 
-                    Toast.makeText(this, "Number format Excp:" + temp, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(this, "Number format Excp:" + temp, Toast.LENGTH_SHORT).show();
                 }
                 if(quant == 0) quant  = 1;
                 //quant = Integer.parseInt(q.getText().toString());
@@ -247,7 +247,7 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
                 }catch (NumberFormatException e){
                     quant = 1;
 
-                    Toast.makeText(this, "Number format Excp:" + temp, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(this, "Number format Excp:" + temp, Toast.LENGTH_SHORT).show();
                 }
                 if(quant == 0) quant  = 1;
                 //quant = Integer.parseInt(q.getText().toString());
@@ -261,7 +261,7 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
                 }catch (NumberFormatException e){
                     quant = 1;
 
-                    Toast.makeText(this, "Number format Excp:" + temp, Toast.LENGTH_SHORT).show();
+                    ////Toast.makeText(this, "Number format Excp:" + temp, Toast.LENGTH_SHORT).show();
                 }
                 if(quant == 0) quant  = 1;
                 //quant = Integer.parseInt(q.getText().toString());
@@ -275,31 +275,28 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
                 }catch (NumberFormatException e){
                     quant = 1;
 
-                    Toast.makeText(this, "Number format Excp:" + temp, Toast.LENGTH_SHORT).show();
+                    ////Toast.makeText(this, "Number format Excp:" + temp, Toast.LENGTH_SHORT).show();
                 }
                 if(quant == 0) quant  = 1;
                 sendToDb(title,quant);
                 //quant = Integer.parseInt(q.getText().toString());
 
                 break;
-            case R.id.food_page:
-                title = "food";
+            case R.id.others_page:
+                title = "others";
                 temp = othersFragment.getEDTValue();
                 try {
                     quant = Integer.parseInt(temp);
                 }catch (NumberFormatException e){
                     quant = 1;
 
-                    Toast.makeText(this, "Number format Excp:" + temp, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(this, "Number format Excp:" + temp, Toast.LENGTH_SHORT).show();
                 }
                 if(quant == 0) quant  = 1;
                 sendToDb(title,quant);
                 //quant = Integer.parseInt(q.getText().toString());
                 break;
-            default:
-                title = "others";
-                quant = 1;
-                sendToDb(title,quant);
+
         }
 
         Toast.makeText(this, title + ":" + quant, Toast.LENGTH_SHORT).show();
