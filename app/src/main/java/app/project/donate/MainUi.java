@@ -34,7 +34,7 @@ import com.google.firebase.auth.FirebaseUser;
 import app.project.donate.CartDb.CartDatabase;
 import app.project.donate.Fragments.BooksFragment;
 import app.project.donate.Fragments.ClothesFragment;
-import app.project.donate.Fragments.FoodFragment;
+import app.project.donate.Fragments.OthersFragment;
 import app.project.donate.Fragments.ShoesFragment;
 import app.project.donate.Fragments.ToysFragment;
 import app.project.donate.Fragments.UtensilsFragment;
@@ -51,7 +51,7 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
     private ViewPager viewPager;
     static  CartDatabase cartDatabase;
     String temp="";
-    FoodFragment foodFragment;
+    OthersFragment othersFragment;
     ClothesFragment clothesFragment;
     UtensilsFragment utensilsFragment;
     ToysFragment toysFragment;
@@ -81,12 +81,12 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
 
         tabLayout.setupWithViewPager(viewPager);
 
-        tabLayout.getTabAt(0).setIcon(R.drawable.medicine_icon);
-        tabLayout.getTabAt(1).setIcon(R.drawable.uniform);
-        tabLayout.getTabAt(2).setIcon(R.drawable.train);
-        tabLayout.getTabAt(3).setIcon(R.drawable.books);
-        tabLayout.getTabAt(4).setIcon(R.drawable.fryingpan);
-        tabLayout.getTabAt(5).setIcon(R.drawable.shoes);
+        tabLayout.getTabAt(0).setIcon(R.drawable.uniform);
+        tabLayout.getTabAt(1).setIcon(R.drawable.train);
+        tabLayout.getTabAt(2).setIcon(R.drawable.books);
+        tabLayout.getTabAt(3).setIcon(R.drawable.fryingpan);
+        tabLayout.getTabAt(4).setIcon(R.drawable.shoes);
+        tabLayout.getTabAt(5).setIcon(R.drawable.hamburguer);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -280,7 +280,7 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
                 break;
             case R.id.food_page:
                 title = "food";
-                temp = foodFragment.getEdTValue();
+                temp = othersFragment.getEDTValue();
                 try {
                     quant = Integer.parseInt(temp);
                 }catch (NumberFormatException e){
@@ -321,24 +321,24 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
             switch (position) {
                 case 0:
 
-                    foodFragment = new FoodFragment();
-
-                    return foodFragment;
-                case 1:
                     clothesFragment = new ClothesFragment();
+
                     return clothesFragment;
-                case 2:
+                case 1:
                     toysFragment = new ToysFragment();
                     return toysFragment;
-                case 3:
+                case 2:
                     booksFragment = new BooksFragment();
                     return booksFragment;
-                case 4:
+                case 3:
                     utensilsFragment = new UtensilsFragment();
                     return utensilsFragment;
-                case 5:
+                case 4:
                     shoesFragment = new ShoesFragment();
                     return shoesFragment;
+                case 5:
+                    othersFragment = new OthersFragment();
+                    return othersFragment;
             }
             return null;
         }
@@ -353,17 +353,17 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "MEDICINES";
-                case 1:
                     return "CLOTHES";
-                case 2:
+                case 1:
                     return "TOYS";
-                case 3:
+                case 2:
                     return "BOOKS";
-                case 4:
+                case 3:
                     return "UTENSILS";
-                case 5:
+                case 4:
                     return "SHOES";
+                case 5:
+                    return "OTHERS";
             }
             return null;
         }
