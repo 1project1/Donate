@@ -13,6 +13,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -183,10 +184,10 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
             startActivity(new Intent(this, History.class));
         } else if (id == R.id.nav_ngo_list) {
             startActivity(new Intent(this, NgoList.class));
-        } else if(id ==R.id.nav_gallery){
-            startActivity(new Intent(this, Gallerys.class));
-        }
-        else if (id == R.id.nav_rate_us) {
+        } else if (id == R.id.nav_rate_us) {
+            Intent intent = new Intent(this,RateUs.class);
+
+            startActivity(intent);
 
         } else if (id == nav_feedback) {
             Uri uriUrl = Uri.parse("https://docs.google.com/forms/d/1yln_gJBWt7N-Mrk0z47MB-TIpRZ3PgOTE4H2iYblSGo/viewform?edit_requested=true");
