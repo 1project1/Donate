@@ -13,4 +13,15 @@
         <item>अंग्रेज़ी</item>
         <item>हिंदी</item>
     </string-array>
+    <string name="action_settings">सेटिंग्स</string>
+    <string name="address">पता</string>
+    <string name="camera">कैमरा</string>
+    <string name="cancel">रद्द करें</string>
+    <string name="loading">लोड हो रहा है</string>
+    <string name="name">नाम</string>
+    <string name="navigation_drawer_close"></string>
+    <string name="no_internet">कोई इंटरनेट कनेक्शन नहीं</string>
+    <string name="phone">फ़ोन नंबर</string>
+    <string name="retry">पुनः प्रयास करें</string>
+    <string name="sign_in_with_google">Google के साथ साइन इन करें</string>
 </resources>

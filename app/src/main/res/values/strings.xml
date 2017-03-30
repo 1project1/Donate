@@ -105,7 +105,7 @@
     <string name="address">Address</string>
     <string name="phone">Phone Number</string>
     <string name="permission_denied_contacts">Permission Denied By User</string>
-    <string name="retry">Please Retry</string>
+    <string name="retry">Retry</string>
     <string name="camera">Camera</string>
     <string name="book_donation_type">What type of Book do you want to Donate ?</string>
     <!---->
