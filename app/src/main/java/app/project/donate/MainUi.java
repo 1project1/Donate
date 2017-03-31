@@ -52,6 +52,7 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
     private TabLayout tabLayout;
     private ViewPager viewPager;
     static  CartDatabase cartDatabase;
+    int rated;
     String temp="";
     OthersFragment othersFragment;
     ClothesFragment clothesFragment;
@@ -68,6 +69,20 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
         setContentView(R.layout.activity_main_ui);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+        SharedPreferences preferences = getSharedPreferences("progress", MODE_PRIVATE);
+        int appUsedCount = preferences.getInt("appUsedCount",0);
+        appUsedCount++;
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt("appUsedCount", appUsedCount);
+        editor.apply();
+
+        if (appUsedCount%10 == 0 && appUsedCount <= 300 && rated != 0){
+            startActivityForResult(new Intent(this, RateUs.class), rated);
+        } else{
+
+        }
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -185,10 +200,7 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
         } else if (id == R.id.nav_ngo_list) {
             startActivity(new Intent(this, NgoList.class));
         } else if (id == R.id.nav_rate_us) {
-            Intent intent = new Intent(this,RateUs.class);
-
-            startActivity(intent);
-
+            startActivityForResult(new Intent(this, RateUs.class), rated);
         } else if (id == nav_feedback) {
             Uri uriUrl = Uri.parse("https://docs.google.com/forms/d/1yln_gJBWt7N-Mrk0z47MB-TIpRZ3PgOTE4H2iYblSGo/viewform?edit_requested=true");
             Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);

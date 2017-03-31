@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/fragmentBackground"
-    android:padding="10dp"
     android:orientation="vertical">
 
     <LinearLayout
@@ -15,11 +14,13 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:padding="10dp">
 
                 <ImageView
                     android:layout_width="match_parent"
