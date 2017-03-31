@@ -39,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="Arup Kumar Gupta"
+                android:text="@string/arup_kumar_gupta"
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold"
                 android:textSize="60sp" />
@@ -75,7 +75,7 @@
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:background="#3b5998"
-                    android:text="Facebook"
+                    android:text="@string/facebook"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp" />
 
@@ -87,7 +87,7 @@
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
                     android:background="#d34836"
-                    android:text="Google +"
+                    android:text="@string/google"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp" />
 

@@ -32,7 +32,7 @@
                     android:id="@+id/utensilsQues"
                     android:layout_below="@+id/utensilsImage"
                     android:layout_marginTop="20dp"
-                    android:text="What type of utensils do you want to donate?"
+                    android:text="@string/utensils_ques"
                     android:textColor="@color/colorPrimary"
                     android:textStyle="bold"
                     android:textSize="15sp"/>
@@ -49,27 +49,27 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:buttonTint="@color/colorPrimary"
-                        android:text="Pressure Cooker"
+                        android:text="@string/pressure_cooker"
                         android:id="@+id/pressureCooker"
                         android:textColor="@color/colorPrimary"/>
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Frying Pans"
+                        android:text="@string/frying_pans"
                         android:id="@+id/fryingPans"
                         android:buttonTint="@color/colorPrimary"
                         android:textColor="@color/colorPrimary"/>
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Plates"
+                        android:text="@string/plates"
                         android:id="@+id/plates"
                         android:textColor="@color/colorPrimary"
                         android:buttonTint="@color/colorPrimary"/>
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Glasses"
+                        android:text="@string/glasses"
                         android:id="@+id/glass"
                         android:buttonTint="@color/colorPrimary"
                         android:textColor="@color/colorPrimary"/>
@@ -85,7 +85,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="numberDecimal"
-                        android:hint="Enter the quantity in approx"
+                        android:hint="@string/enter_the_quantity_in_approx"
                         android:ems="@android:integer/config_longAnimTime"
                         android:id="@+id/edit_quantity"/>
                 </android.support.design.widget.TextInputLayout>
@@ -99,7 +99,7 @@
                     android:layout_below="@+id/edit_quantity_layout"
                     android:background="@color/colorPrimary"
                     android:textColor="@color/fragmentBackground"
-                    android:text="ADD TO CART"
+                    android:text="@string/add_to_cart"
                     android:textSize="20sp"/>
             </RelativeLayout>
         </ScrollView>

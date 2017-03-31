@@ -41,6 +41,8 @@
             android:layout_marginRight="10dp"
             android:gravity="center_vertical|center_horizontal"
             android:text="TextView"
+            android:singleLine="true"
+            android:ellipsize="marquee"
             android:textColor="@color/colorPrimary"
             android:textSize="30dp"
             android:textStyle="bold" />

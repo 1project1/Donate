@@ -29,7 +29,7 @@
             android:layout_weight="1"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="5dp"
-            android:text="LATER"
+            android:text="@string/later"
             android:textSize="20sp"/>
 
         <Button
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="10dp"
-            android:text="Rate"
+            android:text="@string/rate"
             android:textSize="20sp"
             android:layout_weight="1"/>
 

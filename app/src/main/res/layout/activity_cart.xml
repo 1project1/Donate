@@ -41,7 +41,7 @@
             android:drawableRight="@mipmap/crying"
             android:gravity="center"
             android:onClick="removeAll"
-            android:text="Clear Cart"
+            android:text="@string/clear_cart"
             android:textColor="@color/white" />
 
         <Button
@@ -56,7 +56,7 @@
             android:drawableRight="@mipmap/happy"
             android:gravity="center"
             android:onClick="donateAll"
-            android:text="Donate Items"
+            android:text="@string/donate_items"
             android:textColor="@color/white" />
     </LinearLayout>
 

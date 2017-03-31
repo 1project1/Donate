@@ -33,7 +33,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/clothesImage"
                     android:layout_marginTop="20dp"
-                    android:text="Whom do you want to donate Clothes?"
+                    android:text="@string/clothes_ques"
                     android:textSize="15sp"
                     android:id="@+id/clothesQues"
                     android:textColor="@color/colorPrimary"
@@ -49,7 +49,7 @@
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Male"
+                        android:text="@string/male"
                         android:id="@+id/maleOption"
                         android:layout_weight="1"
                         android:buttonTint="@color/colorPrimary"
@@ -58,7 +58,7 @@
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Female"
+                        android:text="@string/female"
                         android:id="@+id/femaleOption"
                         android:buttonTint="@color/colorPrimary"
                         android:layout_weight="1"
@@ -75,7 +75,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Age Category"
+                        android:text="@string/age_category"
                         android:textColor="@color/colorPrimary"
                         android:textSize="15sp"
                         android:textStyle="bold"/>
@@ -83,35 +83,35 @@
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0 - 3 Years"
+                        android:text="@string/_0_3_years"
                         android:id="@+id/years0to3"
                         android:buttonTint="@color/colorPrimary"
                         android:textColor="@color/colorPrimary"/>
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="4 - 6 Years"
+                        android:text="@string/_4_6_years"
                         android:id="@+id/years4to6"
                         android:buttonTint="@color/colorPrimary"
                         android:textColor="@color/colorPrimary"/>
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="7 - 12 Years"
+                        android:text="@string/_7_12_years"
                         android:id="@+id/years7to12"
                         android:buttonTint="@color/colorPrimary"
                         android:textColor="@color/colorPrimary"/>
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="13 - 18 Years"
+                        android:text="@string/_13_18_years"
                         android:id="@+id/years13to18"
                         android:buttonTint="@color/colorPrimary"
                         android:textColor="@color/colorPrimary"/>
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="18+ Years"
+                        android:text="@string/_18_years"
                         android:id="@+id/years18andAbove"
                         android:buttonTint="@color/colorPrimary"
                         android:textColor="@color/colorPrimary"/>
@@ -127,7 +127,7 @@
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Enter the quantity in approx"
+                        android:hint="@string/enter_the_quantity_in_approx"
                         android:inputType="numberDecimal"
                         android:ems="@android:integer/config_longAnimTime"
                         android:id="@+id/edit_quantity"/>
@@ -142,7 +142,7 @@
                     android:textColor="@color/fragmentBackground"
                     android:background="@color/colorPrimary"
                     android:layout_marginTop="20dp"
-                    android:text="ADD TO CART"
+                    android:text="@string/add_to_cart"
                     android:textSize="20sp"/>
             </RelativeLayout>
         </ScrollView>

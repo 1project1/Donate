@@ -355,17 +355,17 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
         public CharSequence getPageTitle(int position) {
             switch (position) {
                 case 0:
-                    return "CLOTHES";
+                    return getString(R.string.tab_clothes);
                 case 1:
-                    return "TOYS";
+                    return getString(R.string.tab_toys);
                 case 2:
-                    return "BOOKS";
+                    return getString(R.string.tab_books);
                 case 3:
-                    return "UTENSILS";
+                    return getString(R.string.tab_utensils);
                 case 4:
-                    return "SHOES";
+                    return getString(R.string.tab_shoes);
                 case 5:
-                    return "OTHERS";
+                    return getString(R.string.tab_others);
             }
             return null;
         }

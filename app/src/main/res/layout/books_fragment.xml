@@ -49,7 +49,7 @@
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Encyclopedia"
+                        android:text="@string/encyclopedia"
                         android:id="@+id/encyclopediaBooks"
                         android:textColor="@color/colorPrimary"
                         android:buttonTint="@color/colorPrimary"
@@ -58,7 +58,7 @@
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Story Books"
+                        android:text="@string/story_books"
                         android:id="@+id/storyBooks"
                         android:textColor="@color/colorPrimary"
                         android:buttonTint="@color/colorPrimary"
@@ -67,7 +67,7 @@
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Text Books"
+                        android:text="@string/text_books"
                         android:id="@+id/textBooks"
                         android:textColor="@color/colorPrimary"
                         android:buttonTint="@color/colorPrimary"
@@ -76,7 +76,7 @@
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Reference Books"
+                        android:text="@string/reference_books"
                         android:id="@+id/referenceBooks"
                         android:textColor="@color/colorPrimary"
                         android:buttonTint="@color/colorPrimary"
@@ -85,7 +85,7 @@
                     <CheckBox
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Novels"
+                        android:text="@string/novels"
                         android:id="@+id/novelBooks"
                         android:textColor="@color/colorPrimary"
                         android:buttonTint="@color/colorPrimary"
@@ -104,7 +104,7 @@
 
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Enter the quantity in approx"
+                        android:hint="@string/enter_the_quantity_in_approx"
                         android:inputType="numberDecimal"
                         android:ems="@android:integer/config_longAnimTime"
                         android:id="@+id/edit_quantity"/>
@@ -118,7 +118,7 @@
                     android:background="@color/colorPrimary"
                     android:onClick="sendItemsToCart"
                     android:layout_below="@+id/edit_quantity_layout"
-                    android:text="ADD TO CART"
+                    android:text="@string/add_to_cart"
                     android:textColor="@color/fragmentBackground"
                     android:textSize="20sp" />
             </RelativeLayout>

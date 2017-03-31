@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
 
 import app.project.donate.R;
-import app.project.donate.controllers.CustomAdapter;
+import app.project.donate.controllers.NGOListAdapter;
 
 public class NgoList extends AppCompatActivity {
 
@@ -14,7 +14,7 @@ public class NgoList extends AppCompatActivity {
     Context context;
 
 
-    public static int[] prgmImages = {R.drawable.images, R.drawable.images, R.drawable.images, R.drawable.images, R.drawable.images, R.drawable.images, R.drawable.images, R.drawable.images, R.drawable.images};
+    public static int[] prgmImages = {R.drawable.sos_logo, R.drawable.prakash_logo, R.drawable.goonj_logo, R.drawable.images, R.drawable.images, R.drawable.images, R.drawable.images, R.drawable.images};
     public static String[] prgmNameList;
     public static String[] intro;
 
@@ -34,6 +34,6 @@ public class NgoList extends AppCompatActivity {
         lv = (ListView) findViewById(R.id.listview);
 
 
-        lv.setAdapter(new CustomAdapter(this, prgmNameList, prgmImages, intro, links));
+        lv.setAdapter(new NGOListAdapter(this, prgmNameList, prgmImages, intro, links));
     }
 }

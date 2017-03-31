@@ -50,7 +50,7 @@
             android:layout_weight="1"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:text="Save" />
+            android:text="@string/save" />
     </LinearLayout>
 
 </RelativeLayout>

@@ -18,14 +18,14 @@ import app.project.donate.model.NgoList;
  * Created by grant on 11-03-2017.
  */
 //
-public class CustomAdapter extends BaseAdapter {
+public class NGOListAdapter extends BaseAdapter {
     String [] result;
     Context context;
     int [] imageId;
     String[] introduction;
     String[] link;
     private static LayoutInflater inflater=null;
-    public CustomAdapter(NgoList ngoList, String[] prgmNameList, int[] prgmImages, String[] intro, String[] links) {
+    public NGOListAdapter(NgoList ngoList, String[] prgmNameList, int[] prgmImages, String[] intro, String[] links) {
         // TODO Auto-generated constructor stub
         result=prgmNameList;
         context=ngoList;

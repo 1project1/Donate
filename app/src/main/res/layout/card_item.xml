@@ -45,7 +45,7 @@
                 android:layout_below="@id/item_title"
                 android:layout_marginLeft="10dp"
                 android:layout_toRightOf="@id/item_type_icon"
-                android:text="Quantity: "
+                android:text="@string/quantity"
                 android:textSize="18sp" />
             <TextView
                 android:background="@android:color/transparent"
@@ -98,7 +98,7 @@
                     android:layout_width="match_parent"
                     android:layout_weight="2"
                     android:background="@color/cancelBack"
-                    android:text="Cancel Item"
+                    android:text="@string/cancel_item"
                     android:textColor="@color/white"
                     android:gravity="center"
                     android:layout_height="wrap_content"
