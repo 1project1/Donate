@@ -180,6 +180,12 @@
     <string name="gallery">Gallery</string>
     <string name="upload_picture">Upload Pictures Option</string>
     <string name="gallery_or_camera">How do you want to set your picture?</string>
+    <string name="rate_us_title">Please Rate the APP</string>
+    <string name="rate_us_toast_ask">Please give your Rating !!!</string>
+    <string name="rate_us_toast_thanks">Thank You !!!</string>
+    <string name="rate_dialog_question">Do you want to rate the APP again ?</string>
+    <string name="rate_dialog_yes">Yes</string>
+    <string name="rate_dialog_no">No</string>
     <!---->
 
 </resources>

@@ -1,5 +1,7 @@
 package app.project.donate;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +19,7 @@ public class RateUs extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rate_us);
+        setTitle(R.string.rate_us_title);
 
         this.setFinishOnTouchOutside(false);
 
@@ -35,10 +38,18 @@ public class RateUs extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(ratingValue.equals("")|| ratingValue.equals("0.0")){
-                    Toast.makeText(RateUs.this, "Please give your Rating !!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RateUs.this, R.string.rate_us_toast_ask , Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Toast.makeText(RateUs.this, "Thank You !!!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RateUs.this, R.string.rate_us_toast_thanks, Toast.LENGTH_SHORT).show();
+
+                    SharedPreferences rated_record = getSharedPreferences("rate_success", MODE_PRIVATE);
+                    int rate_check = rated_record.getInt("rated", 1);
+                    SharedPreferences.Editor editor = rated_record.edit();
+                    editor.putInt("apprated", rate_check);
+
+                    editor.commit();
+
                     finish(RateUs.class);
                 }
             }
@@ -52,6 +63,11 @@ public class RateUs extends AppCompatActivity {
         });
 
     }
+
+    private int rateresult() {
+        return 1;
+    }
+
 
     private void finish(Class<RateUs> rateUsClass) {
         super.finish();

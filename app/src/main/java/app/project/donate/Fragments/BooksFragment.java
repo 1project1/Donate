@@ -68,8 +68,10 @@ Activity activity1;
 
     public String getTextBooks(){
         String s = tb.getText().toString();
-        if(tb.isChecked())
+        if(tb.isChecked()) {
             return s;
+        }
+        tb.setChecked(false);
         return null;
     }
 

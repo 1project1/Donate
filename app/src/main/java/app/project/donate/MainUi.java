@@ -1,5 +1,6 @@
 package app.project.donate;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -46,11 +47,15 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import static app.project.donate.R.id.nav_feedback;
 
 public class MainUi extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
     private GoogleApiClient mGoogleApiClient;
     public static final String LOGIN_FILE = "LogInFile";
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    static  CartDatabase cartDatabase;
+    String temp="";
+    static int rated = 0;
     static CartDatabase cartDatabase;
     int rated;
     String temp = "";
@@ -71,17 +76,25 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        SharedPreferences preferences = getSharedPreferences("Progress",MODE_PRIVATE);
+        int appUsedCount = preferences.getInt("appUsedCount",0);
 
         SharedPreferences preferences = getSharedPreferences("progress", MODE_PRIVATE);
         int appUsedCount = preferences.getInt("appUsedCount", 0);
         appUsedCount++;
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt("appUsedCount", appUsedCount);
-        editor.apply();
+        editor.commit();
 
         if (appUsedCount % 10 == 0 && appUsedCount <= 300 && rated != 0) {
             startActivityForResult(new Intent(this, RateUs.class), rated);
         } else {
+        SharedPreferences sharedPref = getPreferences(this.MODE_PRIVATE);
+        rated = sharedPref.getInt("apprated", 0);
+
+        if (appUsedCount%15 == 0 && appUsedCount <= 300 && rated == 0){
+            startActivity(new Intent(this, RateUs.class));
+        } else{
 
         }
 
@@ -112,6 +125,7 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
         init();
         databaseInit();
     }
+
 
     private void databaseInit() {
         cartDatabase = new CartDatabase(this);
@@ -201,7 +215,30 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
         } else if (id == R.id.nav_ngo_list) {
             startActivity(new Intent(this, NgoList.class));
         } else if (id == R.id.nav_rate_us) {
-            startActivityForResult(new Intent(this, RateUs.class), rated);
+            SharedPreferences sharedPref = getPreferences(this.MODE_PRIVATE);
+            rated = sharedPref.getInt("apprated", 0);
+            if(rated == 1) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainUi.this);
+                builder.setCancelable(false);
+                builder.setMessage(R.string.rate_dialog_question);
+                builder.setPositiveButton(R.string.rate_dialog_yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        startActivity(new Intent(MainUi.this, RateUs.class));
+                        dialog.cancel();
+                    }
+                });
+                builder.setNegativeButton(R.string.rate_dialog_no, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+            } else{
+               startActivityForResult(new Intent(this, RateUs.class), rated);
+            }
         } else if (id == nav_feedback) {
             Uri uriUrl = Uri.parse("https://docs.google.com/forms/d/1yln_gJBWt7N-Mrk0z47MB-TIpRZ3PgOTE4H2iYblSGo/viewform?edit_requested=true");
             Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
