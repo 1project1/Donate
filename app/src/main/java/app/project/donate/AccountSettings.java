@@ -62,8 +62,8 @@ public class AccountSettings extends DialogActivity implements View.OnTouchListe
     private static final int PERMISSION_REQUEST_CODE = 98;
 
     private static int CAMERA_REQUEST = 1009, GALLERY_PICTURE = 1008;
-
     File f;
+    static boolean languageChanged;
 
 
     @Override
@@ -243,18 +243,26 @@ public class AccountSettings extends DialogActivity implements View.OnTouchListe
         ad.setAdapter(languages, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String selectedLang = languages.getItem(which);
+                String selectedLang="English";
+                //String selectedLang = languages.getItem(which);
+                if(which==0){
+                    selectedLang="English";
+                }else if(which==1){
+                    selectedLang="Hindi";
+                }
                 changeLanguage(selectedLang);
+                recreate();
             }
         }).show();
 
     }
 
     private void changeLanguage(String lang) {
-        Log.i("Lang", lang);
+        languageChanged = true;
+        Log.i("Lang", lang+" "+languageChanged);
         if (lang.equals("Hindi")) {
             LocaleHelper.setLocale(this, "hi");
-        } else {
+        } else if (lang.equals("English")){
             Context context = LocaleHelper.setLocale(this, "en");
         }
     }
@@ -290,10 +298,10 @@ public class AccountSettings extends DialogActivity implements View.OnTouchListe
 
     private void startDialog() {
         AlertDialog.Builder myAlertDialog = new AlertDialog.Builder(this);
-        myAlertDialog.setTitle("Upload Pictures Option");
-        myAlertDialog.setMessage("How do you want to set your picture?");
+        myAlertDialog.setTitle(R.string.upload_picture);
+        myAlertDialog.setMessage(R.string.gallery_or_camera);
 
-        myAlertDialog.setPositiveButton("Gallery",
+        myAlertDialog.setPositiveButton(R.string.gallery,
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface arg0, int arg1) {
                         Intent pictureActionIntent = null;
@@ -452,4 +460,16 @@ public class AccountSettings extends DialogActivity implements View.OnTouchListe
     }
 
 
+
+    @Override
+    public void onBackPressed() {
+
+        Log.w("Destroyed","आकाश "+languageChanged);
+        Intent finishI = new Intent();
+        finishI.putExtra("languageChanged",languageChanged);
+        this.setResult(RESULT_OK,finishI);
+        Log.w("Destroyed","आकाश "+languageChanged);
+
+        super.onBackPressed();
+    }
 }

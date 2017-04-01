@@ -51,9 +51,9 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    static  CartDatabase cartDatabase;
+    static CartDatabase cartDatabase;
     int rated;
-    String temp="";
+    String temp = "";
     OthersFragment othersFragment;
     ClothesFragment clothesFragment;
     UtensilsFragment utensilsFragment;
@@ -61,6 +61,7 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
     BooksFragment booksFragment;
     ShoesFragment shoesFragment;
 
+    private static int LANG_INTENT = 1211;
 
 
     @Override
@@ -72,15 +73,15 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
 
 
         SharedPreferences preferences = getSharedPreferences("progress", MODE_PRIVATE);
-        int appUsedCount = preferences.getInt("appUsedCount",0);
+        int appUsedCount = preferences.getInt("appUsedCount", 0);
         appUsedCount++;
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt("appUsedCount", appUsedCount);
         editor.apply();
 
-        if (appUsedCount%10 == 0 && appUsedCount <= 300 && rated != 0){
+        if (appUsedCount % 10 == 0 && appUsedCount <= 300 && rated != 0) {
             startActivityForResult(new Intent(this, RateUs.class), rated);
-        } else{
+        } else {
 
         }
 
@@ -155,7 +156,7 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            startActivity(new Intent(this, AccountSettings.class));
+            startActivityForResult(new Intent(this, AccountSettings.class), LANG_INTENT);
             return true;
         } else if (id == R.id.action_logout) {
 
@@ -207,7 +208,7 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
             startActivity(launchBrowser);
         } else if (id == R.id.nav_credits) {
 
-           startActivity(new Intent(this, CreditsUI.class));
+            startActivity(new Intent(this, CreditsUI.class));
 
         }
 
@@ -215,13 +216,15 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    int quant=1;
+
+    int quant = 1;
+
     public void sendItemsToCart(View view) {
-        String title="";
+        String title = "";
         quant = 1;
 
         //q.setText("");
-        switch (view.getId()){
+        switch (view.getId()) {
 
             case R.id.toys_page:
 
@@ -229,69 +232,69 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
                 temp = toysFragment.getEDTValue();
                 try {
                     quant = Integer.parseInt(temp);
-                }catch (NumberFormatException e){
+                } catch (NumberFormatException e) {
                     quant = 1;
 
                     //Toast.makeText(this, "Number format Excp:" + temp, Toast.LENGTH_SHORT).show();
                 }
-                if(quant == 0) quant  = 1;
+                if (quant == 0) quant = 1;
                 //quant = Integer.parseInt(q.getText().toString());
-                sendToDb(title,quant);
+                sendToDb(title, quant);
                 break;
             case R.id.clothes_page:
                 title = "clothes";
                 temp = clothesFragment.getEDTValue();
                 try {
                     quant = Integer.parseInt(temp);
-                }catch (NumberFormatException e){
+                } catch (NumberFormatException e) {
                     quant = 1;
 
                     //Toast.makeText(this, "Number format Excp:" + temp, Toast.LENGTH_SHORT).show();
                 }
-                if(quant == 0) quant  = 1;
+                if (quant == 0) quant = 1;
                 //quant = Integer.parseInt(q.getText().toString());
-                sendToDb(title,quant);
+                sendToDb(title, quant);
                 break;
             case R.id.shoes_page:
                 title = "shoes";
                 temp = shoesFragment.getEDTValue();
                 try {
                     quant = Integer.parseInt(temp);
-                }catch (NumberFormatException e){
+                } catch (NumberFormatException e) {
                     quant = 1;
 
                     //Toast.makeText(this, "Number format Excp:" + temp, Toast.LENGTH_SHORT).show();
                 }
-                if(quant == 0) quant  = 1;
+                if (quant == 0) quant = 1;
                 //quant = Integer.parseInt(q.getText().toString());
-                sendToDb(title,quant);
+                sendToDb(title, quant);
                 break;
             case R.id.utensils_page:
                 title = "utensils";
                 temp = utensilsFragment.getEDTValue();
                 try {
                     quant = Integer.parseInt(temp);
-                }catch (NumberFormatException e){
+                } catch (NumberFormatException e) {
                     quant = 1;
 
                     ////Toast.makeText(this, "Number format Excp:" + temp, Toast.LENGTH_SHORT).show();
                 }
-                if(quant == 0) quant  = 1;
+                if (quant == 0) quant = 1;
                 //quant = Integer.parseInt(q.getText().toString());
-                sendToDb(title,quant);
+                sendToDb(title, quant);
                 break;
             case R.id.books_page:
                 title = "books";
                 temp = booksFragment.getEdTValue();
                 try {
                     quant = Integer.parseInt(temp);
-                }catch (NumberFormatException e){
+                } catch (NumberFormatException e) {
                     quant = 1;
 
                     ////Toast.makeText(this, "Number format Excp:" + temp, Toast.LENGTH_SHORT).show();
                 }
-                if(quant == 0) quant  = 1;
-                sendToDb(title,quant);
+                if (quant == 0) quant = 1;
+                sendToDb(title, quant);
                 //quant = Integer.parseInt(q.getText().toString());
 
                 break;
@@ -300,13 +303,13 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
                 temp = othersFragment.getEDTValue();
                 try {
                     quant = Integer.parseInt(temp);
-                }catch (NumberFormatException e){
+                } catch (NumberFormatException e) {
                     quant = 1;
 
                     //Toast.makeText(this, "Number format Excp:" + temp, Toast.LENGTH_SHORT).show();
                 }
-                if(quant == 0) quant  = 1;
-                sendToDb(title,quant);
+                if (quant == 0) quant = 1;
+                sendToDb(title, quant);
                 //quant = Integer.parseInt(q.getText().toString());
                 break;
 
@@ -316,12 +319,13 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
 
     }
 
-    public  static CartDatabase returnDb(){
-        return cartDatabase ;
+    public static CartDatabase returnDb() {
+        return cartDatabase;
     }
+
     private void sendToDb(String title, int quant) {
         Toast.makeText(this, "Sent:" + title, Toast.LENGTH_SHORT).show();
-        cartDatabase.addData(title,quant);
+        cartDatabase.addData(title, quant);
     }
 
     public class ViewPagerAdapter extends FragmentPagerAdapter {
@@ -397,5 +401,18 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
         CircleImageView civ = (CircleImageView) hView.findViewById(R.id.profile_picture_drawer);
         if (user.getPhotoUrl() != null)
             Glide.with(this).load(user.getPhotoUrl()).into(civ);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Boolean change = data.getBooleanExtra("languageChanged",false);
+        Log.d("Language Result","true "+resultCode+" "+requestCode+" "+change);
+
+        if (resultCode == RESULT_OK && requestCode == LANG_INTENT) {
+            if (change == true) {
+                recreate();
+            }
+        }
     }
 }

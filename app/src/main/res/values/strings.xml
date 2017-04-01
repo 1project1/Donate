@@ -177,6 +177,9 @@
     <string name="rate_us">Rate Us</string>
     <string name="feedback">Feedback</string>
     <string name="credits">Credits</string>
+    <string name="gallery">Gallery</string>
+    <string name="upload_picture">Upload Pictures Option</string>
+    <string name="gallery_or_camera">How do you want to set your picture?</string>
     <!---->
 
 </resources>
