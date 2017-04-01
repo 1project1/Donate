@@ -53,12 +53,9 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
 
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    static  CartDatabase cartDatabase;
     String temp="";
     static int rated = 0;
     static CartDatabase cartDatabase;
-    int rated;
-    String temp = "";
     OthersFragment othersFragment;
     ClothesFragment clothesFragment;
     UtensilsFragment utensilsFragment;
@@ -76,11 +73,11 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        SharedPreferences preferences = getSharedPreferences("Progress",MODE_PRIVATE);
-        int appUsedCount = preferences.getInt("appUsedCount",0);
-
-        SharedPreferences preferences = getSharedPreferences("progress", MODE_PRIVATE);
+        SharedPreferences preferences = getSharedPreferences("Progress", MODE_PRIVATE);
         int appUsedCount = preferences.getInt("appUsedCount", 0);
+
+        preferences = getSharedPreferences("progress", MODE_PRIVATE);
+        appUsedCount = preferences.getInt("appUsedCount", 0);
         appUsedCount++;
         SharedPreferences.Editor editor = preferences.edit();
         editor.putInt("appUsedCount", appUsedCount);
@@ -89,43 +86,43 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
         if (appUsedCount % 10 == 0 && appUsedCount <= 300 && rated != 0) {
             startActivityForResult(new Intent(this, RateUs.class), rated);
         } else {
-        SharedPreferences sharedPref = getPreferences(this.MODE_PRIVATE);
-        rated = sharedPref.getInt("apprated", 0);
+            SharedPreferences sharedPref = getPreferences(this.MODE_PRIVATE);
+            rated = sharedPref.getInt("apprated", 0);
 
-        if (appUsedCount%15 == 0 && appUsedCount <= 300 && rated == 0){
-            startActivity(new Intent(this, RateUs.class));
-        } else{
+            if (appUsedCount % 15 == 0 && appUsedCount <= 300 && rated == 0) {
+                startActivity(new Intent(this, RateUs.class));
+            } else {
 
+            }
+
+
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                    this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+            drawer.addDrawerListener(toggle);
+            toggle.syncState();
+
+            viewPager = (ViewPager) findViewById(R.id.viewPager);
+            viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
+
+            tabLayout = (TabLayout) findViewById(R.id.tabs);
+
+            tabLayout.setupWithViewPager(viewPager);
+
+            tabLayout.getTabAt(0).setIcon(R.drawable.uniform);
+            tabLayout.getTabAt(1).setIcon(R.drawable.train);
+            tabLayout.getTabAt(2).setIcon(R.drawable.books);
+            tabLayout.getTabAt(3).setIcon(R.drawable.fryingpan);
+            tabLayout.getTabAt(4).setIcon(R.drawable.shoes);
+            tabLayout.getTabAt(5).setIcon(R.drawable.hamburguer);
+
+            NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+            navigationView.setNavigationItemSelectedListener(this);
+            navigationView.setItemIconTintList(null);
+            init();
+            databaseInit();
         }
-
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        viewPager = (ViewPager) findViewById(R.id.viewPager);
-        viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
-
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
-
-        tabLayout.setupWithViewPager(viewPager);
-
-        tabLayout.getTabAt(0).setIcon(R.drawable.uniform);
-        tabLayout.getTabAt(1).setIcon(R.drawable.train);
-        tabLayout.getTabAt(2).setIcon(R.drawable.books);
-        tabLayout.getTabAt(3).setIcon(R.drawable.fryingpan);
-        tabLayout.getTabAt(4).setIcon(R.drawable.shoes);
-        tabLayout.getTabAt(5).setIcon(R.drawable.hamburguer);
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setItemIconTintList(null);
-        init();
-        databaseInit();
     }
-
 
     private void databaseInit() {
         cartDatabase = new CartDatabase(this);
