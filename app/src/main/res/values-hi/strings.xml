@@ -90,4 +90,10 @@
     <string name="ngo_list">NGO सूची</string>
     <string name="rate_us">हमें रेटिंग दें</string>
     <string name="about">ऐप के बारे में</string>
+    <string name="rate_us_title">कृपया इस एप्लिकेशन को रेट करें</string>
+    <string name="rate_us_toast_ask">कृपया अपनी रेटिंग दें !!!</string>
+    <string name="rate_us_toast_thanks">धन्यवाद !!!</string>
+    <string name="rate_dialog_question">क्या आप फिर से रेट करना चाहते हैं?</string>
+    <string name="rate_dialog_yes">हाँ</string>
+    <string name="rate_dialog_no">नहीं</string>
 </resources>
