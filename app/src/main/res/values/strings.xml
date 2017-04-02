@@ -111,8 +111,6 @@
     <string name="book_donation_type">What type of Book do you want to Donate ?</string>
     <string name="clear_cart">Clear Cart</string>
     <string name="donate_items">Donate Items</string>
-    <string name="later">LATER</string>
-    <string name="rate">Rate</string>
     <string name="encyclopedia">Encyclopedia</string>
     <string name="story_books">Story Books</string>
     <string name="text_books">Text Books</string>
@@ -180,6 +178,8 @@
     <string name="gallery">Gallery</string>
     <string name="upload_picture">Upload Pictures Option</string>
     <string name="gallery_or_camera">How do you want to set your picture?</string>
+    <string name="later">LATER</string>
+    <string name="rate">Rate</string>
     <string name="rate_us_title">Please Rate the APP</string>
     <string name="rate_us_toast_ask">Please give your Rating !!!</string>
     <string name="rate_us_toast_thanks">Thank You !!!</string>
