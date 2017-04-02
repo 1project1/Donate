@@ -209,13 +209,16 @@ public class Cart extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         firebasesavedonationitem();
+
                         Toast.makeText(getApplicationContext(), "Thank you for donating!"
                                 , Toast.LENGTH_SHORT).show();
                         List<DonateItem> temp = getAllCartItems();
+                        String items = "Ngo Location: " + temp.get(0).getNgoLocation()+"\n";
                         for (DonateItem x : temp) {
-                            Log.i("Item", "Title:" + x.getTitle() + "\tMessage:" +
-                                    x.getMessage() + "\tQuantity:" + x.getQuantity());
+                            items += "\nTitle:" + x.getTitle()  + "\tQuantity:" + x.getQuantity();
                         }
+
+                        sendEmail("User",temp.get(0).getNgoLocation(),"arup.shibai@gmail.com",items,"Total Items: " + Integer.toString(temp.size()));
 
                         NotificationCompat.Builder b =
                                 (NotificationCompat.Builder)
@@ -333,4 +336,13 @@ public class Cart extends AppCompatActivity {
         db.deleteAllData();
     }
 
+
+    void sendEmail(String name,String ngo_name, String user_email,String donated_item_name,String donated_item_quantity){
+        Acknowledgement email = new Acknowledgement();
+       try {
+           email.sendConfirmationMail(name, ngo_name, user_email, donated_item_name, donated_item_quantity);
+       }catch (NullPointerException e){
+           e.printStackTrace();
+       }
+    }
 }
