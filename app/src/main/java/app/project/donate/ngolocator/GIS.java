@@ -38,12 +38,12 @@ public class GIS {
          // Lion Club, 115, Sector-10, Faridabad
                 latlongT[3].setXY(28.376900, 77.325746, "Lion Club");
          // Plot No-3, Near Sector 37 Police Station, Faridabad - 121002
-                latlongT[4].setXY(28.480521, 77.329061, "Lala Diwan Chand Trust");
+                latlongT[4].setXY(28.437877,77.3207553, "SOS Children's Village Faridabad");
          // Rotary Club Of Faridabad, B-321-323, 2nd Floor, Nehru Ground, NIT Faridabad - 121001
                 latlongT[5].setXY(28.391532, 77.305287, "Rotary Club Of Faridabad");
          // National Association For The Blind, Haryana State Branch, Central Green, K.C. Road N.I.T. Faridabad 121001
                 latlongT[6].setXY(28.395879, 77.300690, "National Association For The Blind, Haryana State Branch");
-        latlongT[7].setXY(28.3639812, 75.5847897, "BITS Pilani");//BITS
+        latlongT[7].setXY(28535039,77295765, "BITS Pilani");//Goonj Sarita Vihar
         latlongT[8].setXY(12.9713946, 79.1530457, "VIT Vellore");//VIT
         latlongT[9].setXY(15.4225771, 73.9776508, "IIT Goa");//IIT Goa
     }

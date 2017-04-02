@@ -13,7 +13,7 @@
                 android:id="@+id/cardContents"
                 android:visibility="visible"
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="10dp">
 
                 <ImageView
@@ -77,21 +77,17 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/item_type_icon"
                     android:text="@string/item_message"
-                    android:gravity="top"
                     android:id="@+id/status_message"
-                    android:maxLines="3"
-                    android:background="@android:color/transparent"
-                    android:layout_above="@+id/buttons"/>
+                    android:singleLine="true" />
 
                 <TextView
                     android:id="@+id/history_item_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/status_message"
                     android:text="@string/date"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:layout_marginTop="5dp"/>
+                    android:layout_below="@+id/status_message" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -99,10 +95,13 @@
                     android:text="@string/donated_to"
                     android:gravity="center"
                     android:textSize="18sp"
+                    android:singleLine="true"
+                    android:ellipsize="marquee"
                     android:id="@+id/ngo_name"
                     android:layout_alignParentBottom="true"
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true" />
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/history_item_date" />
 
             </RelativeLayout>
 

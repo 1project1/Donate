@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.creativityapps.gmailbackgroundlibrary.BackgroundMail;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -38,6 +39,12 @@ import app.project.donate.ngolocator.GIS;
 import im.delight.android.location.SimpleLocation;
 
 public class Cart extends AppCompatActivity {
+
+    private final String our_username = "jeevanmru@gmail.com";
+    private final String our_password = "bahubali";
+    private  String mail_subject;
+    private  String mail_body;
+
     DatabaseReference myRef;
     RecyclerView sv;
     CartItemAdapter adapter;
@@ -198,7 +205,7 @@ public class Cart extends AppCompatActivity {
 
         MainUi.cartDatabase.deleteAllData();
     }
-
+    String items,ngo,size;
     public void donateAll(View view) {
         new AlertDialog.Builder(this)
                 .setIcon(null)
@@ -213,12 +220,13 @@ public class Cart extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Thank you for donating!"
                                 , Toast.LENGTH_SHORT).show();
                         List<DonateItem> temp = getAllCartItems();
-                        String items = "Ngo Location: " + temp.get(0).getNgoLocation()+"\n";
+
+                        items = "Ngo Location: " + temp.get(0).getNgoLocation()+"\n";
                         for (DonateItem x : temp) {
                             items += "\nTitle:" + x.getTitle()  + "\tQuantity:" + x.getQuantity();
                         }
-
-                        sendEmail("User",temp.get(0).getNgoLocation(),"arup.shibai@gmail.com",items,"Total Items: " + Integer.toString(temp.size()));
+                        ngo = temp.get(0).getNgoLocation();
+                        size = Integer.toString(temp.size());
 
                         NotificationCompat.Builder b =
                                 (NotificationCompat.Builder)
@@ -234,8 +242,8 @@ public class Cart extends AppCompatActivity {
                         itemList.clear();
                         adapter.notifyDataSetChanged();
                         MainUi.cartDatabase.deleteAllData();
+                        sendEmail("User",ngo,"arup.shibai@gmail.com",items,"Total Items: " + size);
 
-                        checkEmpty();
 
                     }
                 }).setNegativeButton("Nopes", null)
@@ -244,6 +252,8 @@ public class Cart extends AppCompatActivity {
 
     private void checkEmpty() {
         if (itemList.isEmpty()) {
+
+
             new AlertDialog.Builder(this)
                     .setIcon(null)
                     .setTitle("Oops!")
@@ -332,17 +342,46 @@ public class Cart extends AppCompatActivity {
 
     public void deleteAllCart(){
         CartDatabase db = MainUi.cartDatabase;
-
         db.deleteAllData();
     }
 
 
-    void sendEmail(String name,String ngo_name, String user_email,String donated_item_name,String donated_item_quantity){
-        Acknowledgement email = new Acknowledgement();
-       try {
-           email.sendConfirmationMail(name, ngo_name, user_email, donated_item_name, donated_item_quantity);
-       }catch (NullPointerException e){
-           e.printStackTrace();
-       }
+    public void sendEmail(String name,String ngo_name, String user_email,String donated_item_name,String donated_item_quantity){
+           sendConfirmationMail(name, ngo_name, user_email, donated_item_name, donated_item_quantity);
+
+    }
+
+    public void sendConfirmationMail(String name,String ngo_name, String user_email,String donated_item_name,String donated_item_quantity) {
+        mail_subject = "Donation Confirmation - Your Donation request with " + ngo_name + " has " +
+                "been made successfully.";
+
+        mail_body = "Hi " + name + ",\n\nThank you for your donation.\n\nYou will soon be " +
+                "contacted by " + ngo_name + " for further processing.\n\nPlease find below, the " +
+                "summary of items donated by you.\n\n" + donated_item_name + "\n"
+                + donated_item_quantity;
+
+        BackgroundMail.newBuilder(this)
+                .withUsername(our_username)
+                .withPassword(our_password)
+                .withMailto(user_email)
+                .withType(BackgroundMail.TYPE_PLAIN)
+                .withSubject(mail_subject)
+                .withBody(mail_body)
+                .withOnSuccessCallback(new BackgroundMail.OnSuccessCallback() {
+                    @Override
+                    public void onSuccess() {
+                        //do some magic
+                        checkEmpty();
+                        // Toast.makeText(Acknowledgement.this, "You will soon get an email about the confirmation", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .withOnFailCallback(new BackgroundMail.OnFailCallback() {
+                    @Override
+                    public void onFail() {
+                        //do some magic
+                        //Toast.makeText(Acknowledgement.this, "Failed... Try Again", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .send();
     }
 }
