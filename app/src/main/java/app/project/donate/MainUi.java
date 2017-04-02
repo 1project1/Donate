@@ -124,6 +124,7 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
         }
     }
 
+
     private void databaseInit() {
         cartDatabase = new CartDatabase(this);
         //Toast.makeText(this, "DB created!!!", Toast.LENGTH_SHORT).show();
