@@ -8,6 +8,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,13 +29,15 @@ public class History extends AppCompatActivity {
     RecyclerView hist;
     HistoryItemAdapter adapter;
     List<HistoryItem> historyItemList;
-
+    ProgressBar histPBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("History");
+        histPBar = (ProgressBar)findViewById(R.id.histPBar);
+        histPBar.setVisibility(View.VISIBLE);
         hist = (RecyclerView) findViewById(R.id.hist);
         historyItemList = new ArrayList<>();
         adapter = new HistoryItemAdapter(this, historyItemList);
@@ -88,6 +92,8 @@ public class History extends AppCompatActivity {
                         historyItemList.add(new HistoryItem(t, getThumbnailId(t), ngo, "Dummy Address",
                                 m, (Long) postSnapshot.child("quantity").getValue(),date));
                         adapter.notifyDataSetChanged();
+                        if(historyItemList.isEmpty())histPBar.setVisibility(View.VISIBLE);
+                        else histPBar.setVisibility(View.GONE);
 //                        Log.i("History" ,Title1.get(i)+"\n"+Message1.get(i)+"\n"+Quantity1.get(i));
                     }
                 }
