@@ -98,7 +98,9 @@ public class EditDetail extends DialogActivity implements View.OnClickListener {
                         .setDisplayName(val)
                         .build();
                 showProgressDialog();
+
                 mref.child("endUsers").child(user.getUid()).child("User_details").child("name").setValue(val);
+
                 user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
