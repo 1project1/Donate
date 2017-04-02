@@ -100,12 +100,14 @@ public class AccountSettings extends DialogActivity implements View.OnTouchListe
     private void setDetails() {
 
         final FirebaseUser user = mAuth.getCurrentUser();
+        mref = FirebaseDatabase.getInstance().getReference();
         if (user != null) {
 
             ((TextView) findViewById(R.id.email_verified)).setText("eMailVerified=" + user.isEmailVerified());
             ((TextView) findViewById(R.id.display_name)).setText(user.getDisplayName());
             ((TextView) findViewById(R.id.display_email)).setText(user.getEmail());
-
+            mref.child("endUsers").child(user.getUid()).child("User_details").child("name").setValue(user.getDisplayName());
+            mref.child("endUsers").child(user.getUid()).child("User_details").child("email").setValue(user.getEmail());
             if (user.getPhotoUrl() != null) {
                 Glide.with(this).load(user.getPhotoUrl()).into(profilePicture);
             }
@@ -113,7 +115,7 @@ public class AccountSettings extends DialogActivity implements View.OnTouchListe
             //((EditText) findViewById(R.id.display_gender)).setText(mFirebaseAnalytics.);
 
             if (isNetworkAvailable()) {
-                mref = FirebaseDatabase.getInstance().getReference();
+
                 showProgressDialog();
                 mref.addValueEventListener(new ValueEventListener() {
                     @Override

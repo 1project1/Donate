@@ -119,6 +119,9 @@ public class EditDetail extends DialogActivity implements View.OnClickListener {
                 if (val.isEmpty() || val.contentEquals(currentValue)) return;
 
                 showProgressDialog();
+
+                mref.child("endUsers").child(user.getUid()).child("User_details").child("email.com").setValue(val);
+
                 user.updateEmail(data.getText().toString())
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
