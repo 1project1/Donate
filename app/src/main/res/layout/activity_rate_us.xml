@@ -7,6 +7,7 @@
 
     <RatingBar
         android:id="@+id/ratingBar"
+        android:theme="@style/RatingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -30,7 +31,9 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="5dp"
             android:text="@string/later"
-            android:textSize="20sp"/>
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            android:background="@color/colorPrimary" />
 
         <Button
             android:id="@+id/rateButton"
@@ -39,8 +42,10 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="10dp"
             android:text="@string/rate"
-            android:textSize="20sp"
-            android:layout_weight="1"/>
+            android:textSize="25sp"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:background="@color/colorPrimary"/>
 
     </LinearLayout>
 

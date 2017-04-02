@@ -43,12 +43,11 @@ public class RateUs extends AppCompatActivity {
                 else {
                     Toast.makeText(RateUs.this, R.string.rate_us_toast_thanks, Toast.LENGTH_SHORT).show();
 
-                    SharedPreferences rated_record = getSharedPreferences("rate_success", MODE_PRIVATE);
-                    int rate_check = rated_record.getInt("rated", 1);
-                    SharedPreferences.Editor editor = rated_record.edit();
-                    editor.putInt("apprated", rate_check);
-
-                    editor.commit();
+                    SharedPreferences rated_sharedPref = getSharedPreferences("RateProgress", MODE_PRIVATE);
+                    int apprated = rated_sharedPref.getInt("apprated", 1);
+                    SharedPreferences.Editor editor = rated_sharedPref.edit();
+                    editor.putInt("apprated", apprated);
+                    editor.apply();
 
                     finish(RateUs.class);
                 }
