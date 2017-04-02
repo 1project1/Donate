@@ -232,6 +232,8 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
             startActivity(launchBrowser);
         } else if (id == R.id.nav_credits) {
             startActivity(new Intent(this, CreditsUI.class));
+        } else if (id == R.id.nav_gallery) {
+            startActivity(new Intent(this, HallOfFame.class));
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -336,6 +338,7 @@ public class MainUi extends AppCompatActivity implements NavigationView.OnNaviga
                 break;
 
         }
+
 
         Toast.makeText(this, title + ":" + quant, Toast.LENGTH_SHORT).show();
 

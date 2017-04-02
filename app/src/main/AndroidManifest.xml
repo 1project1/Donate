@@ -52,6 +52,10 @@
             android:parentActivityName=".MainUi"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".HallOfFame"
+            android:parentActivityName=".MainUi"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".MainUi"
             android:label="@string/title_activity_main_ui"
             android:screenOrientation="portrait"
